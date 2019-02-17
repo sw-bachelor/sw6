@@ -1,0 +1,89 @@
+\chapter{Type checker}\label{ch:TypeCheckerImplimentation}
+The type checker class is responsible for making sure that the program variables and expressions have the correct types throughout the program. First of all, it inherits from the \textit{Visitor} class to enable traversal of the AST. Every node in the AST that needs to be type checked then has their visit method overridden to implement the type checking code for each of the different nodes. The type checker is purely based on \textit{visit} methods, and they are not that different in terms of implementation. As such, a few examples are shown to give an idea of the general implementation procedure.
+
+\begin{lstlisting}[caption={Type checking for functions}, label={code:FuncNodeTypeChecking}]
+@Override
+public void visit(FuncNode funcNode) {
+  super.visit(funcNode);
+  for(int i = 0; i < funcNode.funcCntNodes.size(); i++) {
+    if(funcNode.funcCntNodes.get(i)
+    .stmtNode instanceof ReturnStmtNode) {
+      ReturnStmtNode rsNode = (ReturnStmtNode) 
+      funcNode.funcCntNodes.get(i).stmtNode;
+			
+      visit(rsNode.exprNode);
+			
+      if(rsNode.exprNode.type != funcNode.typeNode.Type) {
+        // Type error
+      }
+      else if(isAList(rsNode.exprNode)
+      && !funcNode.typeNode.islist) {
+        // List error
+      }
+      else if(!isAList(rsNode.exprNode) 
+      && funcNode.typeNode.islist) {
+        // List error
+      }
+    }
+  }
+}
+\end{lstlisting}
+The \textit{visit} method on Listing~\ref{code:FuncNodeTypeChecking} is responsible for type checking functions.
+This includes checking if each of the return statements inside the function are the same type as the function's specified return type. 
+Furthermore, this ensures that the functions return type and the return statements are both either lists or that none of them are lists. 
+\\\\
+First of all, the \textit{visit} method from the \textit{Visitor} class is called with the \textit{super.visit(funcNode)} method on line 3 to make sure that all statements and declarations inside the function are being visited. 
+After this, the for loop on line 4 is used to check each \textit{stmtNode} object in the function body if any of them are return statements. 
+If the check returns true, a \textit{ReturnStmtNode} object is instantiated by typecasting the specific \textit{stmtNode} on line 7-8.
+\\\\
+The visit method for the return statement is then called on line 10 to ensure that its type has been evaluated. It is then checked whether the type of this return statement is the same as the function's return type. If not, a type error is added to the \textit{MainClass} (represented by the comment on line 13). If the types are correct, we then need to check if the statement is a list and the return type of the function is not a list. We do not want it to be possible to return a list in function that does not expect a list, nor do we want it to be possible to return an expressions that is not a list in a function that expects a list. An error will be written if this is the case, which can be seen on line 17 and 21.
+
+\begin{lstlisting}[caption={Type checking for loop until}, label={code:LoopUntilTypeChecking}]
+@Override
+public void visit(LoopUntilNode node) {
+  super.visit(node);
+  checkCondition(node.exprNode);
+		
+  if(node.idNode.type != Type.NUMBER) {
+    // Type error
+  }
+}
+
+private void checkCondition(ExprNode expr) {
+  if(isAList(expr)) {
+    // List error
+  }
+  if(expr.type != Type.BOOL) {
+    // Type Error
+  }
+}
+\end{lstlisting}
+For the type checking of a \textit{loop-until} structure (Listing~\ref{code:LoopUntilTypeChecking}), it must be ensured that the expression in the condition is of type \textit{boolean}. 
+We also need to check that identifier that is incremented/decremented by of type \textit{number}. 
+Firstly, the \textit{visit} from the \textit{Visitor} is called with the \textit{super} keyword on line 3 to visit all the content of the \textit{LoopUntilNode} so that this can be type checked as well. 
+Then the condition is checked by calling the \textit{checkCondition} method. 
+\\\\
+This method will first of all check if the expression in the condition is a list, because this should not be possible, and will therefore write a list error (line 13). 
+The method then checks if the type of the expression is a \textit{boolean} (line 15). 
+If it is not, a type error is issued. 
+It is then checked if the type of the identifier that is incremented/decremented is a number, and if it is not, an error is once again issued to the \textit{MainClass}.
+
+\begin{lstlisting}[caption={Type checking for function calls as expressions}, label={code:funcCallExprTypeChecking}]
+@Override
+public void visit(FuncExprNode funcExprNode) {
+  ParametersNode formalParams = st.getFunctionFromFuncMap(
+  funcExprNode.funcCallNode).parametersNode;
+
+  checkActualAndFormalParams(funcExprNode.funcCallNode, 
+  funcExprNode.funcCallNode.callCntNode, formalParams);
+
+  funcExprNode.type = st.getFunctionFromFuncMap(funcExprNode
+  .funcCallNode).typeNode.Type;
+}
+\end{lstlisting}
+When type checking function calls (Listing \ref{code:funcCallExprTypeChecking}), the idea is to make sure that the actual parameters that have been input to the function are compatible with the formal parameters defined in the function declaration. 
+In this \textit{visit} method the symbol table is used to look up the specific function on line 3-5, and the \textit{parametersNode} from the call to the symbol table, which contains all of the formal parameters for the function, is saved in a new object \textit{formalParams}. 
+\\\\
+This node, together with the \textit{funcCallNode}, which contains the actual parameters, is then passed to the method \textit{checkActualAndFormalParams} on line 7-8 which will do the type checking and make sure the the actual parameter types are compatible with the types of the formal parameters. 
+It will also make sure that the correct number of parameters have been given to the function call. 
+Finally, the \textit{funcExprNode} needs to have a type so it can be used in an expression. This type is the return type of the function, which is looked up in the symbol table on line 11-12 and assigned to the expression.
