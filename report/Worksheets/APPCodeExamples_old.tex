@@ -1,0 +1,90 @@
+\chapter{Code examples}
+\begin{lstlisting}[caption={Sample code}, label={code:InitialSampleCode}]
+
+/*****************************************************
+ * Program purpose:                                  *
+ * The purpose of this program is to turn the light  *
+ * in a room on and of                               *
+ * Focus will be on the syntax of the language.      *
+******************************************************/
+
+using lightbulb
+# The setup method is a default method similar to main, it's used for defining what's in the different ports/pins and such.
+#define <method name> with <parameters and types> returntype <type>
+setup{
+  # The types define whether they are input or output
+  # <type> <name> := pin <number>
+  lightbulb l := pin 1
+}
+
+# The repeat method is a default method, it's used for code that's repeated in each cycle of the hardware. 
+repeat{
+  if(l is off) then{
+    l := on
+  }else{
+    l := off
+  }
+}
+
+\end{lstlisting}
+The first thing to notice on listing~\ref{code:InitialSampleCode} is how we imagine that single line comments should look like. 
+Here we wish to use a \# to make the comment. We then have the \textit{setup} function where we wish to define and declare all the variables. 
+The main focus of this program is to show how we plan on manipulating the components. Or plan is that make it as simple as possible by just giving the programmer the ability to assign the component to either on or off.
+
+\begin{lstlisting}[caption={Code sample using groups and loop}, label={code:GroupefSample}]
+/*****************************************************
+ * Program purpose:                                  *
+ * The purpose of this program is to turn different  *
+ * devices in the home on at certain time and turn   *
+ * others of when they aren't needed more            *
+******************************************************/
+
+using Lightbulb
+
+setup{
+    number x := 5
+    text name := "Ben"
+    bool tester := false
+
+    lightbulb lamp := pin 5
+    lightbulb deskLamp := pin 2
+
+    group livingroom{
+        lamp
+        desklamp
+    }
+
+    list number numberList := {i, x, 10}
+}
+
+repeat{
+    
+    i := time(x)
+    
+    switch(i) {
+        case 0 :
+            livingroom = off
+        case 20 :
+            livingroom = on
+        default :
+    }
+    loop 8 times{
+        
+        if(i < x) then{
+            name := "Bill"
+        }else if(i is x) then{
+            name := "Mary"
+        }else then{
+            name := "Heffy"
+        }
+    }
+}
+
+define time with (number i) returnType number{
+    return i+1
+}
+
+\end{lstlisting}
+Listing~\ref{code:GroupeSample} focuses on the advanced data types group and list. In the setup method two lightbulbs are defined and assigned to the group \textit{livingroom} and a list of numbers is defined.\\
+In the \textit{repeat} method, the variable i is defined by calling the user defined function called time with x as a parameter. As per PHAL syntax rules, both variables are defined in the \textit{setup} before they are used in \textit{repeat.}.\\
+Finally the i variable is used for a switch, which determines whether the status of the \textit{livingroom} group should be on or off.

@@ -1,0 +1,132 @@
+\chapter{Number Visitor}
+PHAL includes the \textit{number} type. \textit{Number} is a type that, when compiled down to APL, can either be an integer or a decimal depending on the context. The \textit{number} therefore needs to be evaluated to decide whether it compiles to an integer (\textit{int}) or a decimal (\textit{float}). This means that we have to visit all instances where a \textit{number} can be present such as variable declarations, assignments and function calls to check whether the \textit{number} is an integer or not.
+
+\section{Visitor}
+The \textit{Number Visitor} inherits the visitor pattern from the \textit{Visitor} class and overrides some of the \textit{visit} methods to implement the \textit{Number Visitor}'s functionality. Inheriting from the \textit{Visitor} means that it will traverse the AST node for node through the \textit{visit} methods.
+\\\\
+In the following subsections we will take a closer look at a few of these methods. The methods that are chosen are for the program node, which is the root of the AST, the variable declaration nodes, the assignment nodes and the function nodes. The \textit{ProgramNode} \textit{visit} is shown because it is used to map all of the functions, and it also contains all the nodes. Variable declarations, assignments and functions are described here because they can contain numbers that needs to be evaluated.
+
+\subsection{ProgramNode}
+The first thing that happens is that a hashmap is created containing all the functions (\textit{FuncNodes}) as shown on Listing~\ref{code:NumberVisitor:VisitProgramNode} line 1. This is done to easily access the declarations (\textit{DclNodes}) of the formal parameters of functions that are called throughout a program. 
+If the function is ever called with a \textit{float} as an actual parameter then the corresponding formel parameter has to be declared as a \textit{float} in the intermediate generated code, in this case APL.
+We then use the \textit{super.visit()} to visit the \textit{Visitors} implementation of this method, which will visit all the \textit{ProgramNode's} children. 
+
+\begin{lstlisting}[caption={code to implement the ProgramNode visitor and function map}, label={code:NumberVisitor:VisitProgramNode}]
+private HashMap<String, FuncNode> functionMap = new HashMap<>();
+@Override
+public  void visit(ProgramNode node){
+  for(FuncNode func : node.funcNodes){
+     functionMap.put(func.idNode.id, func);
+  }
+  super.visit(node);
+}
+\end{lstlisting}
+\subsection{VarDclNode}
+When visiting Variable declarations (\textit{VarDclNodes}), it is first checked if the variable's type is a \textit{number} as shown on Listing~\ref{code:NumberVisitor:VisitVarDclNode} line 2. 
+\\
+If the variable is of the type \textit{number} it is checked whether the variable is assigned a value. This is done by checking if the expression node (\textit{ExprNode}) is null, if the expression is not null it means that the variable was declared and assigned to a value and further checks need to be done.
+\\
+If the variable is a number and it gets assigned a value, then the \textit{VarDclNode's} member variable \textit{isInt} is set equal to the boolean result returning from the method \textit{checkExprType}. This method takes the \textit{VarDclNode's} \textit{ExprNode} as a parameter and evaluates whether all occurrences of numbers in this expression are of the type integer or float.
+\\
+The \textit{checkExprType} returns \textit{false} if a \textit{float} number ever occurs in the \textit{ExprNode} and \textit{true} if all the numbers are a \textit{integer}. The method's use is shown on line 3.
+
+\begin{lstlisting}[caption={code to implement the VarDclNode visitor}, label={code:NumberVisitor:VisitVarDclNode}]
+public void visit(VarDclNode node) {
+  if(node.typeNode.Type == Type.NUMBER && node.exprNode != null) {
+    node.typeNode.isInt = checkExprType(node.exprNode);
+  }
+}
+\end{lstlisting}
+
+\subsection{AssignmentNode}
+When visiting an assignment (\textit{AssignmentNode}) it is first checked if the variable that is being assigned to is of the type \textit{number}, as shown on Listing~\ref{code:NumberVisitor:VisitAssignmentNode} line 2. 
+\\
+If the variable is of the type \textit{number} we check what type of declaration the variable was by using the \textit{instanceof} keyword to get the derived class from the abstract class \textit{DclNode}.
+In this situation it can either be an instance of a variable declaration (\textit{VarDclNode}) or a formal parameter (\textit{ParamNode}).
+\\\\
+The reason for this check is that the \textit{DclNode} class does not contain a \textit{TypeNode} and the \textit{TypeNode} is where we have the \textit{isInt} flag on. The isInt flag is placed on the TypeNode to make it easier for the CodeGenerator to access when generating the declarations
+Then the \textit{DclNode} is explicitly casted to either a \textit{VarDclNode} or a \textit{ParamnNode} depending on which one it is an instance of. 
+\\\\
+We then check if the \textit{isInt} flag on the now casted \textit{DclNode} is \textit{true} or \textit{false} on line 5. 
+If it is \textit{true} then we set the \textit{isInt} flag equal to the result of \textit{checkExprType}, in the same way as it was done in listing \ref{code:NumberVisitor:VisitVarDclNode}. 
+It will return \textit{false} if the \textit{exprNode} contains a \textit{float} and \textit{true} if it only contains \textit{intergers}.
+\\\\
+If the \textit{isInt} flag is \textit{false} we do nothing because this means that it is a \textit{float} and a \textit{float} can not be converted to an \textit{integer} without losing precision.
+
+\begin{lstlisting}[caption={code to implement the AssignmentNode visitor}, label={code:NumberVisitor:VisitAssignmentNode}]
+public void visit(AssignmentNode node) {
+  if(node.idNode.type == Type.NUMBER) {
+    if(node.idNode.dclNode instanceof VarDclNode) {
+      VarDclNode dcl = (VarDclNode) node.idNode.dclNode;
+      if(dcl.typeNode.isInt) {
+        dcl.typeNode.isInt = checkExprType(node.exprNode);
+      }
+    } else {
+        ParamNode dcl = (ParamNode) node.idNode.dclNode;
+        if (dcl.typeNode.isInt) {
+          dcl.typeNode.isInt = checkExprType(node.exprNode);
+        }
+    }
+  }
+}
+\end{lstlisting}
+
+
+\subsection{FuncCallNode}
+When visiting a function call(\textit{FuncCallNode}) we first check whether there are any actual parameters. If there are no actual parameters then nothing happens. But if there are any then the corresponding \textit{FuncNode} from the hashmap that we created when visiting the \textit{ProgramNode}, as shown in Listing~\ref{code:NumberVisitor:VisitProgramNode}, is extracted and saved in a local variable.
+\\\\
+Then the formal parameters \textit{isInt} flag, from from the \textit{FuncNode}, is evaluated based on the corresponding actual parameters. This is done by setting the \textit{isInt} flag from the formal paramters equal to the return value from the method \textit{CheckExprType} where the expression node being passed as its parameter is equal to the corresponding actual parameter.
+\\\\
+If the \textit{ExprNode} only contained \textit{integers} the \textit{CheckExprType} returns \textit{true}, but if the \textit{ExprNode} contained any \textit{floats} then \textit{CheckExprType} returns \textit{false} and the corresponding parameter is declared as a \textit{float} when the function is declared in APL. 
+\begin{lstlisting}[caption={code to implement the FuncCallNode visitor}, label={code:NumberVisitor:VisitFuncCallNode}]
+public void visit(FuncCallNode node) {
+  if(node.callCntNode != null) {
+    FuncNode func = functionMap.get(node.idNode.id);
+    for(int i = 0; i < node.callCntNode.exprNodes.size(); i++){
+      if(func.parametersNode.paramNodes.get(i).typeNode.isInt){
+        func.parametersNode.paramNodes.get(i).typeNode.isInt = checkExprType(node.callCntNode.exprNodes.get(i));
+      }
+    }
+  }
+}
+\end{lstlisting}
+
+\section{CheckExprType}
+To check whether an \textit{ExprNode} contains \textit{floats}, we made use of method overloading by imitating the \textit{Visitor} pattern. 
+We implemented a \textit{CheckExprType} method for each derived class of the \textit{ExprNode}. 
+We then made use of recursive calls to handle the different contents of the \textit{ExprNodes}.
+
+\subsection{IdRefExprNode}
+An \textit{IdRefExprNode} is a reference to an already declared variable. 
+When checking if the \textit{IdRefExprNode} is a \textit{float} or an \textit{int} we just return the \textit{isInt} flag from \textit{typeNode} on the \textit{DclNode} on the \textit{IdRefExprNode} as can be seen on Listing~\ref{code:NumberVisitor:IdRefExprNode}.
+\begin{lstlisting}[caption={This listing shows the checkExprType method}, label={code:NumberVisitor:IdRefExprNode}]
+private boolean checkExprType(IdRefExprNode node) {
+  if(node.idNode.dclNode instanceof VarDclNode) {
+    return ((VarDclNode) node.idNode.dclNode).typeNode.isInt;
+  } else {
+    return ((ParamNode) node.idNode.dclNode).typeNode.isInt;
+  }
+}
+\end{lstlisting}
+
+\subsection{LiteralExprNode}
+A \textit{LiteralExprNode} is a \textit{ExprNode} that contains a literal. 
+This means that in this context it will contain a string with a number in it. 
+To check if it is a \textit{integer} or a \textit{float} we try to parse it as a \textit{integer}. 
+\\\\
+Since we have already been through the type checker we can be surden that the \textit{LiteralExprNode's} type is number.
+If it throws an exception we know that it is a \textit{float} and we return \textit{false}.
+\\\\
+If it does not throw an exception we know that it is an \textit{integer} and we return \textit{true} as can be seen on Listing~\ref{code:NumberVisitor:LiteralExprNode}.
+\begin{lstlisting}[caption={Code to implement the checkExprType method that takes a LiteralExprNode as a parameter}, label={code:NumberVisitor:LiteralExprNode}]
+private boolean checkExprType(LiteralExprNode node){
+  try {
+    Integer.parseInt(node.literalExprNode);
+  } catch (NumberFormatException e) {
+    return false;
+  }
+  return true;
+}
+\end{lstlisting}
+The remaining types of \textit{ExprNode}s simply contain one or more \textit{ExprNode}s, and are checked recursively. \\
+Following the completion of the number visitor, the source code has now been analysed and type checked, and is prepared for the final phase, code generation, which will be further described in the next chapter.

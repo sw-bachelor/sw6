@@ -1,0 +1,1141 @@
+\chapter{Type rules}\label{typerules:TypeRules}
+
+\section{Type rules for valid type judgements for expressions}\label{app:typerulesforvalid}
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{SUB}_\text{EXP}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+ $\cfrac {E \vdash e_1 : \text{Number } \: \: E \vdash e_2 : \text{Number}}{E \vdash e_1 - e_2 : \text{Number} }$
+ \end{minipage}
+\end{equation}
+
+\begin{equation}\label{app:eq:addnum}
+\begin{minipage}{.2\linewidth}
+$[\text{ADDNUM}_\text{EXP}]$ 
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{E \vdash e_1 : \text{Number } \: \: E \vdash e_2 : \text{Number}}{E \vdash e_1 + e_2 : \text{Number}}$
+\end{minipage}
+\end{equation}
+
+\begin{equation}\label{app:eq:addtext}
+\begin{minipage}{.2\linewidth}
+$[\text{ADDTEXT}_\text{EXP}]$ 
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{E \vdash e_1 : \text{Text } \: \: E \vdash e_2 : \text{Text}}{E \vdash e_1 \circ e_2 : \text{Text}}$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{MULT}_\text{EXP}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{E \vdash e_1 : \text{Number }\: \: E \vdash e_2 : \text{Number}}{E \vdash e_1 \cdot e_2 : \text{Number}}$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{DIV}_\text{EXP}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{E \vdash e_1 : \text{Number }\: \: E \vdash e_2 : \text{Number}}{E \vdash e_1 \: / \: e_2 : \text{Number}}$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{MOD}_\text{EXP}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{E \vdash e_1 : \text{Number }\: \: E \vdash e_2 : \text{Number}}{E \vdash e_1 \: \text{mod} \: e_2 : \text{Number}}$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{PAREN}_\text{EXP}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{E \vdash e_1 : \text{T}}{E \vdash (e_1) : \text{T}}$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{EQUAL}_\text{EXP}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{E \vdash e_1 : \text{T} \: \: E \vdash e_2 : \text{T}}{E \vdash e_1 = e_2 : \text{Bool}}$
+\end{minipage}
+\end{equation}
+
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{NOTEQUAL}_\text{EXP}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{E \vdash e_1 : \text{T} \: \: E \vdash e_2 : \text{T}}{E \vdash e_1 \neq e_2 : \text{Bool}}$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{GTR}_\text{EXP}]$ 
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{E \vdash e_1 : \text{Number } \: \: E \vdash e_2 : \text{Number}}{E \vdash e_1 > e_2  \text{Bool}}$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{GTREQ}_\text{EXP}]$ 
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{E \vdash e_1 : \text{Number } \: \: E \vdash e_2 : \text{Number}}{E \vdash e_1 \geq e_2  \text{Bool}}$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{NEG}_\text{EXP}]$ 
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{E \vdash e_1 : \text{Bool}}{E \vdash \neg e_1 : \text{Bool}}$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{AND}_\text{EXP}]$ 
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{E \vdash e_1 : \text{Bool } \: \: E \vdash e_2 : \text{Bool}}{E \vdash e_1 \land e_2 : \text{Bool}}$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{OR}_\text{EXP}]$ 
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{E \vdash e_1 : \text{Bool } \: \: E \vdash e_2 : \text{Bool}}{E \vdash e_1 \vee e_2  \text{Bool}}$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{NUM}_\text{EXP}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$E \vdash n : \text{Number}$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{VAR}_\text{EXP}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{E(x) = T} {E \vdash x : T}$
+\end{minipage}
+\end{equation}
+
+\begin{equation}\label{app:GrpVar}
+\begin{minipage}{.2\linewidth}
+$[\text{GRPVAR}_\text{EXP}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{E[gx \mapsto (x_1...x_n : G_1...G_n)] \vdash E(gx) = \text{ok} } {E \vdash gx : \text{ok}}$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{LISTVAR}_\text{EXP}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{E[lx \mapsto (gx_1...gx_n : ok,\: x_1...x_n : T \xrightarrow{} ok)] \vdash E(lx) = T } {E \vdash lx : T}$
+\end{minipage}
+\end{equation}
+\noindent
+\subsection{Type rules for statements}
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{IF-1}_\text{STM}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{E \vdash e : \text{Bool } \text{ E} \vdash S : \text{ok }}{E \vdash \text{if } e \text{ then } S : \text{ok}}$
+\end{minipage}
+\end{equation}
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{IF-2}_\text{STM}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{E \vdash e : \text{Bool } \: \text{E} \vdash S : \text{ok } \: \text{ E} \vdash S_{if} : \text{ok}}{E \vdash \text{if } e \text{ then } S \: S_{if} : \text{ok}}$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{LOOPUNTIL}_\text{STM}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{E \vdash e : Bool \: \: E \vdash S : ok}{E \vdash \text{loop S until } e : \text{ok}}$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{split}
+\begin{minipage}{\linewidth}
+$[\text{LOOPUNTIL-INC}_\text{STM}]$
+\end{minipage}
+\\\\
+\begin{minipage}{\linewidth}
+\centering
+$\cfrac{E \vdash e : Bool \: \: E \vdash x : Number \: \: E \vdash n : Number \: \:  E \vdash S : ok}{E \vdash \text{loop S until } e, \text{ increase } x \text{ by } n : \text{ok}}$
+\end{minipage}
+\end{split}
+\end{equation}
+
+\begin{equation}
+\begin{split}
+\begin{minipage}{\linewidth}
+$[\text{LOOPUNTIL-DEC}_\text{STM}]$
+\end{minipage}
+\\\\
+\begin{minipage}{\linewidth}
+\centering
+$\cfrac{E \vdash e : Bool \: \: E \vdash x : Number \: \: E \vdash n : Number \: \:  E \vdash S : ok}{E \vdash \text{loop S until } e, \text{ decrease } x \text{ by } n \: : \text{ok}}$
+\end{minipage}
+\end{split}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{LOOPTIMES}_\text{STM}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{E \vdash e : Number \: \: E \vdash S : ok}{E \vdash \text{loop } S \: e \text{ times} : \text{ok}}$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{SWITCH}_\text{STM}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{E \vdash e : T \; \; E \vdash e_1 ... e_n : T \; \; E \vdash S : \text{ok} \; \; E \vdash S_1 ... S_n : \text{ok}}{\text{switch}(e) \{case <e_1>: \: S_1 ... \: case <e_n>: \: S_n \text{ default}: S \} : \text{ok}}$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{ASS}_\text{STM}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{E \vdash \text{x} : \text{T} \: \: \: \text{ E} \vdash e : T} {E \vdash x := e : \text{ok} }$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{GRPASS}_\text{STM}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{E \vdash \text{gx} : \text{T} \: \: \: \text{ E} \vdash e : T} {E \vdash gx := e : \text{ok} }$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{SEQ}_\text{STM}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{E \vdash S_1 : \text{ok} \: \: \: S_2 : \text{ok}} {E \vdash S_1 \: new \: S_2 : \text{ok} }$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{GETLISTELE}_\text{STM}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{E \vdash n : \text{Number} \: \: \: E \vdash lx : \text{List}} {E \vdash \text{get element } n \text{ from } lx: \text{ok} }$
+\end{minipage}
+\end{equation}
+
+\begin{equation}\label{app:addlistelestmt}
+\begin{minipage}{.2\linewidth}
+$[\text{ADDLISTELE}_\text{STM}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{E \vdash e : T \: \: \: E[lx \mapsto \text{List}] \: lx : T} {E \vdash \text{add } e \text{ to } lx: \text{ok} }$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{REMOVELISTELE}_\text{STM}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{E \vdash e : T \: \: \: E \vdash lx : \text{List}} {E \vdash \text{remove } e \text{ from } lx: \text{ok} }$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{WAIT}_\text{STM}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{E \vdash e : T} {E \vdash \text{wait for } e \text{ seconds}: \text{ok} }$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{CALL}_\text{STM}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{E \vdash f : (P_1...P_n : T...T_n \xrightarrow{}\text{ok}) \: \: \: E \vdash e : T}{E \vdash \text{call} \: f \: \text{with} \: (e_1...e_n) : \text{ok}}$
+\end{minipage}
+\end{equation}
+To typecheck a function call, the function $f$ is looked up in the type environment, and $f$ is then typed as $(P...P_n : T...T_n \xrightarrow{} ok)$. After this, the actual parameters $e...e_n$ are typed as type $T$. The type check of the functions body is done during declaration, and the declaration told us that the function is ok if it is given a parameter of type $T$.
+
+\subsubsection*{Type rules for if-endings}
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{ELSEIF}_\text{STM}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{E \vdash e : \text{Bool } \: \: E \vdash S : \text{ok}}{E \vdash \text{else if } e \text{ then } S : \text{ok}}$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{ELSEIFSEQ}_\text{STM}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{E \vdash e : \text{Bool } \: \: E \vdash S : \text{ok } \: \: E \vdash S_{if} : \text{ok}}{E \vdash \text{else if } e \text{ then } S \: S_{if} : \text{ok}}$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{ELSEEND}_\text{STM}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{E \vdash S : \text{ok}}{E \vdash \text{else } S : \text{ok}}$
+\end{minipage}
+\end{equation}
+
+
+\subsection{Type rules for declarations}
+
+\begin{equation}\label{app:typehelp1}
+    E(\epsilon, \: E) = E
+\end{equation}
+
+\begin{equation}\label{app:typehelp2}
+    E(T \: var \: x := e \: new \: D_V, \: E) = E(D_V, \: E[x \mapsto T])
+\end{equation}
+
+\begin{equation}\label{app:typehelpADT}
+    E(T \: var \: x := \text{pin} \: Pin \: new \: D_{adt}, \: E) = E(D_{adt}, \: E[x \mapsto T, \: Pin \mapsto Number])
+\end{equation}
+
+\begin{equation}\label{app:typehelp3}
+    E(T \: var \: gx := \{G_B\} \: new \: D_G, \: E) = E(D_G, \: E[gx \mapsto (x_1...x_n : T_1...T_n)\xrightarrow{}ok])
+\end{equation}
+
+\begin{equation}\label{app:typehelp4}
+    E(T \ var \ lx \: := \: \{L_B\} \: new \: D_L, \: E) = E(D_L, \: E[lx \mapsto (gx_1...gx_n : T_1...T_n \xrightarrow{} ok, \: x_1...x_n : T_1...T_n \xrightarrow{} ok)])
+\end{equation}
+
+ \begin{equation} \label{app:typehelp5}
+     E(\text{define} \, f \, \text{with} \, (T \, P) \, \{F_B\} \, \text{returnType} \, (RTN) \, new \, D_F, \, E) = E(D_F, \, E[f \mapsto (P:T_1...T_n) \xrightarrow{}\text{ok}])
+ \end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{VAR}_\text{DCL}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{E \vdash e : T \: \: \: \: E[x \mapsto T] \vdash D_V : \text{ok}} {E \vdash T \: var \: x := e \: new \: D_V : \text{ok}}$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{ADT}_\text{DCL}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{E \vdash pin : T \: \: \: \: E \vdash Pin : ok \: \:  \: \: E[x \mapsto T] \vdash D_{adt} : \text{ok}} {E \vdash T \: var \: x := \text{pin} \: Pin \: new \: D_{adt} : \text{ok}}$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{PIN}_\text{HLPR}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{E \vdash n_1, \dots n_n : Number} {E \vdash n_1, \dots n_n : \text{ok}}$
+\end{minipage}
+\end{equation}
+\\
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{GRP}_\text{DCL}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{E \vdash G_B...G_{B_{n}} : ok \: \: \: \: E[gx \mapsto (x...x_n: T...T_n)\xrightarrow{}ok] \vdash D_G : ok}{E \vdash T \: var \: gx \: \{G_B\} \: new \: D_G : ok}$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{split}
+\begin{minipage}{\linewidth}
+$[\text{LIST}_\text{DCL}]$
+\end{minipage}
+\\
+\begin{minipage}{\linewidth}
+\centering
+$\cfrac{E \vdash L_B...L_{B_{n}} : ok \: \: \: \: E[lx \mapsto (gx...gx_n : T...T_n \xrightarrow{} ok, \: x...x_n : T...T_n \xrightarrow{} ok)] \vdash D_L: ok}{E \vdash T \: var \: lx \: := \: \{L_B\} \: new \: D_L : ok}$
+\end{minipage}
+\end{split}
+\end{equation}
+
+%%Means that the list is checked in an envirnment expanded with the content of the list where it is typed as t
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{FUNC}_\text{DCL}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{E[P : T_1...T_n] \vdash S : \text{ok} \: \: \: E[f \mapsto (P: T_1...T_n \xrightarrow{} ok)] \vdash D_P : \text{ok}}{E \vdash \text{define} \: f \: \text{with} \: (T \: P) \{F_B\} \: \text{returnType} \: (RTN) \: \textit{new} \: D_F : \text{ok}}$
+\end{minipage}
+\end{equation}
+
+\section{Updated semantics for type rules}\label{typerules:UpdatedExpressions}
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{PLUS-num}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{env_v, \: sto \vdash e_1 \xrightarrow{}\textsubscript{e} \: v_1 \quad env_v, \: sto \vdash e_2 \xrightarrow{}\textsubscript{e} \: v_2}{env_v, \: sto \vdash e_1 + e_2 \xrightarrow{}\textsubscript{e} \: v}$
+$ \: where$ $v$ $=$ $v_1$ $+$ $v_2$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{PLUS-text}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{env_v, \: sto \vdash e_1 \xrightarrow{}\textsubscript{e} \: v_1 \: \: \: env_v, \: sto \vdash e_2 \xrightarrow{}\textsubscript{e} \: v_2}{env_v, \: sto \vdash e_1 + e_2 \xrightarrow{}\textsubscript{e} \: v}$
+$ \: where$ $v$ $=$ $v_1$ $\circ$ $v_2$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{MINUS}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{env_v, \: sto \vdash e_1 \xrightarrow{}\textsubscript{e} \: v_1 \: env_v, \: sto \vdash e_2 \xrightarrow{}\textsubscript{e} \: v_2}{env_v, \: sto \vdash e_1 - e_2 \xrightarrow{}\textsubscript{e} \: v}$
+$ \: where$ $v$ $=$ $v_1$ $-$ $v_2$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{MULT}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{env_v, \: sto \vdash e_1 \xrightarrow{}\textsubscript{e} \: v_1 \: env_v, \: sto \vdash e_2 \xrightarrow{}\textsubscript{e} \: v_2}{env_v, \: sto \vdash e_1 \cdot e_2 \xrightarrow{}\textsubscript{e} \: v}$
+$ \: where$ $v$ $=$ $v_1$ $\cdot$ $v_2$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{DIV}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{env_v, \: sto \vdash e_1 \xrightarrow{}\textsubscript{e} \: v_1 \: env_v, \: sto \vdash e_2 \xrightarrow{}\textsubscript{e} \: v_2}{env_v, \: sto \vdash e_1 \div e_2 \xrightarrow{}\textsubscript{e} \: v}$
+$ \: where$ $v$ $=$ $v_1$ $\div$ $v_2$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{MOD}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{env_v, \: sto \vdash e_1 \xrightarrow{}\textsubscript{e} \: v_1 \: env_v, \: sto \vdash e_2 \xrightarrow{}\textsubscript{e} \: v_2}{env_v, \: sto \vdash e_1 \: mod \: e_2 \xrightarrow{}\textsubscript{e} \: v}$
+$ \: where$ $v$ $=$ $v_1$ $mod$ $v_2$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{PAREN}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{env_v, \: sto \vdash e_1 \xrightarrow{}\textsubscript{e} \: v_1}{env_v, \: sto \vdash (e_1) \xrightarrow{}\textsubscript{e} \: v_1}$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{NUM}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$env_v, \: sto \vdash n \xrightarrow{}\textsubscript{e} \: v$ $ \: \text{if}$ $\mathbb{Q}[\![n]\!]$ $=$ $v$ 
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{VAR}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$env_v, \: sto \vdash x \xrightarrow{}\textsubscript{e} \: v$ $ \:\:\: \text{if} \:\:\: env_v \: x = l$ and $sto \: l = v$ 
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{GRPVAR}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$env_G, \: env_v, \: sto \vdash gx \xrightarrow{}\textsubscript{e} \: v$ \\ if $env_G \: gx = l,$ \\ $env_G \: gx = env_v x...x_n,$ \\ $env_v x...x_n = l'...l'_n$ \\ and $sto \: l = v,$ \\$sto \: l'...l'_n = v...v_n$ 
+\end{minipage}
+\end{equation}
+
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{LISTVAR}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$env_L, \: env_G, \: env_v, \: sto \vdash lx \xrightarrow{}\textsubscript{e} \: x...x_n$  \\ if $env_L \: lx = env_G \: gx...gx_n \: \text{and} \: env_L \: lx = env_v \: x'...x'_n,$ \\ where $env_G \: gx...gx_n = env_v x''...x''_n,$ \\ $env_v x'...x'_n = l...l_n,$ \\ $env_v x''...x''_n = l'...l'_n,$ \\ and $sto \: l...l_n = v...v_n,$\\ $sto \: l'...l'_n = v'...v'_n$
+\end{minipage}
+\end{equation}
+
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{EQUALS-1}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{env_v, \: sto \vdash e_1 \xrightarrow{}\textsubscript{e} \: v_1 \quad\: env_v, \: sto \vdash e_2 \xrightarrow{}\textsubscript{e} \: v_2}{env_v, \: sto \vdash e_1 = e_2 \xrightarrow{}\textsubscript{e} \: tt}$
+$ \: if$ $v_1$ $=$ $v_2$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{EQUALS-2}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{env_v, \: sto \vdash e_1 \xrightarrow{}\textsubscript{e} \: v_1 \: env_v, \: sto \vdash e_2 \xrightarrow{}\textsubscript{e} \: v_2}{env_v, \: sto \vdash e_1 = e_2 \xrightarrow{}\textsubscript{e} \: ff}$
+$ \: if$ $v_1$ $\neq$ $v_2$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{GTR-1}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{env_v, \: sto \vdash e_1 \xrightarrow{}\textsubscript{e} \: v_1 \quad\: env_v, \: sto \vdash e_2 \xrightarrow{}\textsubscript{e} \: v_2}{env_v, \: sto \vdash e_2 > e_1 \xrightarrow{}\textsubscript{e} \: tt}$
+$ \: if$ $v_2$ $>$ $v_1$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{GTR-2}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{env_v, \: sto \vdash e_1 \xrightarrow{}\textsubscript{e} \: v_1 \: env_v, \: sto \vdash e_2 \xrightarrow{}\textsubscript{e} \: v_2}{env_v, \: sto \vdash e_2 > e_1 \xrightarrow{}\textsubscript{e} \: ff}$
+$ \: if$ $v_2$ $\not>$ $v_1$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{GTREQ-1}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{env_v, \: sto \vdash e_1 \xrightarrow{}\textsubscript{e} \: v_1 \: env_v, \: sto \vdash e_2 \xrightarrow{}\textsubscript{e} \: v_2}{env_v, \: sto \vdash e_2 \geq e_1 \xrightarrow{}\textsubscript{e} \: tt}$
+$ \: if$ $v_2$ $\geq$ $v_1$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{GTREQ-2}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{env_v, \: sto \vdash e_1 \xrightarrow{}\textsubscript{e} \: v_1 \: env_v, \: sto \vdash e_2 \xrightarrow{}\textsubscript{e} \: v_2}{env_v, \: sto \vdash e_2 \geq e_1 \xrightarrow{}\textsubscript{e} \: ff}$
+$ \: if$ $v_2$ $\ngeq$ $v_1$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{NOT-1}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{env_v, \: sto \vdash e \xrightarrow{}\textsubscript{e} \: tt}{env_v, \: sto \vdash \neg e \xrightarrow{}\textsubscript{e} \: ff}$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{NOT-2}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{env_v, \: sto \vdash e \xrightarrow{}\textsubscript{e} \: ff}{env_v, \: sto \vdash \neg e \xrightarrow{}\textsubscript{e} \: tt}$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{PAREN}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+$\cfrac{env_v, \: sto \vdash e \xrightarrow{}\textsubscript{e} \: v}{env_v, \: sto \vdash (e) \xrightarrow{}\textsubscript{e} \: v}$
+\centering
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{AND-1}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{env_v, \: sto \vdash e_1 \xrightarrow{}\textsubscript{e} \: tt \quad\: env_v, \: sto \vdash e_2 \xrightarrow{}\textsubscript{e} \: tt}{env_v, \: sto \vdash e_1 \wedge e_2 \xrightarrow{}\textsubscript{e} \: tt}$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{AND-2}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{env_v, \: sto \vdash e_i \xrightarrow{}\textsubscript{e} \: ff }{env_v, \: sto \vdash e_1 \wedge e_2 \xrightarrow{}\textsubscript{e} \: ff}$
+$i \: \in \: \{1,2\}$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{OR-1}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{env_v, \: sto \vdash e_i \xrightarrow{}\textsubscript{e} \: tt }{env_v, \: sto \vdash e_1 \vee e_2 \xrightarrow{}\textsubscript{e} \: tt}$
+$i \: \in \: \{1,2\}$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{OR-2}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{env_v, \: sto \vdash e_1 \xrightarrow{}\textsubscript{e} \: ff \: \: \: \: \: \: env_v, \: sto \vdash e_2 \xrightarrow{}\textsubscript{e} \: ff}{env_v, \: sto \vdash e_1 \vee e_2 \xrightarrow{}\textsubscript{e} \: ff}$
+\end{minipage}
+\end{equation}
+
+
+
+
+
+\section{Full semantics for statements updated for type rules}\label{typerules:AppSec:SemanticsStatements}
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{ASSIGN}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$env_v \vdash \langle x := e, \: sto \rangle \xrightarrow{} sto[l \mapsto v]$
+\\
+where $env_v, \: sto \vdash e \xrightarrow{}\textsubscript{e} \: v$ and $env_v \: x = l$
+\end{minipage}
+\end{equation}
+
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{GRPASSIGN}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$env_g \vdash \langle gx := e, \: sto \rangle \xrightarrow{} sto[l \mapsto v]$
+\\
+where $env_g, \: sto \vdash e \xrightarrow{}\textsubscript{e} \: v$ and $env_g \: gx = l$
+\end{minipage}
+\end{equation}
+
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{SEQ}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{env_v, \: env_p \vdash \langle S_1, \: sto\rangle \xrightarrow{} sto'' \quad\: env_v, \: env_p \vdash \langle S_2, \: sto'' \rangle \xrightarrow{} sto'}{env_v, \: env_p \vdash \langle S_1 \textit{newline} \: S_2, \: sto \rangle \xrightarrow{} sto'}$ 
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{LOOPUNTIL-TRUE}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$env_v, \: env_p \vdash \langle $loop $S$ until $e$, sto$\rangle \xrightarrow{} sto$ \\
+if $env_v, \: sto \vdash e \xrightarrow{}\textsubscript{e} \: tt$ 
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{split}
+\begin{minipage}{\linewidth}
+$[\text{LOOPUNTIL-FALSE}_\text{BSS}]$
+\end{minipage}
+\\\\
+\begin{minipage}{\linewidth}
+\centering
+$\cfrac{env_v \: env_p \vdash \langle S, \: sto \rangle \xrightarrow{} sto'' \quad\: env_v, \: env_p \vdash \langle \text{loop} \: S \: \text{until} \: e, \: sto'' \rangle \xrightarrow{} sto'}{env_v, \: env_p \vdash \langle \text{loop} \: S \: \text{until} \: e, \: sto \rangle \xrightarrow{} sto'}$ 
+\end{minipage}
+\\\\
+\begin{minipage}{\linewidth}
+\centering
+if $env_v, \: sto \vdash e \xrightarrow{}\textsubscript{e} \: ff$
+\end{minipage}
+\end{split}
+\end{equation}
+
+\begin{equation}
+\begin{split}
+\begin{minipage}{\linewidth}
+$[\text{LOOPUNTILDEC-TRUE}_\text{BSS}]$
+\end{minipage}
+\\\\
+\begin{minipage}{\linewidth}
+\centering
+$env_v, \: env_p \vdash \langle $loop $S$ until $e$ decrease $x$ by $n$, sto$\rangle \xrightarrow{} sto$ \\
+if $env_v, \: sto \vdash e \xrightarrow{}\textsubscript{e} \: tt$ and $env_v, \: sto \vdash x \xrightarrow{}\textsubscript{e} \: v, \: env_v, \: sto \vdash n \xrightarrow{}\textsubscript{e} \: v$ 
+\end{minipage}
+\end{split}
+\end{equation}
+
+\begin{equation}
+\begin{split}
+\begin{minipage}{\linewidth}
+$[\text{LOOPUNTILDEC-FALSE}_\text{BSS}]$
+\end{minipage}
+\\\\
+\begin{minipage}{\linewidth}
+\centering
+$\cfrac{env_v \: env_p \vdash \langle S, \: sto \rangle \xrightarrow{} sto'' \quad\: env_v, \: env_p \vdash \langle \text{loop} \: S \: \text{until} \: e \text{ decrease } x \text{ by } n, \: sto'' \rangle \xrightarrow{} sto'}{env_v, \: env_p \vdash \langle \text{loop} \: S \: \text{until} \: e \text{ decrease } x \text{ by } n, \: sto \rangle \xrightarrow{} sto'}$ 
+\end{minipage}
+\\\\
+\begin{minipage}{\linewidth}
+\centering
+if $env_v, \: sto \vdash e \xrightarrow{}\textsubscript{e} \: ff,$ \\
+$env_v, \: sto \vdash x \xrightarrow{}\textsubscript{e} \: v, \: env_v, \: sto \vdash n \xrightarrow{}\textsubscript{e} \: v'$ 
+\\ where $x = \mathcal{N}^{-1}(v-v')$
+\end{minipage}
+\end{split}
+\end{equation}
+
+
+\begin{equation}
+\begin{split}
+\begin{minipage}{\linewidth}
+$[\text{LOOPUNTILINC-TRUE}_\text{BSS}]$
+\end{minipage}
+\\\\
+\begin{minipage}{\linewidth}
+\centering
+$env_v, \: env_p \vdash \langle $loop $S$ until  $e$ increase $x$ by $n$, sto$\rangle \xrightarrow{} sto$ \\
+if $env_v, \: sto \vdash e \xrightarrow{}\textsubscript{e} \: tt$ and $env_v, \: sto \vdash x \xrightarrow{}\textsubscript{e} \: v, \: env_v, \: sto \vdash n \xrightarrow{}\textsubscript{e} \: v$ 
+\end{minipage}
+\end{split}
+\end{equation}
+
+\begin{equation}
+\begin{split}
+\begin{minipage}{\linewidth}
+$[\text{LOOPUNTILINC-FALSE}_\text{BSS}]$
+\end{minipage}
+\\\\
+\begin{minipage}{\linewidth}
+\centering
+$\cfrac{env_v \: env_p \vdash \langle S, \: sto \rangle \xrightarrow{} sto'' \quad\: env_v, \: env_p \vdash \langle \text{loop} \: S \: \text{until} \: e \text{ increase } x \text{ by } n, \: sto'' \rangle \xrightarrow{} sto'}{env_v, \: env_p \vdash \langle \text{loop} \: S \: \text{until} \: e \text{ increase } x \text{ by } n, \: sto \rangle \xrightarrow{} sto'}$ 
+\end{minipage}
+\\\\
+\begin{minipage}{\linewidth}
+\centering
+if $env_v, \: sto \vdash e \xrightarrow{}\textsubscript{e} \: ff,$ \\
+$env_v, \: sto \vdash x \xrightarrow{}\textsubscript{e} \: v, \: env_v, \: sto \vdash n \xrightarrow{}\textsubscript{e} \: v'$ 
+\\ where $x = \mathcal{N}^{-1}(v+v')$
+\end{minipage}
+\end{split}
+\end{equation}
+
+
+\begin{equation}
+\begin{split}
+\begin{minipage}{\linewidth}
+$[\text{LOOPTIMES}_\text{BSS}]$
+\end{minipage}
+\\
+\begin{minipage}{\linewidth}
+\centering
+$\cfrac{env_v, \: env_p \vdash \langle S, \: sto \rangle \xrightarrow{} sto'' \: \: \: \: \: \langle \text{loop} \: S \: n \: \text{times}, \: sto'' \rangle \xrightarrow{} sto'}{env_v, \: env_p \vdash \langle \text{loop} \: S \: e \: \text{times} \rangle \xrightarrow{} sto'}$ 
+\end{minipage}
+\\\\
+\begin{minipage}{\linewidth}
+\centering
+where $env_v, \: sto \vdash e \xrightarrow{} v$
+\\
+$n = \mathcal{N}^{-1}(v-1)$
+\\
+$v > 0$
+\end{minipage}
+\end{split}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{LOOPTIMES-END}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$env_v, \: env_p \langle \text{loop} \: S \: e \: \text{times}, \: sto \rangle \xrightarrow{} sto$ 
+\\
+where $env_v, sto \vdash e \xrightarrow{} v \: \text{and} \: v \leq 0$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{split}
+\begin{minipage}{\linewidth}
+$[\text{SWITCH-DEFAULT}_\text{BSS}]$
+\end{minipage}
+\\
+\begin{minipage}{\linewidth}
+\centering
+$\cfrac{env_v, \: env_p \vdash \langle S, \: sto \rangle \xrightarrow{} sto'}{env_v, \: env_p \vdash \langle \text{switch}(e) \{\text{case} <e_1>: \: S_1  \: \text{default:} \: S\}, \: sto \rangle \xrightarrow{} sto' }$ 
+\end{minipage}
+\\\\
+\begin{minipage}{\linewidth}
+\centering
+where $env_v, \: env_p \vdash e \xrightarrow{}\textsubscript{e} \: v$
+\\
+$env_v, \: env_p \vdash e_1 \xrightarrow{}\textsubscript{e} \: v_1$
+\\
+$v \neq v_1$
+\end{minipage}
+\end{split}
+\end{equation}
+
+\begin{equation}
+\begin{split}
+\begin{minipage}{\linewidth}
+$[\text{SWITCH-1}_\text{BSS}]$
+\end{minipage}
+\\
+\begin{minipage}{\linewidth}
+\centering
+$\cfrac
+{
+    env_v, \: env_p \vdash \langle S_1, \: sto \rangle \xrightarrow{} sto'
+}
+{
+   env_v, \: env_p \vdash \langle \text{switch}(e) \{\text{case} <e_1>: \: S_1 ... \text{case} <e_n>: \: S_n \: \text{default:} \: S\}, \: sto \rangle \xrightarrow{} sto' 
+}
+$ 
+\end{minipage}
+\\\\
+\begin{minipage}{\linewidth}
+\centering
+if $ n \geq 1$ and $env_v, \: env_p \vdash e \xrightarrow{}\textsubscript{e} \: v$
+\\
+$env_v, \: env_p \vdash e_1 \xrightarrow{}\textsubscript{e} \: v_1$
+\\
+$v = v_1$
+\end{minipage}
+\end{split}
+\end{equation}
+
+\begin{equation}
+\begin{split}
+\begin{minipage}{\linewidth}
+$[\text{SWITCH-2}_\text{BSS}]$
+\end{minipage}
+\\
+\begin{minipage}{\linewidth}
+\centering
+$\cfrac
+{
+    env_v, \: env_p \vdash \langle  \text{switch}(e) \{\text{case} <e_2>: \: S_2 ... \text{case} <e_n>: \: S_n \: \text{default:} \: S\}, \: sto \rangle \xrightarrow{} sto'
+}
+{
+    env_v, \: env_p \vdash \langle \text{switch}(e) \{\text{case} <e_1>: \: S_1 ... \text{case} <e_n>: \: S_n \: \text{default:} \: S\}, \: sto \rangle \xrightarrow{} sto' 
+}$ 
+\end{minipage}
+\\\\
+\begin{minipage}{\linewidth}
+\centering
+if $ n > 1$ and $env_v, \: env_p \vdash e \xrightarrow{}\textsubscript{e} \: v$
+\\
+$env_v, \: env_p \vdash e_1 \xrightarrow{}\textsubscript{e} \: v_1$
+\\
+$v \neq v_1$
+\end{minipage}
+\end{split}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{LISTELE}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$env_L, \: env_v, \: sto \vdash \text{get element } n \text{ from } lx \xrightarrow{}\textsubscript{e} \: v$
+\\
+where $env_L, \; env_v, \: sto \vdash n \xrightarrow{}\textsubscript{e} \: v$, \\$env_L \: env_v, \: sto \vdash lx \xrightarrow{}\textsubscript{e} \: x...x_n$ 
+\\and $env_L \: lx = l... l_n$, \\ $sto \: l...l_n = v$
+\end{minipage}
+\end{equation}
+
+
+\subsection*{If statements}
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{IFNOELSE-TRUE}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{env_v, \: env_p \vdash \langle S, \: sto\rangle \xrightarrow{} sto'}{env_v, \: env_p \vdash \langle \text{if} \: e \: \text{then} \: S, \: sto \rangle \xrightarrow{} sto'}$ 
+\\
+if $env_v, \: sto \vdash e \xrightarrow{}\textsubscript{e} \: tt$
+\end{minipage}
+\end{equation}
+
+\begin{equation}\label{typerules:listing:ifnoelse-false}
+\begin{minipage}{.2\linewidth}
+$[\text{IFNOELSE-FALSE}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$env_v, \: env_p \vdash \langle \text{if} \: e \: \text{then} \: S, \: sto \rangle \xrightarrow{} sto$ 
+\\
+if $env_v, \: sto \vdash e \xrightarrow{}\textsubscript{e} \: ff$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{IFELSE-TRUE}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{env_v, \: env_p \vdash \langle S, \: sto \rangle \xrightarrow{} sto'}{env_v, \: env_p \vdash \langle \text{if} \: e \: \text{then} \: S \:S_{if}, \: sto \rangle \xrightarrow{} sto'}$ 
+\\
+if $env_v, \: sto \vdash e \xrightarrow{}\textsubscript{e} \: tt$
+\end{minipage}
+\end{equation}
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{IFELSE-FALSE}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{env_v, \: env_p \vdash \langle S_{if}, \: sto \rangle \xrightarrow{} sto}{env_v, \: env_p \vdash \langle \text{if} \: e \: \text{then} \: S \: S_{if}, \: sto \rangle \xrightarrow{} sto}$ 
+\\
+if $env_v, \: sto \vdash e \xrightarrow{}\textsubscript{e} \: ff$
+\end{minipage}
+\end{equation}
+\textbf{The $S_{if}$ category}\\
+These rules detail the possible endings to if-statements in PHAL.
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{ELSEIFEND-TRUE}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{env_v, \: env_p \vdash \langle S, \: sto \rangle \xrightarrow{} sto'}{env_v, \: env_p \vdash \langle \text{else if} \: e \: \text{then} \: S, \: sto \rangle \xrightarrow{} sto'}$ 
+\\
+if $env_v, \: sto \vdash e \xrightarrow{}\textsubscript{e} \: tt$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{ELSEIFEND-FALSE}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$env_v, \: env_p \vdash \langle \text{else if} \: e \: \text{then} \: S, \: sto \rangle \xrightarrow{} sto$ 
+\\
+if $env_v, \: sto \vdash e \xrightarrow{}\textsubscript{e} \: ff$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{ELSEIFSEQ-TRUE}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{env_v, \: env_p \vdash \langle S, \: sto \rangle \xrightarrow{} sto'}{env_v, \: env_p \vdash \langle \text{else if} \: e \: \text{then} \: S \: S_{if}, \: sto \rangle \xrightarrow{} sto'}$ 
+\\
+if $env_v, \: sto \vdash e \xrightarrow{}\textsubscript{e} \: tt$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{ELSEIFSEQ-FALSE}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+${env_v, \: env_p \vdash \langle \text{else if} \: e \: \text{then} \: S \: S_{if}, \: sto \rangle \xrightarrow{} sto}$ 
+\\
+if $env_v, \: sto \vdash e \xrightarrow{}\textsubscript{e} \: ff$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{ELSEEND}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{env_v, \: env_p \vdash \langle S, \: sto \rangle \xrightarrow{} sto'}{env_v, \: env_p \vdash \langle \text{else} \: S, \: sto \rangle \xrightarrow{} sto'}$ 
+\end{minipage}
+\end{equation}
+
+\subsection{Remaining categories}
+\subsubsection{Bodies}
+\paragraph{Setup body}
+Setup bodies can either be any declaration or statements, and as such need to be type checked in accordance with the rules established in those sections.
+\paragraph{Group body}
+The group body contains either advanced data types or other groups, and needs to be type checked through the rules in the expression section concerning these.
+\paragraph{List body}
+List bodies are either an expressions, a variable or a group variable. As such, they also need to be type checked through the rules established in the expression section.
+\paragraph{Function body}
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{RETURN}_\text{EXP}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+ $\cfrac {E(x) = T}{E \vdash \text{return } x : T}$
+\end{minipage}
+\end{equation}
+The rest of the function bodies are either declarations or statements,and should be checked by rules in that category.
+
+\subsubsection{Program setup}
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{PROGSET}_\text{EXP}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+ $\cfrac {E \vdash SB : \text{ok} \: \: E \vdash S : \text{ok} \: \: D_F : \text{ok}}{E \vdash \text{setup } \{ S_B \} \text{ repeat } \{ S \} \: D_F}$
+\end{minipage}
+\end{equation}
+
+\subsubsection{Declaring parameters}
+Declaring parameters is done by specifying a type and a variable. This means that, for type checking purposes, this category can be seen as a sequence of variables of type $T$ or simply one variable of type $T$. As such, the rules constructed in the expression category for checking variables, group variable and list variables, respectively \textit{VAR}, \textit{GRPVAR} and \textit{LISTVAR}. To type check the parameter, it is looked up in the environment as specified by these rules.
+%$Double_{penetration}$ DP OMEGALUL xD. Bare brug var reglen til at slå parameterens type op i environmentet, LUL
+\subsubsection{Return type}
+Return types need to be defined as one of the basis types, meaning the \textit{VAR} expression rule can be used for checking. This does not account for the none case however, so this case needs the rule:
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{NONE}_\text{EXP}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+ $\cfrac {E(RTN) = \text{none}}{E \vdash \text{RTN} : \text{ok}}$
+\end{minipage}
+\end{equation}
+\subsubsection{Advanced data types}
+The advanced data types are part of the basis types, meaning they can be check through the \textit{VAR} expression check.

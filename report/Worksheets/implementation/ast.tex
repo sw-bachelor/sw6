@@ -1,0 +1,192 @@
+\chapter{Abstract Syntax Tree}
+As described in Section~\ref{ca:ast}, an important part of crafting a compiler is generating an abstract syntax tree based on the source program, which can then be traversed to interpret the input.
+ In this chapter the implementation of generating an AST will be explained, along with all the functionality hereof. 
+
+\section{ANTLR4}
+The first step of generating an AST for PHAL is to define the ANTLR4 grammar. 
+This is largely equivalent to EBNF which is described in Section~\ref{sec:cfg}.
+The main difference is that ANTLR uses slightly different notations for rules that can be repeated zero or more times. 
+As seen on Listing~\ref{Code:ANTLRG41} line 4, an asterisk is used instead of curly brackets. 
+Likewise, the colon symbol is used instead of an arrow to define the transition from the left side of the rule to the right.
+\\
+Finally, a semicolon is used to mark the end of a rule.
+
+\begin{lstlisting}[caption={Part of Phal.g4}, label={Code:ANTLRG41}, escapeinside={(*}{*)}]
+grammar Phal;
+
+program
+  : NEWLINE* include* setup NEWLINE* repeat NEWLINE* (func NEWLINE*)* NEWLINE* EOF ;
+   
+  (*\vdots*)
+
+advDataType    
+  : group | list;
+
+cmpDcl    	
+  : advType ID ':=' 'pin' NUMBER ( ',' NUMBER)* ;
+
+  (*\vdots*)
+\end{lstlisting}
+As shown on Listing~\ref{Code:ANTLRG41} line 12 the keyword \textit{NUMBER} is used. 
+Numbers, along with bool, comments, ID and others are defined at the buttom of the ANTLR4 file, as shown on Listing~\ref{Code:ANTLR4G42}
+
+\begin{lstlisting}[caption={Part of Phal.g4}, label={Code:ANTLR4G42}, escapeinside={(*}{*)}]
+(*\vdots*)
+TEXT            : '"' ~('\r' | '\n' | '"')* '"' ;
+ID              : LETTER (LETTER | DIGIT)*;
+fragment INTEGER: DIGIT+;
+fragment FLOAT  : (DIGIT | [1-9](DIGIT)+)'.'(DIGIT | (DIGIT)*[1-9]);
+NUMBER          : (INTEGER | FLOAT) ;
+BOOL            : ('true'|'false' | 'on' | 'off'); 
+
+COMMENT         : '#' ~('\r' | '\n')*   -> skip ;
+MULTILINECOMMET : '/*' .*? '*/'         -> skip ;
+WS              : [ \t]+                -> channel(HIDDEN) ;
+NEWLINE         : [\r\n];
+
+fragment LETTER : [a-zA-Z];
+fragment DIGIT  : '0'..'9';
+\end{lstlisting}
+This part of the implementation serves as a technical specification to ANTLR about how the types of PHAL should be interpreted.
+\\\\
+On line 3, \textit{TEXT} is defined as beginning with a quotation mark, followed by zero or more characters that can be anything but an end of line (\textbackslash r), new line (\textbackslash n) or a quotation mark (") and finally a quotation mark to finish the content of the text.
+\\
+On lines 5 and 6 the keyword \textit{fragment} is used, this implies that the integer and float types should never be used independently. 
+Instead the fragments are used to define \textit{NUMBER} on line 7.
+\\\\
+This will later allow us to determine whether a number is a integer or a float, depending on which fragment was used.
+Likewise, fragments are used for \textit{LETTER} and \textit{DIGIT} on lines 15 and 16.
+Finally, it's worth looking at lines 10 and 11. 
+For a single line comment, the right side of the rule is almost identical to how \textit{TEXT} was defined, with the exception that quotation marks are allowed in comments. 
+The skip feature is used to instruct the lexer to discard the token.
+\\\\
+Having defined the grammar for ANTLR, it is now able to generate a lexer and parser, which can in turn generate a CST which is needed to build the AST that is needed to further advance trough the compile phases. 
+The workings of ANTLR is further described in Subsection~\ref{ss:antlr}.
+
+\section{Generating an AST from the CST}
+As the CST generated from ANTLR contains a lot of information such as every character in the syntax. This means that if we have an if statement then the CST will include all the characters including the curly brackets and parentheses.
+\begin{lstlisting}[caption={An if statement in PHAL}]
+if(2 < 3) then {
+  <statements>
+}
+\end{lstlisting}
+This is irrelevant information for the compiler and slows down the process of working with the CST. It is therefore preferable to generate an abstract syntax tree instead.
+\\\\
+In order to accomplish this, a customised \textit{visitor} must be built, which inherits the properties of the automatically generated \textit{Base Visitor} from ANTLR.
+\\\\
+This class must contain methods to visit the nodes of the CST.
+First of all we will take a look at \textit{Nodes} for the Phal language.
+These are equivalent to the content of the CFG defined in Appendix~\ref{BNF:BNF}.
+On Listings~\ref{EBNF:Program} and \ref{Code:Node:Program} a comparison of the node and EBNF for the root node called \textit{program} is shown.
+
+\begin{lstlisting}[caption={EBNF for Program}, label={EBNF:Program}, escapeinside={(*}{*)}]
+Program (*$\xrightarrow{}$*) {NEWLINE} {include} {NEWLINE} 
+  Setup {NEWLINE} Repeat {NEWLINE} 
+  {Func} {NEWLINE}
+\end{lstlisting}
+
+\begin{lstlisting}[caption={Node for Program}, label={Code:Node:Program}, escapeinside={(*}{*)}]
+class ProgramNode extends AstNode{
+  public SetupNode setupNode;
+  public RepeatNode repeatNode;
+  public List<FuncNode> funcNodes = new LinkedList<>();
+  public List<IncludeNode> includeNodes = new LinkedList<>();
+	
+  public ProgramNode(List<IncludeNode> includeNodes, SetupNode setupNode, RepeatNode repeatNode, List<FuncNode> funcNodes) {
+    this.includeNodes = includeNodes;
+    this.setupNode = setupNode;
+    this.repeatNode = repeatNode;
+    this.funcNodes = funcNodes;
+  }
+}
+\end{lstlisting}
+Since the semantic rules specify that a program must contain exactly one setup and one repeat, it must include exactly one of each node in the \textit{ProgramNode}.
+\\\\
+In order to facilitate the case where a program contains multiple includes or func declarations, a linked list is used.
+\\\\
+Finally, each node contains a constructor in order to generate the node.
+
+\subsection*{The type node}
+Some nodes are slightly different from the default construction described above. For example the \textit{type} node. 
+\begin{lstlisting}[caption={EBNF for Type}, label={EBNF:Type}, escapeinside={(*}{*)}]
+type        
+  : 'number' | 'text' | 'bool' | 'list' | 'group' | advType;
+  
+advDataType    
+  : group | list;
+\end{lstlisting}
+
+\begin{lstlisting}[caption={Node for Type}, label={Code:Node:Type}, escapeinside={(*}{*)}]
+class TypeNode extends AstNode{
+  public String type;
+  public Type Type;
+	
+  public TypeNode(String type) {
+    this.type = type;
+	
+    switch(this.type) {
+    case "number":
+      this.Type = Type.NUMBER;
+      break;
+    case "text":
+      this.Type = Type.TEXT;
+      break;
+    (*\vdots*)
+    case "motor":
+      this.Type = Type.MOTOR;
+      break;
+    case "temperaturesensor":
+      this.Type = Type.TEMPERATURESENSOR;
+      break;
+    case "none":
+      this.Type = Type.NONE;
+      break;
+    }
+  }
+}
+
+enum Type{
+  NUMBER, TEXT, BOOL, GROUP, LIST, LIGHTBULB, 
+  MOTOR, TEMPERATURESENSOR, NONE
+}
+\end{lstlisting}
+The \textit{Type} node is a universal node used for all types of variables. Due to this, it requires a \textit{String} for the constructor, in order to properly assign the correct type to the node.
+The \textit{String} is interpreted using a switch statement, and is then assigned a \textit{Type}, which is defined as an enumerator. 
+
+
+\subsection{The AST builder}
+Having defined the entire set of nodes, it is now possible to traverse through the CST and build an AST with the new node types.\\
+As previously mentioned, this will be done using a custom implementation of the visitor generated by ANTLR.
+
+
+\begin{lstlisting}[caption={Code for visitProgram}, label={Code:visitProgram}, escapeinside={(*}{*)}]
+@Override
+public AstNode visitProgram(PhalParser.ProgramContext ctx) {
+  SetupNode setupNode = null;
+  RepeatNode repeatNode = null;
+  List<FuncNode> funcNodes = new LinkedList<>();
+  List<IncludeNode> includeNodes = new LinkedList<>();
+	
+  if(ctx.setup() != null)
+  {
+    setupNode = (SetupNode)visit(ctx.setup());
+  }
+  if(ctx.repeat() != null)
+  {
+    repeatNode = (RepeatNode)visit(ctx.repeat());
+  }
+  for(PhalParser.FuncContext func: ctx.func()) 
+  {
+    funcNodes.add((FuncNode) visit(func));
+  }
+  for(PhalParser.IncludeContext include: ctx.include()) 
+  {
+    includeNodes.add((IncludeNode) visit(include));
+  }
+  return new ProgramNode(includeNodes, setupNode, repeatNode,funcNodes);
+}
+\end{lstlisting}
+The implementation of the AST builder is very simple. If there is a single node of the given type, such as setup and repeat, the method has to ensure that the given node is not null in the CST, visit it using the visitor method generated by ANTLR and assign the result to the correct internal node.
+\\\\
+As in the main node, for each internal node that has zero or more instances a linked list is used. This list is iterated through using a for-loop, where it will call the visitor on each member for the list.
+

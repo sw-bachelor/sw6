@@ -1,0 +1,162 @@
+\chapter{Syntax definition}\label{ch:LanguageDefinitions}
+In order for PHAL to be realised and to create a compiler to function as expected for the language, the language has to be defined. This is done through a combination of informal and formal definitions in the following chapter.
+
+\section{Informal definition}
+The aim for PHAL is to be relatively simple in comparison to other programming languages. 
+It is intended for the Arduino hardware platform for home automation purposes, without needing extensive programming knowledge.
+
+\subsection{Types} \label{Def:Types}
+The programming language offers multiple data types:
+\begin{itemize}
+    \item The \textit{text} type consists of a sequence of characters.
+    \item The \textit{number} type consists of a sequence of numbers. This type allows both integers and decimal values. 
+    \item The \textit{bool} type is either \textit{true}, \textit{false}, \textit{on} or \textit{off}.
+    \item The \textit{group} type is a complex type, consisting of multiple advanced data types.
+    \item The \textit{list} type is a complex type, consisting of multiple elements of the same data type.
+\end{itemize}
+These types have been chosen in accordance with the considerations relating to the target demographic and the features discussed in Chapter~\ref{ch:ProblemAnalysis}.
+The integer and float types found in languages such as C have been condensed into the single type called number, including both the floating point functionality and integer functionality. 
+The \textit{text} type is functionally the same as the \textit{string} type found in languages such as C\#, but named more akin to what the users would use in their everyday speech for consistency in relation to the number type. 
+\\\\
+The bool type is maintained from languages such as C\#, where it is defined through the use of conditions that have the values true or false. 
+When the name of the type was considered, candidates such as \textit{truthvalue} and \textit{boolean} were suggested, but the name was not changed as a suitable replacement was not found.
+\\
+As an extension to the regular usage of boolean values, PHAL will accept \textit{on} and \textit{off} as aliases for respectively true and false values.
+\\\\
+The group type allows grouping of multiple component types. 
+An example of this could be kitchen appliances. 
+Eg. a user has three lights in the kitchen, and wants them to automatically turn on at a specific time in the morning to facilitate waking up. 
+In the language, the programmer would be able to combine these lights using the group type, creating an umbrella term for these lights - this could for example be a group named \textit{kitchenLights}. 
+The programmer would then do automation on this group called \textit{kitchenLights} rather than each separate light one at a time. 
+Another example would be starting a motor to open a window at the same time as the lights turn on - this could be accomplished in a group called
+\textit{kitchenComponents} for instance. 
+This means the group can also consist of multiple data types as well as nested groups.
+\\\\
+A list allows the user to group multiple elements of the same type together. 
+The intended functionality of a list, compared to the group type, is that it allows the elements to be grouped together, but still be interacted with as individual elements.
+
+\subsection{Keywords}
+PHAL has a number of reserved keywords. 
+The first set of keywords are related to selective control structures. 
+As shown in Listings~\ref{code:If-statement} and \ref{code:Switch-statement}, we reserve the keywords \textit{if, then, else, switch, default} and \textit{case}. 
+For \textit{if-statements} we combine the curly brackets of \textit{C} with the \textit{then} keyword for simplicity, and likewise the switches are kept in the style of \textit{C}, but without the need for a \textit{break} statement to avoid fall-through.
+\\\\
+For iterative control structures, shown in Listings~\ref{code:Loopstatement1}, \ref{code:Loopstatement2} and \ref{code:Loopstatement3}, we reserve the keywords \textit{loop, until, increase, decrease, by} and \textit{times}. 
+These keywords are needed for the different loop variations, and are used in an effort to make loops simpler.
+\\\\
+Creating a function is done with the keywords \textit{define, with, none, return} and \textit{returnType} as shown on Listing~\ref{code:MethodDeclParam}. 
+As seen on the listing, the \textit{with} keyword is used as a way of generating context in combination with the general parentheses notation for formal parameters of other languages. 
+On top of this, the \textit{returntype} is defined after the parameters. 
+In the body of the function the actual value returned is specified through the \textit{return} keyword.
+\\
+For calling functions we reserve the keywords \textit{call, with} and \textit{none}. 
+As shown on Listings~\ref{code:MethodCall1} and \ref{code:MethodCall2}, the \textit{call} keyword is used for starting the call, and the \textit{with} keyword is used for the same reason as when defining functions. 
+\\\\
+For comparing statements the language reserves the use of mathematical operators. 
+The demographic, even if they are not familiar with programming, are expected to be familiar with the mathematical operators \textit{<, >, <=, >=} and \textit{=}. 
+On top of this, the language also allows the use of the following keywords \textit{or, is, and} and \textit{is not}. 
+These keywords will replace the \textit{C} operators \&\& and || for simplicity.
+\\\\
+In terms of mathematical operators, the language reserves the use of the common algebraic operators \textit{+, -, /} and \textit{*}. 
+These keywords will function the same as they do in mathematical operations. 
+Finally, the \textit{+} operator will also be overloaded to serve as the operator for concatenating two strings when used on text variables.
+\\\\
+For the language we reserve certain keywords related to types as described in Subsection~\ref{Def:Types}. 
+These keywords are \textit{text, number, bool, group} and \textit{list}. 
+These keywords are reserved for definition of types for variables, and as such are not allowed for use outside of this.
+\\\\
+Parentheses and curly brackets are also reserved as apparent on the various listings cited in this section, mainly for use of encapsulating the different statements.
+
+\subsection{Variables}
+Variables are declared by specifying the variable's type prior to the name of it. 
+PHAL allows variable names to consist of all letters from the roman alphabet.
+\\
+Variables are case-sensitive, but PHAL allows the user to use a variable without explicitly declaring it beforehand.
+\\\\
+For the naming of variables, we wish to have the variables start with a letter or an underscore, and the rest of the characters of the string can be either numbers, letters or underscores. 
+The name of the variables cannot contain any other symbol except for numbers, letters and underscore.
+
+\section{Formal definition} \label{FormalDefinition}
+In this section we will describe the PHAL language with a formal definition. 
+The informal definition generates a basic understanding but can be vague. 
+The formal definition makes for a more precise representation of the language. 
+We will for example present PHAL's CFG, regular expressions for PHAL and also the type rules.
+
+\subsection{Lexemes and tokens}
+In order to define the PHAL language we make use of lexemes and tokens. 
+An input can be divided into these two categories, where lexemes are \textit{"words"} in the input, for example keywords, operators or identifiers. 
+The token is a data structure for the lexemes and additional information. As a simple example for PHAL, the input \textit{a := 2 + 9.8} would be divided into lexemes and tokens in the following way:
+\\
+\textbf{Tokens:} id, assign, number, plus, number
+\\
+\textbf{Lexemes:} a, :=, 2, +, 9.8
+\subsection{Token definition} 
+All tokens with the exception of the keywords will be specified through regular expressions. 
+Scanners are generally automatically generated through external software, where regular expressions are necessary because they are converted through algorithms.
+The tokens for PHAL are described as follows:
+\begin{itemize}
+    \item Keyword
+    \item Identifier
+    \item Literals
+    \item Operation
+\end{itemize}
+\subsubsection{Keywords}
+A keyword can be one of the following:
+\begin{center}
+\begin{tabular}{c   c    c}
+    and & bool & by \\
+    call & case & decrease \\
+    default & define & else \\
+    for & group & if \\
+    increase & is & list \\
+    loop & none & not \\
+    number & or & pin \\
+    repeat & return & returnType \\
+    setup & with & switch  \\
+    text & then & times  \\
+    until & &
+\end{tabular}
+\end{center}
+
+\subsubsection{Identifiers}
+Identifiers will be used for naming variables and classes. The identifiers must be formatted in such a way that they start with either an underscore or a letter, which can be followed by zero or more letters, digits or underscores.\\
+As a regular expression, this would be expressed as $[\_a-zA-Z][\_a-zA-Z0-9]*$.
+In addition to the format, they must be different from the reserved keywords mentioned above.
+
+
+\subsubsection{Literals}
+Literals are a notation for representing values in code. PHAL uses the following types of literals:
+\begin{itemize}
+    \item boolean-literal
+    \item number-literal
+    \item text-literal
+\end{itemize}
+\textbf{Boolean-literals}
+\\
+There are two boolean literal values: \textit{true} and \textit{false}. The type of a boolean-literal is bool.
+These two values have a set of aliases \textit{on} and \textit{off}. These have the same functionality as the default boolean values, and are solely included for readability in context.
+\\\\
+\textbf{Number-literal}
+\\
+As per the definition of the \textit{number} type in PHAL in Section \ref{Def:Types}, the number-literal is a combination of integer-literals and real-literals.
+\\\\
+An integer literal is a string in the source code that is recognised as an integer by the lexical analyser. 
+Integers can be any string made of a combination of $[0-9]+$. An integer literal can also have prefixes to represent a negative value.
+\\\\
+The real-literal is a string in the source code that is recognised as a float. Floats are of the form $[0-9]+.[0-9]+$ meaning that has the form of two numbers divided by a period. 
+\\\\
+\textbf{Text-literal}
+\\
+Text-literals are the strings in the source code encapsulated by quotation marks. A text-literal can be any combination of characters with the exception of a few characters. Something that should be addressed in the compiler is the problem that arises if a string contains other quotation marks, this is solved by simply disallowing the use of the quotation mark character in a text-literal. 
+
+
+\section{Structural template}
+The main structure of a PHAL program has two functions: A setup and a repeat function.
+\\\\
+The setup function is called when a program starts. 
+It is for example used to initialise variables, set up modules and which pins they use or include libraries. It will only run once.
+\\\\
+The repeat function does as the name implies; repeats while the program is running. 
+It is used to actively interact with connected components.
+\\\\
+Both of the primary functions are required, and do not return anything.
