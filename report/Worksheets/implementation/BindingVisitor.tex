@@ -1,0 +1,210 @@
+\chapter{Binding visitor}\label{ch:bindingvisitor}
+In this chapter we will take a look at the binding visitor and how we used the symbol table to bind assignments and expressions to their declarations.
+The binding visitor's functionality is to ensure that there are not multiple variables with the same name, and that variables that are used in assignments and statements are declared before use. The binding visitor is also used to decorate the AST. All references to a variable are decorated with their declaration node to make it possible to type check all assignments and expressions in the type checker.
+
+\section{Symbol table}
+As mentioned in Chapter~\ref{ch:symboltable}, a symbol table is used to map out which variables are declared in the current scope. We chose to implement the symbol table as a class, which can be seen on Listing~\ref{code:SymbolTableClass}.
+\begin{lstlisting}[caption={Symbol table class},label={code:SymbolTableClass}]
+private HashMap<String, FuncNode> functionMap = new HashMap<>();
+private Stack<HashMap<String, AstNode>> symbolTable = new Stack<>();
+\end{lstlisting}
+The \textit{SymbolTable} class contains a stack of hashmaps. 
+This is the symbol table where each hashmap in the stack represents a scope. 
+The class also contains a hashmap with all of the defined functions called \textit{functionMap}. 
+This map is used to easily open scopes with the different functions when they are called.
+The \textit{SymbolTable} class also contains a couple of functions that handle the different functionalities of the symbol table. 
+\begin{lstlisting}[caption={Code to open and close scopes},label={code:OpenCloseScope}]
+public void openScope() {
+  this.symbolTable.push(new HashMap<String, AstNode>());
+}
+public void closeScope() {
+  this.symbolTable.pop();
+}
+\end{lstlisting}
+As shown on Listing~\ref{code:OpenCloseScope} are the functions that are used to open and close scopes. The function \textit{openScope} pushes a new hashmap to the stack. This is used when functions are called. The function \textit{closeScope} pops the hashmap on top of the stack. 
+
+\begin{lstlisting}[caption={Code to add declaration to the symbol table},label={code:AddToSymbolTable}]
+public void addDeclarationToSymbolTable(DclNode node) {
+  if(symbolTable.peek().containsKey(node.idNode.id))
+  {
+    MainClass.CompileErrors.add(new RedeclarationError(
+                            node.columnNumber, 
+                            node.lineNumber, 
+                            node.idNode.id));
+  }
+  else
+  {
+    symbolTable.peek().put(node.idNode.id, node);
+  }
+}
+
+public void addAssignmentToSymbolTable(AssignmentNode node) {
+  HashMap<String, AstNode> map =  symbolTable.peek();
+  String key = node.idNode.id;
+		
+  if(map.containsKey(key))
+  {
+    DclNode dcl = (DclNode)map.get(key);
+    if(!dcl.isUsed) {
+      dcl.isUsed = true;
+      map.put(key, dcl);
+    }
+    node.idNode.dclNode = dcl;
+  }
+  else
+  {
+    MainClass.CompileErrors.add(new NotDeclaredError(
+                           node.columnNumber, 
+                           node.lineNumber, 
+                           node.idNode.id));
+  }
+}
+\end{lstlisting}
+The \textit{addDeclarationToSymbolTable} method shown on Listing~\ref{code:AddToSymbolTable} lines 1-13 is used to add declarations to the symbol table. 
+It starts by checking if the declaration already exists in the symbol table, in which case an error is added to the error list and the program will continue. 
+If the declaration does not already exist in the symbol table it is added by adding the \textit{DclNode} to the symbol table with its \textit{id} as the key in the hashmap.
+\\\\
+The second method, \textit{addAssignmentToSymbolTable} as shown on Listing~\ref{code:AddToSymbolTable} lines 15-35, checks whether or not the variable you are trying to assign is declared. 
+This is done by checking if the hashmap contains the key (id) of the \textit{AssignmentNode}. 
+\\\\
+In this case, it checks whether the \textit{isUsed} flag of the \textit{DclNode} in the hashmap is flagged as true.
+\\\\
+If this is not the case, it is set to true and the \textit{DclNode} gets put into the hashmap again, which means that it overrides the old \textit{DclNode}. 
+After this, the \textit{DclNode} is added to the \textit{AssignmentNode}. This is done to decorate the AST to allow it to be type checked later on.
+\\\\
+However, if the hashmap does not contain the id of the \textit{AssignmentNode} a new error is added to the error list and the program continues.
+There are more \textit{addToSymbolTable} functions, which have the same structure but contain different node types. 
+\begin{lstlisting}[caption={Code to check if variables are used}, label={code:checkVariablesAreUsed}]
+public void checkVariablesAreUsed() {
+  for(AstNode node : symbolTable.peek().values()) {
+    if(node instanceof DclNode) {
+      if(!((DclNode) node).isUsed) {
+        MainClass.CompileWarnings.add(
+          new VarNotUsedWarning(node.columnNumber, 
+          node.lineNumber, ((DclNode) node).idNode.id));
+      }
+    }
+  } 
+}
+\end{lstlisting}
+The \textit{checkVariablesAreUsed} method, shown on Listing~\ref{code:checkVariablesAreUsed}, checks if any of the variables that are declared in the symbol table are ever used in the code. 
+It does so by iterating through each element in the symbol table and checking whether the \textit{isUsed} flag is marked as true or false. 
+If they are marked as false we add a warning to the warning list in order to warn the user that they have some variables that might be unnecessary.
+
+\section{Binding visitor}
+As mentioned previously in this chapter, the binding visitor's functionality is to traverse through the AST nodes, add all declarations to the symbol table and check if any of the assignments, statements or expressions use any ids that are not declared prior to being used.
+\begin{lstlisting}[caption={Code for the binding visitor}, label={code:BindingVisitorClass}]
+public class BindingVisitor extends Visitor {
+  public SymbolTable ST = null;
+	
+  public BindingVisitor(SymbolTable symT) {
+    ST = symT;
+    ST.openScope();
+  }
+}
+\end{lstlisting}
+The \textit{BindingVisitor}, shown on Listing~\ref{code:BindingVisitorClass}, inherits from the \textit{Visitor} class and uses the visitor pattern, as described in Subsection~\ref{comp:VisitorPattern}, to traverse the AST and bind ids to declarations. It contains an instance of the \textit{SymbolTable} class and uses this to keep track of all the functions and which variables are declared in the current scope as can be seen on Listing~\ref{code:BindingVisitorCall}.
+
+\begin{lstlisting}[caption={Code for binding visitor call}, label={code:BindingVisitorCall}]
+SymbolTable ST = new SymbolTable();
+BindingVisitor bv = new BindingVisitor(ST);
+bv.visit((ProgramNode) ast);
+\end{lstlisting}
+When the \textit{BindingVisitor} is instantiated it takes a symbol table as a parameter. Following this the visit function is used to visit the \textit{ProgramNode} of our AST.
+
+\begin{lstlisting}[caption={Code for the ProgramNode visitor}, label={code:BindingVisitorProgramNode}]
+public void visit(ProgramNode node)
+{
+  /*Creates FunctionMap*/
+  if(node.funcNodes != null)
+  {
+    for(FuncNode func: node.funcNodes)
+    {
+      ST.addToFuncMap(func);
+    } 
+  }
+  /*Creates ST*/
+  node.setupNode.accept(this);
+  node.repeatNode.accept(this);
+  ST.checkVariablesAreUsed();
+		
+  if(node.funcNodes != null)
+  {
+    for(FuncNode func: node.funcNodes) {
+      func.accept(this);
+    }
+  }
+  ST.checkFunctionsAreUsed();
+}
+\end{lstlisting}
+When the \textit{ProgramNode} is visited it first iterates through all the functions and adds them to the SymbolTable as shown on Listing~\ref{code:BindingVisitorProgramNode}. It then uses the visitor to visit the \textit{SetupNode} and the \textit{RepeatNode} within the \textit{ProgramNode}.
+Afterwards it checks whether there are any variables that are declared but never used. In this case it adds a warning to the warning list.
+Afterwards it iterates through all the \textit{FuncNode}s and visits them. After this it checks whether there are any functions that were defined but never used. 
+\begin{lstlisting}[caption={Code for the VarDcl visitor}, label={code:VarDclNodeVisitor}]
+public void visit(VarDclNode node)
+{
+  ST.addDeclarationToSymbolTable(node);
+  if(node.exprNode != null) {
+    node.isInitialized = true;
+    node.exprNode.accept(this);
+  }
+}
+\end{lstlisting}
+When visiting a \textit{DclNode}, it starts by adding the declaration to the \textit{SymbolTable} as shown on Listing~\ref{code:VarDclNodeVisitor}. It checks whether the \textit{ExpressionNode} is \textit{null}. If it is not, it sets the \textit{isInitalized} flag on the \textit{DclNode} to be true, meaning that the \textit{decleration} is set to a value.
+
+\begin{lstlisting}[caption={Code for the ListNode visitor}, label={code:ListNodeVisitor}]
+public void visit(ListNode node)
+{
+  ST.addDeclarationToSymbolTable(node);
+  node.isInitialized = true;
+  node.typeNode.accept(this);
+  if(node.memberExprNodes != null)
+  {
+    for(ExprNode expr: node.memberExprNodes)
+    {
+      expr.accept(this);
+    }
+  }
+}
+
+@Override
+public void visit(GroupNode node)
+{
+  ST.addDeclarationToSymbolTable(node);
+  node.isInitialized = true;
+  for(IdNode member: node.memberIdNodes) 
+  {
+    member.accept(this);
+  }
+}
+\end{lstlisting}
+\textit{List} and \textit{Group} declarations are different because they contain multiple members. When visiting these, the function first adds the \textit{declaration} to the \textit{SymbolTable}. Then it iterates through all the members and visits them as can be seen on Listing~\ref{code:ListNodeVisitor}.
+
+\begin{lstlisting}[caption={Code for the AssignmentNode visitor}, label={code:AssignmentNodeVisitor}]
+public void visit(AssignmentNode node)
+{
+  ST.addAssignmentToSymbolTable(node);
+  node.idNode.dclNode.isInitialized = true;
+  node.exprNode.accept(this);
+}
+
+public void visit(IdNode node) {
+  ST.addIdToSymbolTable(node);
+  if(node.dclNode != null && node.dclNode.isInitialized == false) {
+    MainClass.CompileWarnings.add(
+                              new NotInitializedWarning(
+                                node.columnNumber, 
+                                node.lineNumber, 
+                                node.id)
+                                );
+  }
+}
+\end{lstlisting}
+When visiting an \textit{AssignmentNode}, the visit function adds the assignment to the symbol table and sets the \textit{idInitialized} flag to true, as can be seen on Listing~\ref{code:AssignmentNodeVisitor} line 4 followed by visiting the \textit{ExpressionNode}.
+\\\\
+When visiting an \textit{IdNode}, the function adds the id to the symbol table as shown on Listing~\ref{code:AssignmentNodeVisitor} lines 8-18. 
+This checks whether or not the is declared. 
+Then the \textit{DclNode} is checked for whether the \textit{IdNode} is \textit{null}. 
+If so, the \textit{isInitializedflag} on the \textit{DclNode} is set to false. 
+If it is true, it adds a warning to the warning list to inform the user that a variable is not initialised.
+

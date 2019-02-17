@@ -1,0 +1,164 @@
+\chapter{Code examples}\label{APP:examples}
+This appendix will describe some examples of the differences between Phal and Arduino code, in order to illuminate the differences.\\
+
+
+\section{Example 1}
+\noindent The first example, seen on Listings~\ref{code:code1Phal} and \ref{code:code1Arduino}, will declare 5 lights and repeatedly turn them on and off for 5 seconds.
+\begin{lstlisting}[caption={Code example 1 in Phal}, label={code:code1Phal}]
+setup{
+  lightbulb lb1 := pin 1
+  lightbulb lb2 := pin 2
+  lightbulb lb3 := pin 3
+  lightbulb lb4 := pin 4
+  lightbulb lb5 := pin 5
+
+  group lights{
+    lb1
+    lb2
+    lb3
+    lb4
+    lb5
+  }
+}
+
+repeat{
+  lights := on
+  wait for 5 seconds
+  lights := off
+  wait for 5 seconds
+}
+\end{lstlisting}
+
+\begin{lstlisting}[caption={Code example 1 in Arduino}, label={code:code1Arduino}]
+void setup(){
+  pinMode(1, OUTPUT);
+  pinMode(2, OUTPUT);
+  pinMode(3, OUTPUT);
+  pinMode(4, OUTPUT);
+  pinMode(5, OUTPUT);
+}
+
+void loop(){
+  digitalWrite(1, HIGH);
+  digitalWrite(2, HIGH);
+  digitalWrite(3, HIGH);
+  digitalWrite(4, HIGH);
+  digitalWrite(5, HIGH);
+  delay(5000);
+  digitalWrite(1, LOW);
+  digitalWrite(2, LOW);
+  digitalWrite(3, LOW);
+  digitalWrite(4, LOW);
+  digitalWrite(5, LOW);
+  delay(5000);
+}
+\end{lstlisting}
+
+\section{Example 2}
+The second code example will open a window with a motor if the temperature reaches above a set temperature limit or close the window if it reaches below a set limit.
+\begin{lstlisting}[caption={Code example 2 in PHAL}, label={code:code2PHAL}]
+setup{
+  motor openWindow := 1
+  motor closeWindow := 2
+
+  temperatureSensor temp := 3
+
+  number tempHigh := 30
+  number tempLow := 20
+}
+
+repeat{
+  if(temp.reading is greater than tempHigh) then {
+    call turnOnMotor with (openWindow)
+  }
+  if(temp.reading is less than tempLow) {
+    call turnOnMotor with (closeWindow)
+  }
+}
+
+define turnOnMotor with (motor m) returnType(none) {
+  m := on
+  wait 5 seconds
+  m := off
+}
+\end{lstlisting}
+
+\begin{lstlisting}[caption={Code example 2 in Arduino}, label={code:code2Arduino0}]
+#include <dht.h>
+dht DHT;
+
+void setup(){
+  pinMode(1, OUTPUT);
+  pinMode(2, OUTPUT);
+}
+
+void loop(){
+  int chk = DHT.read11(3);
+  
+  if(DHT.temperature > 30) {
+  turnOnMotor(1);
+  }
+  if(DHT.temperature < 20) {
+    turnOnMotor(2);
+  }
+}
+
+void turnOnMotor(int m){
+  digitalWrite(m, HIGH);
+  delay(5000);
+  digitalWrite(m, LOW);
+}
+\end{lstlisting}
+\section{Example 3}
+An example that show how loop in PHAL are different than loops in Arduino code
+\begin{lstlisting}[caption={Code example 3 in PHAL}, label={code:code3PHAL}]
+setup{
+  lightbulb lb := pin 1
+ 
+  number i := 0
+}
+
+repeat{
+  loop 8 times {
+  lb := on
+  wait 1 seconds
+  lb := off
+  }
+
+  loop until i greater than 8 increase i by 1 {
+  lb := on
+  wait 1 seconds
+  lb := off
+  }
+}
+\end{lstlisting}
+
+\begin{lstlisting}[caption={Code example 3 in Arduino}, label={code:code3Arduino}]
+void setup(){
+  pinMode(1, OUTPUT);
+}
+
+void loop(){
+  int i;
+  
+  for(i = 0; i < 8; i++){
+  digitalWrite(1, HIGH);
+  delay(1000);
+  digitalWrite(1, LOW);
+  }
+  i = 0;
+  while(i <= 8){
+  digitalWrite(1, HIGH);
+  delay(1000);
+  digitalWrite(1n LOW);
+  i++;
+  }
+}
+\end{lstlisting}
+%\begin{lstlisting}[caption={}, label={}]
+ 
+%\end{lstlisting}
+
+%\begin{lstlisting}[caption={}, label={}]
+
+%\end{lstlisting}

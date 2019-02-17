@@ -1,0 +1,78 @@
+\chapter{Main}
+In the following chapters, the technical implementation of the PHAL language will be elaborated upon.
+The first thing which we will introduce is the main class. 
+\\\\
+The main class is the piece of code from which the whole program starts and from which all the different compiler phases are executed. 
+Apart from being the backbone of the program which connects all the different phases of the compiler, the main class is also used to store errors and warnings that have accumulated during the compiler phases. 
+Errors and warnings are stored in the two lists shown on Listing~\ref{code:MainClassmain} on lines 2 and 3. The lists are regularly checked for errors that could end the compiling process. 
+\\\\
+As the program starts the program arguments are placed into member variables of the main class which is done on line 7 to 8 in Listing~\ref{code:MainClassmain}. 
+It is important that the first argument is the name of the Phal file which the user wants to compile followed by a space, and then the specific USB port in which the Arduino board is connected to the users computer. 
+An example of running the PHAL compiler can be seen on Listing~\ref{code:CommandToRunThePhalCompiler}.
+\begin{lstlisting}[caption={Command to run the PHAL compiler}, label={code:CommandToRunThePhalCompiler}]
+java -jar ./phal.jar PhalLangExample.phal COM4
+\end{lstlisting}
+The main class goes on to call the different parts of the compiler as seen on line 9 to 16 in Listing \ref{code:MainClassmain}, starting by building the abstract syntax tree, then instantiating the symbol table and then type checking. If no errors have occurred it will then proceed to code generation.
+\begin{lstlisting}[caption={The main class},label={code:MainClassmain}, escapeinside={(*}{*)}]
+public class MainClass {
+  public static List<CompilerError.Error> CompileErrors = new ArrayList<>();
+  public static List<CompilerError.Error> CompileWarnings = new ArrayList<>();
+  (*\vdots*)
+  public static void main(String args[]) throws Exception
+  {
+    inputFileName = args[0];
+    String comPort = args[1];
+    File file = new File(inputFileName);
+    AstNode ast = ASTBuilder(new FileInputStream(file));
+    SymbolTable ST = new SymbolTable();
+    TypeChecking(ast, ST);	
+    CodeGeneration cg = new CodeGeneration(ST.getCompInclMap());
+    cg.visit((ProgramNode)ast);
+    (*\vdots*)
+  }
+  (*\vdots*)
+}
+\end{lstlisting}
+The first function call on Listing~\ref{code:MainClassmain} line 10 calls the function \textit{AstBuilder}.
+\\
+This function is responsible for creating the AST. 
+To do this it first calls a couple of functions from the ANTLR framework which creates the concrete syntax tree.  
+If no errors occur the AstBuilder will create an AST.
+\\\\
+After this the symbol table is created and the \textit{TypeChecking} function is called, as seen on line 12 in Listing \ref{code:MainClassmain}. 
+The \textit{TypeChecking} function is shown in Listing \ref{code:MainClassTypechecking}.
+\\
+First the binding visitor, called on line 2, populates the symbol table and makes sure that variables and functions are declared before they are used as well as making sure that two variables are not declared with the same name. 
+\\\\
+Then the program checks if any errors occurred. 
+If this is the case each error will be shown in the console window the user ran the program in and the program will terminate. 
+This check is done after each phase or function is done as seen on line 4 to 6, 9 to 11 and 14 to 16 in Listing~\ref{code:MainClassTypechecking}.
+\\\\
+After the binding visitor the type checker is called. This phase makes sure that all interactions with variables and statements use the correct types.
+\\
+To finish this the type checking function the NumberVisitor is called as seen on line 12 in Listing \ref{code:MainClassTypechecking}. This functions checks for all number types whether they are integers or decimals. This is so code generation can be made more memory efficient which can be crucial on the very limited hardware in the Arduino.
+\begin{lstlisting}[caption={The different checks needed to be done before code generation},label={code:MainClassTypechecking}, escapeinside={(*}{*)}]
+public static void TypeChecking(AstNode ast, SymbolTable ST) {
+  BindingVisitor bv = new BindingVisitor(ST);
+  bv.visit((ProgramNode) ast);
+  if(!CompileErrors.isEmpty()) {
+    PrintErrorsAndExit();
+  }
+  TypeChecker tc = new TypeChecker(ST);
+  tc.visit((ProgramNode) ast);
+  if(!CompileErrors.isEmpty()) {
+    PrintErrorsAndExit();
+  }
+  NumberVisitor nv = new NumberVisitor();
+  nv.visit((ProgramNode) ast);
+  if(!CompileErrors.isEmpty()) {
+    PrintErrorsAndExit();
+  }
+  if(!CompileWarnings.isEmpty()) {
+    PrintWarnings();
+  }
+}
+\end{lstlisting}
+After this process the compiler is now ready to start generating Arduino code which can then be compiled and uploaded to the Arduino board.
+The following sections will further explain the implementation of how the AST is built, how the type checking is done, how numbers are evaluated to either integers or floats, and finally how the code generation is implemented.
+

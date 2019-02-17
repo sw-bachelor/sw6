@@ -1,0 +1,1445 @@
+\chapter{Formal syntax}\label{app:semantics}
+\section{Full semantics for arithmetic expressions}\label{AppSec:SemainticsArithmeticExpr}
+In this section the rest of the semantic rules for arithmetic expressions can be seen.
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{PLUS-num}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{env_v, \: sto \vdash a_1 \xrightarrow{}\textsubscript{a} \: v_1 \quad env_v, \: sto \vdash a_2 \xrightarrow{}\textsubscript{a} \: v_2}{env_v, \: sto \vdash a_1 + a_2 \xrightarrow{}\textsubscript{a} \: v}$
+$ \: where$ $v$ $=$ $v_1$ $+$ $v_2$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{PLUS-text}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{env_v, \: sto \vdash a_1 \xrightarrow{}\textsubscript{a} \: v_1 \: \: \: env_v, \: sto \vdash a_2 \xrightarrow{}\textsubscript{a} \: v_2}{env_v, \: sto \vdash a_1 + a_2 \xrightarrow{}\textsubscript{a} \: v}$
+$ \: where$ $v$ $=$ $v_1$ $\circ$ $v_2$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{MINUS}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{env_v, \: sto \vdash a_1 \xrightarrow{}\textsubscript{a} \: v_1 \: env_v, \: sto \vdash a_2 \xrightarrow{}\textsubscript{a} \: v_2}{env_v, \: sto \vdash a_1 - a_2 \xrightarrow{}\textsubscript{a} \: v}$
+$ \: where$ $v$ $=$ $v_1$ $-$ $v_2$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{MULT}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{env_v, \: sto \vdash a_1 \xrightarrow{}\textsubscript{a} \: v_1 \: env_v, \: sto \vdash a_2 \xrightarrow{}\textsubscript{a} \: v_2}{env_v, \: sto \vdash a_1 \cdot a_2 \xrightarrow{}\textsubscript{a} \: v}$
+$ \: where$ $v$ $=$ $v_1$ $\cdot$ $v_2$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{DIV}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{env_v, \: sto \vdash a_1 \xrightarrow{}\textsubscript{a} \: v_1 \: env_v, \: sto \vdash a_2 \xrightarrow{}\textsubscript{a} \: v_2}{env_v, \: sto \vdash a_1 \div a_2 \xrightarrow{}\textsubscript{a} \: v}$
+$ \: where$ $v$ $=$ $v_1$ $\div$ $v_2$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{MOD}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{env_v, \: sto \vdash a_1 \xrightarrow{}\textsubscript{a} \: v_1 \: env_v, \: sto \vdash a_2 \xrightarrow{}\textsubscript{a} \: v_2}{env_v, \: sto \vdash a_1 \: mod \: a_2 \xrightarrow{}\textsubscript{a} \: v}$
+$ \: where$ $v$ $=$ $v_1$ $mod$ $v_2$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{PAREN}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{env_v, \: sto \vdash a_1 \xrightarrow{}\textsubscript{a} \: v_1}{env_v, \: sto \vdash (a_1) \xrightarrow{}\textsubscript{a} \: v_1}$
+\end{minipage}
+\end{equation}
+
+\begin{equation}\label{EQ:SemainticsArithmeticExprNUM}
+\begin{minipage}{.2\linewidth}
+$[\text{NUM}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$env_v, \: sto \vdash n \xrightarrow{}\textsubscript{a} \: v$ $ \: \text{if}$ $\mathcal{N}[\![n]\!]$ $=$ $v$ 
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{VAR}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$env_v, \: sto \vdash x \xrightarrow{}\textsubscript{a} \: v$ $ \:\:\: \text{if} \:\:\: env_v \: x = l$ and $sto \: l = v$ 
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{GRPVAR}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$env_G, \: env_v, \: sto \vdash gx \xrightarrow{}\textsubscript{a} \: v$ \\ if $env_G \: gx = l,$ \\ $env_G \: gx = env_v x...x_n,$ \\ $env_v x...x_n = l'...l'_n$ \\ and $sto \: l = v,$ \\$sto \: l'...l'_n = v...v_n$ 
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{LISTVAR}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$env_L, \: env_G, \: env_v, \: sto \vdash lx \xrightarrow{}\textsubscript{a} \: x...x_n$  \\ if $env_L \: lx = env_G \: gx...gx_n \: \text{and} \: env_L \: lx = env_v \: x'...x'_n,$ \\ where $env_G \: gx...gx_n = env_v x''...x''_n,$ \\ $env_v x'...x'_n = l...l_n$ \\ $env_v x''...x''_n = l'...l'_n$ \\ and $sto \: l...l_n = v...v_n,$\\ $sto \: l'...l'_n = v'...v'_n,$
+\end{minipage}
+\end{equation}
+
+\section{Full semantics for boolean expressions}\label{AppSec:SemainticsBooleanExpr}
+In this section the rest of the semantic rules for boolean expressions can be seen.
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{EQUALS-1}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{env_v, \: sto \vdash a_1 \xrightarrow{}\textsubscript{a} \: v_1 \quad\: env_v, \: sto \vdash a_2 \xrightarrow{}\textsubscript{a} \: v_2}{env_v, \: sto \vdash a_1 = a_2 \xrightarrow{}\textsubscript{b} \: tt}$
+$ \: if$ $v_1$ $=$ $v_2$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{EQUALS-2}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{env_v, \: sto \vdash a_1 \xrightarrow{}\textsubscript{a} \: v_1 \: env_v, \: sto \vdash a_2 \xrightarrow{}\textsubscript{a} \: v_2}{env_v, \: sto \vdash a_1 = a_2 \xrightarrow{}\textsubscript{b} \: ff}$
+$ \: if$ $v_1$ $\neq$ $v_2$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{GTR-1}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{env_v, \: sto \vdash a_1 \xrightarrow{}\textsubscript{a} \: v_1 \quad\: env_v, \: sto \vdash a_2 \xrightarrow{}\textsubscript{a} \: v_2}{env_v, \: sto \vdash a_2 > a_1 \xrightarrow{}\textsubscript{b} \: tt}$
+$ \: if$ $v_2$ $>$ $v_1$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{GTR-2}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{env_v, \: sto \vdash a_1 \xrightarrow{}\textsubscript{a} \: v_1 \: env_v, \: sto \vdash a_2 \xrightarrow{}\textsubscript{a} \: v_2}{env_v, \: sto \vdash a_2 > a_1 \xrightarrow{}\textsubscript{b} \: ff}$
+$ \: if$ $v_2$ $\not>$ $v_1$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{GTREQ-1}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{env_v, \: sto \vdash a_1 \xrightarrow{}\textsubscript{a} \: v_1 \: env_v, \: sto \vdash a_2 \xrightarrow{}\textsubscript{a} \: v_2}{env_v, \: sto \vdash a_2 \geq a_1 \xrightarrow{}\textsubscript{b} \: tt}$
+$ \: if$ $v_2$ $\geq$ $v_1$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{GTREQ-2}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{env_v, \: sto \vdash a_1 \xrightarrow{}\textsubscript{a} \: v_1 \: env_v, \: sto \vdash a_2 \xrightarrow{}\textsubscript{a} \: v_2}{env_v, \: sto \vdash a_2 \geq a_1 \xrightarrow{}\textsubscript{b} \: ff}$
+$ \: if$ $v_2$ $\ngeq$ $v_1$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{NOT-1}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{env_v, \: sto \vdash b \xrightarrow{}\textsubscript{b} \: tt}{env_v, \: sto \vdash \neg b \xrightarrow{}\textsubscript{b} \: ff}$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{NOT-2}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{env_v, \: sto \vdash b \xrightarrow{}\textsubscript{b} \: ff}{env_v, \: sto \vdash \neg b \xrightarrow{}\textsubscript{b} \: tt}$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{PAREN}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+$\cfrac{env_v, \: sto \vdash b \xrightarrow{}\textsubscript{b} \: v}{env_v, \: sto \vdash (b) \xrightarrow{}\textsubscript{b} \: v}$
+\centering
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{AND-1}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{env_v, \: sto \vdash b_1 \xrightarrow{}\textsubscript{b} \: tt \quad\: env_v, \: sto \vdash b_2 \xrightarrow{}\textsubscript{b} \: tt}{env_v, \: sto \vdash b_1 \wedge b_2 \xrightarrow{}\textsubscript{b} \: tt}$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{AND-2}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{env_v, \: sto \vdash b_i \xrightarrow{}\textsubscript{b} \: ff }{env_v, \: sto \vdash b_1 \wedge b_2 \xrightarrow{}\textsubscript{b} \: ff}$
+$i \: \in \: \{1,2\}$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{OR-1}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{env_v, \: sto \vdash b_i \xrightarrow{}\textsubscript{b} \: tt }{env_v, \: sto \vdash b_1 \vee b_2 \xrightarrow{}\textsubscript{b} \: tt}$
+$i \: \in \: \{1,2\}$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{OR-2}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{env_v, \: sto \vdash b_1 \xrightarrow{}\textsubscript{b} \: ff \: \: \: \: \: \: env_v, \: sto \vdash b_2 \xrightarrow{}\textsubscript{b} \: ff}{env_v, \: sto \vdash b_1 \vee b_2 \xrightarrow{}\textsubscript{b} \: ff}$
+\end{minipage}
+\end{equation}
+
+
+
+
+
+\section{Full semantics for statements}\label{AppSec:SemanticsStatements}
+In this section the rest of the semantic rules for statements can be seen.
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{ASSIGNA}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$env_v \vdash \langle x := a, \: sto \rangle \xrightarrow{} sto[l \mapsto v]$
+\\
+where $env_v, \: sto \vdash a \xrightarrow{}\textsubscript{a} \: v$ and $env_v \: x = l$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{ASSIGNB}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$env_v \vdash \langle x := b, \: sto \rangle \xrightarrow{} sto[l \mapsto v]$
+\\
+where $env_v, \: sto \vdash b \xrightarrow{}\textsubscript{b} \: v$ and $env_v \: x = l$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{CPLUSVAR}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$env_v, \: sto \vdash \langle x_1 \text{ += } x_2, \: sto \rangle \xrightarrow{} sto[l \mapsto v]$
+\\
+where $env_v, \: sto \vdash x_1 \xrightarrow{}\textsubscript{a} \: v_1$,
+\\
+$env_v, \: sto \vdash x_2 \xrightarrow{}\textsubscript{a} \: v_2$,
+\\
+$v = v_1 + v_2$
+\\
+and $env_v  \: x_1 = l$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{CPLUSEXP}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$env_v, \: sto \vdash \langle x \text{ += } a, \: sto \rangle \xrightarrow{} sto[l \mapsto v]$ 
+\\
+where $env_v, \: sto \vdash x \xrightarrow{}\textsubscript{a} \: v_1$,
+\\
+$env_v, \: sto \vdash a \xrightarrow{}\textsubscript{a} \: v_2$,
+\\
+$v = v_1 + v_2$
+\\
+and $env_v \: x = l$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{CMINUSVAR}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$env_v, \: sto \vdash \langle x_1 \text{ -= } x_2, \: sto \rangle \xrightarrow{} sto[l \mapsto v]$
+\\
+where $env_v, \: sto \vdash x_1 \xrightarrow{}\textsubscript{a} \: v_1$,
+\\
+$env_v, \: sto \vdash x_2 \xrightarrow{}\textsubscript{a} \: v_2$,
+\\
+$v = v_1 - v_2$
+\\
+and $env_v \: x_1 = l$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{CMINUSEXP}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$env_v, \: sto \vdash \langle x \text{ -= } a, \: sto \rangle \xrightarrow{} sto[l \mapsto v]$ 
+\\
+where $env_v, \: sto \vdash x \xrightarrow{}\textsubscript{a} \: v_1$,
+\\
+$env_v, \: sto \vdash a \xrightarrow{}\textsubscript{a} \: v_2$,
+\\
+$v = v_1 - v_2$
+\\
+and $env_v \: x = l$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{GRPASSIGN}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$env_g \vdash \langle gx := b, \: sto \rangle \xrightarrow{} sto[l \mapsto v]$
+\\
+where $env_g, \: sto \vdash b \xrightarrow{}\textsubscript{b} \: v$ and $env_g \: gx = l$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{GRPASSIGN2}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$env_g \vdash \langle gx := b, \: sto \rangle \xrightarrow{} sto[l_1 ... l_n \mapsto v]$
+\\
+where $env_g, \: sto \vdash b \xrightarrow{}\textsubscript{b} \: v$,
+\\$env_g, env_v, \: sto \vdash gx \xrightarrow{}\textsubscript{a} \: x_1...x_n$,
+\\
+and $env_v, \: sto \vdash x_1...x_n \xrightarrow{}\textsubscript{a} \: l_1... l_n$
+\end{minipage}
+\end{equation}
+
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{SEQ}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{env_v, \: env_p \vdash \langle S_1, \: sto\rangle \xrightarrow{} sto'' \quad\: env_v, \: env_p \vdash \langle S_2, \: sto'' \rangle \xrightarrow{} sto'}{env_v, \: env_p \vdash \langle S_1 \textit{newline} \: S_2, \: sto \rangle \xrightarrow{} sto'}$ 
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{LOOPUNTIL-TRUE}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$env_v, \: env_p \vdash \langle $loop $S$ until $b$, sto$\rangle \xrightarrow{} sto$ \\
+if $env_v, \: sto \vdash b \xrightarrow{}\textsubscript{b} \: tt$ 
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{split}
+\begin{minipage}{\linewidth}
+$[\text{LOOPUNTIL-FALSE}_\text{BSS}]$
+\end{minipage}
+\\\\
+\begin{minipage}{\linewidth}
+\centering
+$\cfrac{env_v \: env_p \vdash \langle S, \: sto \rangle \xrightarrow{} sto'' \quad\: env_v, \: env_p \vdash \langle \text{loop} \: S \: \text{until} \: b, \: sto'' \rangle \xrightarrow{} sto'}{env_v, \: env_p \vdash \langle \text{loop} \: S \: \text{until} \: b, \: sto \rangle \xrightarrow{} sto'}$ 
+\end{minipage}
+\\\\
+\begin{minipage}{\linewidth}
+\centering
+if $env_v, \: sto \vdash b \xrightarrow{}\textsubscript{b} \: ff$
+\end{minipage}
+\end{split}
+\end{equation}
+
+\begin{equation}
+\begin{split}
+\begin{minipage}{\linewidth}
+$[\text{LOOPUNTILDEC-TRUE}_\text{BSS}]$
+\end{minipage}
+\\\\
+\begin{minipage}{\linewidth}
+\centering
+$env_v, \: env_p \vdash \langle $loop $S$ until $b$ decrease $x$ by $n$, sto$\rangle \xrightarrow{} sto$ \\
+if $env_v, \: sto \vdash b \xrightarrow{}\textsubscript{b} \: tt$ and $env_v, \: sto \vdash x \xrightarrow{}\textsubscript{a} \: v, \: env_v, \: sto \vdash n \xrightarrow{}\textsubscript{a} \: v$ 
+\end{minipage}
+\end{split}
+\end{equation}
+
+\begin{equation}
+\begin{split}
+\begin{minipage}{\linewidth}
+$[\text{LOOPUNTILDEC-FALSE}_\text{BSS}]$
+\end{minipage}
+\\\\
+\begin{minipage}{\linewidth}
+\centering
+$\cfrac{env_v \: env_p \vdash \langle S, \: sto \rangle \xrightarrow{} sto'' \quad\: env_v, \: env_p \vdash \langle \text{loop} \: S \: \text{until} \: b \text{ decrease } x \text{ by } n, \: sto'' \rangle \xrightarrow{} sto'}{env_v, \: env_p \vdash \langle \text{loop} \: S \: \text{until} \: b \text{ decrease } x \text{ by } n, \: sto \rangle \xrightarrow{} sto'}$ 
+\end{minipage}
+\\\\
+\begin{minipage}{\linewidth}
+\centering
+if $env_v, \: sto \vdash b \xrightarrow{}\textsubscript{b} \: ff,$ \\
+$env_v, \: sto \vdash x \xrightarrow{}\textsubscript{a} \: v, \: env_v, \: sto \vdash n \xrightarrow{}\textsubscript{a} \: v'$ 
+\\ where $x = \mathcal{N}^{-1}(v-v')$
+\end{minipage}
+\end{split}
+\end{equation}
+
+
+\begin{equation}
+\begin{split}
+\begin{minipage}{\linewidth}
+$[\text{LOOPUNTILINC-TRUE}_\text{BSS}]$
+\end{minipage}
+\\\\
+\begin{minipage}{\linewidth}
+\centering
+$env_v, \: env_p \vdash \langle $loop $S$ until $b$ increase $x$ by $n$, sto$\rangle \xrightarrow{} sto$ \\
+if $env_v, \: sto \vdash b \xrightarrow{}\textsubscript{b} \: tt$ and $env_v, \: sto \vdash x \xrightarrow{}\textsubscript{a} \: v, \: env_v, \: sto \vdash n \xrightarrow{}\textsubscript{a} \: v$ 
+\end{minipage}
+\end{split}
+\end{equation}
+
+\begin{equation}
+\begin{split}
+\begin{minipage}{\linewidth}
+$[\text{LOOPUNTILINC-FALSE}_\text{BSS}]$
+\end{minipage}
+\\\\
+\begin{minipage}{\linewidth}
+\centering
+$\cfrac{env_v \: env_p \vdash \langle S, \: sto \rangle \xrightarrow{} sto'' \quad\: env_v, \: env_p \vdash \langle \text{loop} \: S \: \text{until} \: b \text{ increase } x \text{ by } n, \: sto'' \rangle \xrightarrow{} sto'}{env_v, \: env_p \vdash \langle \text{loop} \: S \: \text{until} \: b \text{ increase } x \text{ by } n, \: sto \rangle \xrightarrow{} sto'}$ 
+\end{minipage}
+\\\\
+\begin{minipage}{\linewidth}
+\centering
+if $env_v, \: sto \vdash b \xrightarrow{}\textsubscript{b} \: ff,$ \\
+$env_v, \: sto \vdash x \xrightarrow{}\textsubscript{a} \: v, \: env_v, \: sto \vdash n \xrightarrow{}\textsubscript{a} \: v'$ 
+\\ where $x = \mathcal{N}^{-1}(v+v')$
+\end{minipage}
+\end{split}
+\end{equation}
+
+
+\begin{equation}
+\begin{split}
+\begin{minipage}{\linewidth}
+$[\text{LOOPTIMES}_\text{BSS}]$
+\end{minipage}
+\\
+\begin{minipage}{\linewidth}
+\centering
+$\cfrac{env_v, \: env_p \vdash \langle S, \: sto \rangle \xrightarrow{} sto'' \: \: \: \: \: \langle \text{loop} \: S \: n \: \text{times}, \: sto'' \rangle \xrightarrow{} sto'}{env_v, \: env_p \vdash \langle \text{loop} \: S \: a \: \text{times} \rangle \xrightarrow{} sto'}$ 
+\end{minipage}
+\\\\
+\begin{minipage}{\linewidth}
+\centering
+where $env_v, \: sto \vdash a \xrightarrow{} v$
+\\
+$n = \mathcal{N}^{-1}(v-1)$
+\\
+$v > 0$
+\end{minipage}
+\end{split}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{LOOPTIMES-END}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$env_v, \: env_p \langle \text{loop} \: S \: a \: \text{times}, \: sto \rangle \xrightarrow{} sto$ 
+\\
+where $env_v, sto \vdash a \xrightarrow{} v \: \text{and} \: v \leq 0$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{split}
+\begin{minipage}{\linewidth}
+$[\text{SWITCH-DEFAULT}_\text{BSS}]$
+\end{minipage}
+\\
+\begin{minipage}{\linewidth}
+\centering
+$\cfrac{env_v, \: env_p \vdash \langle S, \: sto \rangle \xrightarrow{} sto'}{env_v, \: env_p \vdash \langle \text{switch}(a) \{\text{case} <a_1>: \: S_1  \: \text{default:} \: S\}, \: sto \rangle \xrightarrow{} sto' }$ 
+\end{minipage}
+\\\\
+\begin{minipage}{\linewidth}
+\centering
+where $env_v, \: env_p \vdash a \xrightarrow{}\textsubscript{a} \: v$
+\\
+$env_v, \: env_p \vdash a_1 \xrightarrow{}\textsubscript{a} \: v_1$
+\\
+$v \neq v_1$
+\end{minipage}
+\end{split}
+\end{equation}
+
+\begin{equation}
+\begin{split}
+\begin{minipage}{\linewidth}
+$[\text{SWITCH-1}_\text{BSS}]$
+\end{minipage}
+\\
+\begin{minipage}{\linewidth}
+\centering
+$\cfrac
+{
+    env_v, \: env_p \vdash \langle S_1, \: sto \rangle \xrightarrow{} sto'
+}
+{
+   env_v, \: env_p \vdash \langle \text{switch}(a) \{\text{case} <a_1>: \: S_1 ... \text{case} <a_n>: \: S_n \: \text{default:} \: S\}, \: sto \rangle \xrightarrow{} sto' 
+}
+$ 
+\end{minipage}
+\\\\
+\begin{minipage}{\linewidth}
+\centering
+if $ n \geq 1$ and $env_v, \: env_p \vdash a \xrightarrow{}\textsubscript{a} \: v$
+\\
+$env_v, \: env_p \vdash a_1 \xrightarrow{}\textsubscript{a} \: v_1$
+\\
+$v = v_1$
+\end{minipage}
+\end{split}
+\end{equation}
+
+\begin{equation}
+\begin{split}
+\begin{minipage}{\linewidth}
+$[\text{SWITCH-2}_\text{BSS}]$
+\end{minipage}
+\\
+\begin{minipage}{\linewidth}
+\centering
+$\cfrac
+{
+    env_v, \: env_p \vdash \langle  \text{switch}(a) \{\text{case} <a_2>: \: S_2 ... \text{case} <a_n>: \: S_n \: \text{default:} \: S\}, \: sto \rangle \xrightarrow{} sto'
+}
+{
+    env_v, \: env_p \vdash \langle \text{switch}(a) \{\text{case} <a_1>: \: S_1 ... \text{case} <a_n>: \: S_n \: \text{default:} \: S\}, \: sto \rangle \xrightarrow{} sto' 
+}$ 
+\end{minipage}
+\\\\
+\begin{minipage}{\linewidth}
+\centering
+if $ n > 1$ and $env_v, \: env_p \vdash a \xrightarrow{}\textsubscript{a} \: v$
+\\
+$env_v, \: env_p \vdash a_1 \xrightarrow{}\textsubscript{a} \: v_1$
+\\
+$v \neq v_1$
+\end{minipage}
+\end{split}
+\end{equation}
+
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{ALISTGET}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$env_L, \: env_v, \: sto \vdash \text{get element } n \text{ from } lx \xrightarrow{}\textsubscript{a} \: v$
+\\
+where $env_v, \: sto \vdash n \xrightarrow{}\textsubscript{a} \: v$, \\$env_L \: env_v, \: sto \vdash lx \xrightarrow{}\textsubscript{a} \: x...x_n$ 
+\\and $env_L \: lx = l_1... l_n$, \\ $sto \: l_1...l_n = v...v_n$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{BLISTGET}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$env_L, \: env_v, \: sto \vdash \text{get element } n \text{ from } lx \xrightarrow{}\textsubscript{b} \: v$
+\\
+where $env_v, \: sto \vdash n \xrightarrow{}\textsubscript{a} \: v$ \\ $env_L \: env_v, \: sto \vdash lx \xrightarrow{}\textsubscript{a} \: x_1...x_n$ \\ and $env_L \: lx = l_1... l_n$, \\$sto \: l_1...l_n = v_1...v_n$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{LISTREMOVE}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{env_v, \: sto\vdash \langle env_L[lx \mapsto x_1...x_{n-1}, x_{n+1}...x_i]\rangle \xrightarrow{} env_L'}{env_v, \: sto \vdash \langle \text{remove element } n \text{ from } lx, \: env_L \rangle \xrightarrow{} env_L'}$
+\\
+where $env_v, \: sto \vdash n \xrightarrow{}\textsubscript{a} \: v$
+\\
+$env_L, \: env_v, \: sto \vdash lx \xrightarrow{}\textsubscript{a} \: x_1...x_i$ 
+\\ 
+and $env_v \: x_n = l$, \\$sto \: l = v'$
+\\
+where $1 \leq i \leq n$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{ALISTADD}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{env_v, \: sto \vdash \langle env_L[lx_{end} \mapsto a ] \rangle \xrightarrow{} env_L'}{env_v, \: sto \vdash \langle \text{add } a \text{ to } lx, env_L \rangle \xrightarrow{} env_L'}$
+\\
+where $env_v, \: sto \vdash a \xrightarrow{}\textsubscript{LB} \: v$
+\\
+$env_L \: env_v, \: sto \vdash lx \xrightarrow{}\textsubscript{a} \: x_1...x_i$
+\\
+$lx_ {end} = x_{i+1}$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{ALISTADD}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{env_v, \: sto \vdash \langle env_L[lx_{end} \mapsto b ] \rangle \xrightarrow{} env_L'}{env_v, \: sto \vdash \langle \text{add } b \text{ to } lx, env_L \rangle \xrightarrow{} env_L'}$
+\\
+where $env_v, \: sto \vdash b \xrightarrow{}\textsubscript{LB} \: v$
+\\
+$env_L \: env_v, \: sto \vdash lx \xrightarrow{}\textsubscript{a} \: x_1...x_i$
+\\
+$lx_ {end} = x_{i+1}$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{WAIT}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$env_v, \: env_p, \: env_L, \: env_G \vdash \langle \text{wait for } a \text{ seconds}, \: sto \rangle \xrightarrow{} \: sto$
+\end{minipage}
+\end{equation}
+
+
+
+\subsection{Function calls}
+\subsubsection*{Call by reference}
+\begin{equation} \label{EQ:FORMELFUNCCALLREF}
+\begin{split}
+\begin{minipage}{\linewidth}
+$[\text{FUNCCALLREF}_\text{BSS}]$
+\end{minipage}
+\\\\
+\begin{minipage}{\linewidth}
+\centering
+$\cfrac{env'_v[P \mapsto l_1 ... l_n], \: env'_G, \: env'_L, \: env'_p \vdash \langle S, \: sto[next \mapsto l'] \rangle \xrightarrow{} sto'}{env_v, \: env_G, \: env_L, \: env_p \vdash \langle \text{call } f \text{ with } (y_1...y_n), \: sto \rangle \xrightarrow{} sto'}$
+\end{minipage}
+\\\\
+\begin{minipage}{\linewidth}
+\centering
+where $env_p f = (S, P, env'_v, \: env_G', \: env'_L, \: env'_p),$
+\end{minipage}
+\\
+\begin{minipage}{\linewidth}
+\centering
+$l... l_n = env_v \: y ... y_n$
+\end{minipage}
+\\
+\begin{minipage}{\linewidth}
+\centering
+$l' = sto \: \text{next}$
+\end{minipage}
+\end{split}
+\end{equation}
+During function calls by reference the formal parameter is associated with the address of the actual parameter. In the \textit{environment-store model} the address is the location, meaning the location of the actual parameter is used. The rule finds the location of the actual parameters $y...y_n$ in the side condition through the variable environment. The amount of locations $n$ is based on the corresponding amount of formal parameters defined through $P$. The procedure $S$, the formal parameters $P$ and the environments at declaration $env'_v, \: env'_G \: env'_L, \: env'_p$ are found by looking up procedure $f$ in the procedure environment $env_p$. The premise of the rule states that procedure $S$ is executed in the variable environment at the time of declaration $env'_v$, but remembers to update the formal parameters $P$ to the location $l$ of the matching actual parameter $y$.
+
+\begin{equation} \label{EQ:FormelFUNCCALLREFREC}
+\begin{split}
+\begin{minipage}{\linewidth}
+$[\text{FUNCCALLREFREC}_\text{BSS}]$
+\end{minipage}
+\\\\
+\begin{minipage}{\linewidth}
+\centering
+$\cfrac{env'_v[P \mapsto l_1...l_n], \: env'_G, \: env'_L, \: env''_p \vdash \langle S, \: sto[next \mapsto l'] \rangle \xrightarrow{} sto'}{env_v, \: env_G, \: env_L, \: env_p \vdash \langle \text{call } f \text{ with } (y_1...y_n), \: sto \rangle \xrightarrow{} sto'}$
+\end{minipage}
+\\\\
+\begin{minipage}{\linewidth}
+\centering
+$env_p f = (S, P, env'_v, \: env_G', \: env'_L, \: env'_p),$
+\end{minipage}
+\\
+\begin{minipage}{\linewidth}
+\centering
+$l_1... l_n = env_v \: y_1... y_n$
+\end{minipage}
+\\
+\begin{minipage}{\linewidth}
+\centering
+$l' = sto \: \text{next}$
+\end{minipage}
+\\
+\begin{minipage}{\linewidth}
+\centering
+where $env''_p = env_P[f \mapsto (S, P, env'_v, \: env_G', \: env'_L, \: env'_p)]$
+\end{minipage}
+\end{split}
+\end{equation}
+
+
+\subsubsection*{Call by value}
+\begin{equation} \label{app:FUNCCALLVALRAP}
+\begin{split}
+\begin{minipage}{\linewidth}
+$[\text{FUNCCALLVAL}_\text{BSS}]$
+\end{minipage}
+\\\\
+\begin{minipage}{\linewidth}
+\centering
+$\cfrac{env'_v[P \mapsto l_1...l_n] \: env'_G, \: env'_L, \: env'_p \vdash \langle S, sto[l_1...l_n \mapsto v_1...v_n][next \mapsto new \: l], \rangle \xrightarrow{} sto'}{env_v, \: env_G, \: env_L, \: env_p \vdash \langle \text{call} \: f \: \text{with} \: (a_1...a_n), \: sto \rangle \xrightarrow{} sto'}$
+\end{minipage}
+\\\\
+\begin{minipage}{\linewidth}
+\centering
+where $env_p f = (S, P, env'_v, \: env_G', \: env'_L, \: env'_p),$
+\end{minipage}
+\\
+\begin{minipage}{\linewidth}
+\centering
+$env_v, \: sto \vdash a_1...a_n \xrightarrow{}\textsubscript{a} \: v_1...v_n$
+\end{minipage}
+\\
+\begin{minipage}{\linewidth}
+\centering
+$freemem_i = sto[next \mapsto new \: l]$, $l_i = sto \: freemem_i$
+\end{minipage}
+\\
+\begin{minipage}{\linewidth}
+\centering
+where $1 \leq i \leq n $
+\end{minipage}
+\end{split}
+\end{equation}
+\noindent
+
+\begin{equation} \label{app:FUNCCALLRECVALRAP}
+\centering
+\begin{split}
+\begin{minipage}{\linewidth}
+$[\text{FUNCCALLRECVAL}_\text{BSS}]$
+\end{minipage}
+\\
+\begin{minipage}{\linewidth}
+\centering
+$
+\dfrac
+    {
+    \splitdfrac
+        {
+            env'_v[P \mapsto l_1...l_n], \: env'_G, \: env'_L, \: env'_p[f \mapsto (S, \: P, \: env'_v, \: env'_G, \: env'_L \: env'_p)]
+        }
+        { 
+            \vdash \langle S, sto[l \mapsto v][next \mapsto new \: l] \rangle \xrightarrow{} sto'
+        }
+    }
+    {
+        env_v, \: env_G, \: env_L, \: env_p \vdash \langle \text{call} \: f \: \text{with} \: (a_1...a_n), \: sto \rangle \xrightarrow{} sto'
+    }
+$
+\end{minipage}
+\\\\
+\begin{minipage}{\linewidth}
+\centering
+where $env_p f = (S, P, env'_v, \: env_G', \: env'_L, \: env'_p),$
+\end{minipage}
+\\
+\begin{minipage}{\linewidth}
+\centering
+$env_v, \: sto \vdash a_1...a_n \xrightarrow{}\textsubscript{a} \: v_1...v_n$
+\end{minipage}
+\\
+\begin{minipage}{\linewidth}
+\centering
+$freemem_i = sto[next \mapsto new \: l]$, $l_i = sto \: freemem_i$
+\end{minipage}
+\\
+\begin{minipage}{\linewidth}
+\centering
+where $1 \leq i \leq n $
+\end{minipage}
+\end{split}
+\end{equation}
+
+
+
+\subsection*{If statements}
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{IFNOELSE-TRUE}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{env_v, \: env_p \vdash \langle S, \: sto\rangle \xrightarrow{} sto'}{env_v, \: env_p \vdash \langle \text{if} \: b \: \text{then} \: S, \: sto \rangle \xrightarrow{} sto'}$ 
+\\
+if $env_v, \: sto \vdash b \xrightarrow{}\textsubscript{b} \: tt$
+\end{minipage}
+\end{equation}
+
+\begin{equation}\label{listing:ifnoelse-false}
+\begin{minipage}{.2\linewidth}
+$[\text{IFNOELSE-FALSE}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$env_v, \: env_p \vdash \langle \text{if} \: b \: \text{then} \: S, \: sto \rangle \xrightarrow{} sto$ 
+\\
+if $env_v, \: sto \vdash b \xrightarrow{}\textsubscript{b} \: ff$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{IFELSE-TRUE}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{env_v, \: env_p \vdash \langle S, \: sto \rangle \xrightarrow{} sto'}{env_v, \: env_p \vdash \langle \text{if} \: b \: \text{then} \: S \:S_{if}, \: sto \rangle \xrightarrow{} sto'}$ 
+\\
+if $env_v, \: sto \vdash b \xrightarrow{}\textsubscript{b} \: tt$
+\end{minipage}
+\end{equation}
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{IFELSE-FALSE}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{env_v, \: env_p \vdash \langle S_{if}, \: sto \rangle \xrightarrow{} sto}{env_v, \: env_p \vdash \langle \text{if} \: b \: \text{then} \: S \: S_{if}, \: sto \rangle \xrightarrow{} sto}$ 
+\\
+if $env_v, \: sto \vdash b \xrightarrow{}\textsubscript{b} \: ff$
+\end{minipage}
+\end{equation}
+\textbf{The $S_{if}$ category}\\
+These rules detail the possible endings to if-statements in PHAL.
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{ELSEIFEND-TRUE}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{env_v, \: env_p \vdash \langle S, \: sto \rangle \xrightarrow{} sto'}{env_v, \: env_p \vdash \langle \text{else if} \: b \: \text{then} \: S, \: sto \rangle \xrightarrow{} sto'}$ 
+\\
+if $env_v, \: sto \vdash b \xrightarrow{}\textsubscript{b} \: tt$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{ELSEIFEND-FALSE}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$env_v, \: env_p \vdash \langle \text{else if} \: b \: \text{then} \: S, \: sto \rangle \xrightarrow{} sto$ 
+\\
+if $env_v, \: sto \vdash b \xrightarrow{}\textsubscript{b} \: ff$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{ELSEIFSEQ-TRUE}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{env_v, \: env_p \vdash \langle S, \: sto \rangle \xrightarrow{} sto'}{env_v, \: env_p \vdash \langle \text{else if} \: b \: \text{then} \: S \: S_{if}, \: sto \rangle \xrightarrow{} sto'}$ 
+\\
+if $env_v, \: sto \vdash b \xrightarrow{}\textsubscript{b} \: tt$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{ELSEIFSEQ-FALSE}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+${env_v, \: env_p \vdash \langle \text{else if} \: b \: \text{then} \: S \: S_{if}, \: sto \rangle \xrightarrow{} sto}$ 
+\\
+if $env_v, \: sto \vdash b \xrightarrow{}\textsubscript{b} \: ff$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{ELSEEND}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{env_v, \: env_p \vdash \langle S, \: sto \rangle \xrightarrow{} sto'}{env_v, \: env_p \vdash \langle \text{else} \: S, \: sto \rangle \xrightarrow{} sto'}$ 
+\end{minipage}
+\end{equation}
+
+\section{Semantics for declarations}\label{AppSec:SemanticsDeclarations}
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{AVARDCL}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{\langle Dv, \: env_v [x \mapsto l], \: sto[l \mapsto v] \: [next \mapsto new \: l]\rangle \xrightarrow{}\textsubscript{Dv} \: (env_v', sto') }{\langle var \: x:= a \: \textit{newline} \: Dv, \: env_v, \: sto \rangle \xrightarrow{}\textsubscript{Dv} \: (env_v', sto')}$
+\[where \: env_v, \: sto \vdash a \xrightarrow{}\textsubscript{a} \: v \: and \: l = sto \: \text{next}\]
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{BVARDCL}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\cfrac{\langle Dv, \: env_v [x \mapsto l], \: sto[l \mapsto v] \: [next \mapsto new \: l]\rangle \xrightarrow{}\textsubscript{Dv} \: (env_v', sto') }{\langle var \: x:= b \: \textit{newline} \: Dv, \: env_v, \: sto \rangle \xrightarrow{}\textsubscript{Dv} \: (env_v', sto')}$
+\[where \: env_v, \: sto \vdash b \xrightarrow{}\textsubscript{b} \: v \: and \: l = sto \: \text{next}\]
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{EMPTYVARDCL}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\langle \epsilon, \: env_v, \: sto \rangle$ $\xrightarrow{}\textsubscript{\text{Dv}}$ $(env_v, \: sto)$
+\end{minipage}
+\end{equation}
+
+\subsection*{Group declarations}
+\begin{equation}
+\begin{split}
+\begin{minipage}{\linewidth}
+$[\text{GRPDCL}_\text{BSS}]$
+\end{minipage}
+\\
+\begin{minipage}{\linewidth}
+\centering
+$\cfrac{\langle D_G,  \: env_G[gx \mapsto (\{G_B\}, \: l)], \: sto[next \mapsto new \: l] \rangle \xrightarrow{}\textsubscript{DG} (env'_G, sto')}{\langle\text{group} \: gx \: \{G_B\} \: \textit{new} \: D_G, \: env_G, \: sto \rangle \xrightarrow{}\textsubscript{DG}(env'_G, \: sto')}$
+\end{minipage}
+\\
+\begin{minipage}{\linewidth}
+\centering
+where $env_v, \: sto \vdash \{G_B\} \xrightarrow{}\textsubscript{GB} \: v \text{ and } l = sto \text{ next}$
+\end{minipage}
+\end{split}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{GRPDCLEMPTY}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\langle \epsilon, env_G,  \: sto \rangle \xrightarrow{}\textsubscript{DG} (env_G, \: sto)$
+\end{minipage}
+\end{equation}
+\subsection*{List declarations}
+\begin{equation}
+\begin{split}
+\begin{minipage}{\linewidth}
+$[\text{LISTDCL}_\text{BSS}]$
+\end{minipage}
+\\
+\begin{minipage}{\linewidth}
+\centering
+$\cfrac{\langle D_L,  \: env_L[lx \mapsto \{L_B\}], \: env_L, \: sto \rangle \xrightarrow{}\textsubscript{DL} (env'_L, \: sto')}{\langle\text{list} \: lx \: \{L_B\} \: \textit{new} \: D_L, \: env_L, \: sto \rangle \xrightarrow{}\textsubscript{DL}(env'_L, \: sto')}$
+\end{minipage}
+\\\\
+\begin{minipage}{\linewidth}
+\centering
+where $env_v, \: sto \vdash \{L_B\} \xrightarrow{}\textsubscript{LB} \: v$
+\end{minipage}
+\end{split}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{LISTDCL-EMPTY}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\langle \epsilon, env_L, \: sto\rangle \xrightarrow{}\textsubscript{DL} (env_L, \ sto)$
+\end{minipage}
+\end{equation}
+\subsection*{Function declarations}
+\begin{equation}
+\begin{split}
+\begin{minipage}{\linewidth}
+$[\text{FUNCDCL}_\text{BSS}]$
+\end{minipage}
+\\\\
+\begin{minipage}{\linewidth}
+\centering
+$\cfrac{env_v, \: env_G, \: env_L \vdash \langle D_P, env_p[f \mapsto (S, \: P, \: env_v, \: env_G, \: env_L, \: env_p)]\rangle \xrightarrow{}\textsubscript{DP} \: env'_p}{env_v, \: env_G, \: env_L \vdash \langle \text{define} \: f \: \text{with} \: (P) \: {F_B} \: \text{returnType} \: (RTN) \: \textit{newline} D_P, \: env_p\rangle \xrightarrow{}\textsubscript{DP} \: env_p'}$
+\end{minipage}
+\end{split}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{FUNCDCLEMPTY}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$env_v, \: env_G, \: env_L \vdash \langle \epsilon, \: env_p \rangle \xrightarrow{}\textsubscript{DP} \: env_p$
+\end{minipage}
+\end{equation}
+
+\subsection*{Advanced data type declarations}
+ADT's are a variation of variables, needing both a variable and value, modifying storage and the variable environment. In order to define the rules properly we unroll the Pin category into two separate cases.
+\begin{equation}
+\begin{split}
+\begin{minipage}{\linewidth}
+$[\text{ADTDCLSINGLE}_\text{BSS}]$
+\end{minipage}
+\\\\
+\begin{minipage}{\linewidth}
+\centering
+$\cfrac{\langle D_{ADT}, \: env_v [x \mapsto l], \: sto[l \mapsto v][next \mapsto new \: l]\rangle \xrightarrow{}\textsubscript{Dv} \: (env_v', sto') }{\langle adt \: x:= \text{pin} \: n \: \textit{new} \: D_{adt}, \: env_v, \: sto \rangle \xrightarrow{}\textsubscript{Dv} \: (env_v', sto')}$
+\[where \: env_v, \: sto \vdash n \xrightarrow{}\textsubscript{a} \: v \: and \: l = sto \: next\]
+\end{minipage}
+\end{split}
+\end{equation}
+
+\begin{equation}
+\begin{split}
+\begin{minipage}{\linewidth}
+$[\text{ADTDCLMULT}_\text{BSS}]$
+\end{minipage}
+\\\\
+\begin{minipage}{\linewidth}
+\centering
+$\cfrac{\langle D_{ADT}, \: env_v [x \mapsto l], \: sto[l \mapsto v][next \mapsto new \: l]\rangle \xrightarrow{}\textsubscript{Dv} \: (env_v', sto') }{\langle adt \: x:= \text{pin} \: n...n_n \: \textit{new} \: D_{adt}, \: env_v, \: sto \rangle \xrightarrow{}\textsubscript{Dv} \: (env_v', sto')}$
+\[where \: env_v, \: sto \vdash n, ... n_n \xrightarrow{}\textsubscript{a} \: v \: and \: l = sto \: next\]
+\end{minipage}
+\end{split}
+\end{equation}
+
+
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{EMPTYADTDCL}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\langle \epsilon, \: env_v, \: sto \rangle \xrightarrow{}_{D_{ADT}}$ $(env_v, \: sto)$
+\end{minipage}
+\end{equation}
+
+
+\section{The bodies}
+\subsection{List body}\label{APP:ListBody}
+\begin{equation}
+\begin{split}
+\begin{minipage}{\linewidth}
+$[\text{AEXPCONTBODY}_\text{BSS}]$
+\end{minipage}
+\\\\
+\begin{minipage}{\linewidth}
+\centering
+$\cfrac{\langle L_B, \: sto[a \mapsto v][next \mapsto new \: l]\rangle \xrightarrow{}\textsubscript{LB} \: (sto') }{sto \vdash \langle a, \: \text{L\textsubscript{B}} \rangle \xrightarrow{}\textsubscript{LB} \: (sto')}$
+\end{minipage}
+\\\\
+\begin{minipage}{\linewidth}
+\centering
+where $sto \vdash a \xrightarrow{}\textsubscript{a} \: v$
+\end{minipage}
+\end{split}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{VARCONTBODY}_\text{BSS}]$
+\end{minipage}
+\\
+\begin{minipage}{.8\linewidth}
+\centering
+$env_v, \: sto \vdash \langle x, \: \text{L\textsubscript{B}} \rangle \xrightarrow{}\textsubscript{a} \: v $
+\\
+if $env_v, \: sto \vdash x \xrightarrow{} \textsubscript{a} \: v$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{GXCONTBODY}_\text{BSS}]$
+\end{minipage}
+\\
+\begin{minipage}{.8\linewidth}
+\centering
+$env_G, \: env_v, \: sto \vdash \langle gx, \: \text{L\textsubscript{B}} \rangle \xrightarrow{}\textsubscript{a} \: v $
+\\
+if $env_G, \: env_v, \: sto \vdash gx \xrightarrow{}\textsubscript{a} \: v$
+\end{minipage}
+\end{equation}
+
+
+\begin{equation}
+\begin{split}
+\begin{minipage}{\linewidth}
+$[\text{BEXPCONTBODY}_\text{BSS}]$
+\end{minipage}
+\\\\
+\begin{minipage}{\linewidth}
+\centering
+$\cfrac{\langle L_B, \: sto[b \mapsto v][next \mapsto new \: l]\rangle \xrightarrow{}\textsubscript{LB} \: (sto') }{sto \vdash \langle b, \: \text{L\textsubscript{B}} \rangle \xrightarrow{}\textsubscript{LB} \: (sto')}$
+\end{minipage}
+\\\\
+\begin{minipage}{\linewidth}
+\centering
+where $sto \vdash b \xrightarrow{}\textsubscript{b} \: v$
+\end{minipage}
+\end{split}
+\end{equation}
+
+\begin{equation}
+\begin{split}
+\begin{minipage}{\linewidth}
+$[\text{AEXPBODY}_\text{BSS}]$
+\end{minipage}
+\\\\
+\begin{minipage}{\linewidth}
+\centering
+$\cfrac{\langle L_B, \: sto[a \mapsto v][next \mapsto new \: l]\rangle \xrightarrow{}\textsubscript{LB} \: (sto') }{sto \vdash \langle a \rangle \xrightarrow{}\textsubscript{LB} \: (sto')}$
+\end{minipage}
+\\\\
+\begin{minipage}{\linewidth}
+\centering
+where $sto \vdash a \xrightarrow{}\textsubscript{a} \: v$
+\end{minipage}
+\end{split}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+    $[\text{VARBODY}_\text{BSS}]$
+\end{minipage}
+\\
+\begin{minipage}{.8\linewidth}
+\centering
+$env_v, \: sto \vdash \langle x \rangle \xrightarrow{}\textsubscript{a} \: v $
+\\
+if $env_v, \: sto \vdash x \xrightarrow{} \textsubscript{a} \: v$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{GXBODY}_\text{BSS}]$
+\end{minipage}
+\\
+\begin{minipage}{.8\linewidth}
+\centering
+$env_G, \: env_v, \: sto \vdash \langle gx \rangle \xrightarrow{}\textsubscript{a} \: v $
+\\
+if $env_G, \: env_v, \: sto \vdash gx \xrightarrow{}\textsubscript{a} \: v$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{split}
+\begin{minipage}{\linewidth}
+$[\text{BEXPBODY}_\text{BSS}]$
+\end{minipage}
+\\
+\begin{minipage}{\linewidth}
+\centering
+$\cfrac{\langle L_B, \: sto[b \mapsto v][next \mapsto new \: l]\rangle \xrightarrow{}\textsubscript{LB} \: (sto') }{sto \vdash \langle b \rangle \xrightarrow{}\textsubscript{LB} \: (sto')}$
+\end{minipage}
+\\\\
+\begin{minipage}{\linewidth}
+\centering
+where $sto \vdash b \xrightarrow{}\textsubscript{b} \: v$
+\end{minipage}
+\end{split}
+\end{equation}
+
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{EMPTYBODY}_\text{BSS}]$
+\end{minipage}
+\begin{minipage}{.8\linewidth}
+\centering
+$\langle \epsilon, env_L \rangle \xrightarrow{}\textsubscript{LB} \: env_L $
+\end{minipage}
+\end{equation}
+
+\subsection{Group body}
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{GROUPBODYADT}_\text{BSS}]$
+\end{minipage}
+\\
+\begin{minipage}{.8\linewidth}
+\centering
+$env_v, \: sto \vdash \langle adt \: x \: new \: \text{G\textsubscript{B}} \rangle \xrightarrow{}\textsubscript{a} \: v $
+\\if $env_v, \: sto \vdash x \xrightarrow{} \textsubscript{a} \: v$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{GROUPBODYGX}_\text{BSS}]$
+\end{minipage}
+\\
+\begin{minipage}{.8\linewidth}
+\centering
+$env_G, \: env_v, \: sto \vdash \langle group \: gx \: new \: \text{G\textsubscript{B}} \rangle \xrightarrow{}\textsubscript{a} \: v $
+\\if $env_v, \: sto \vdash gx \xrightarrow{} \textsubscript{a} \: v$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{GROUPBODYVAR}_\text{BSS}]$
+\end{minipage}
+\\
+\begin{minipage}{.8\linewidth}
+\centering
+$env_G, \: env_v, \: sto \vdash \langle x \: new \: \text{G\textsubscript{B}} \rangle \xrightarrow{}\textsubscript{a} \: v $
+\\if $env_v, \: sto \vdash x \xrightarrow{} \textsubscript{a} \: v$
+\end{minipage}
+\end{equation}
+
+\subsection{Function body}
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{FUNCRTN}_\text{BSS}]$
+\end{minipage}
+\\
+\begin{minipage}{.8\linewidth}
+\centering
+$env_v, \: sto \vdash \langle \text{return} \: x \rangle \xrightarrow{}\textsubscript{a} \: v $
+\\
+if $env_v, \: sto \vdash x \xrightarrow{} \textsubscript{a} \: v$
+\end{minipage}
+\end{equation}
+For the rest of the elements of the function body category, we refer to the previously defined transition relations for statements in Section~\ref{AppSec:SemanticsStatements} and declarations in Section~\ref{AppSec:SemanticsDeclarations}.
+
+\section{Pin}
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{PINMULTI}_\text{BSS}]$
+\end{minipage}
+\\
+\begin{minipage}{.8\linewidth}
+\centering
+$env_v, \: sto \vdash \langle n, \: Pin \rangle \xrightarrow{}\textsubscript{a} \: v $
+\\if $env_v, \: sto \vdash n \xrightarrow{} \textsubscript{a} \: v$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{PIN}_\text{BSS}]$
+\end{minipage}
+\\
+\begin{minipage}{.8\linewidth}
+\centering
+$env_v, \: sto \vdash \langle n \rangle \xrightarrow{}\textsubscript{a} \: v $
+\\if $env_v, \: sto \vdash n \xrightarrow{} \textsubscript{a} \: v$
+\end{minipage}
+\end{equation}
+
+\subsection*{Declaring parameters}
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{VARPARAMCONT}_\text{BSS}]$
+\end{minipage}
+\\
+\begin{minipage}{.8\linewidth}
+\centering
+$env_v, \: sto \vdash \langle x, \: \text{D\textsubscript{P}} \rangle \xrightarrow{}\textsubscript{a} \: v $
+\\
+if $env_v, \: sto \vdash x \xrightarrow{} \textsubscript{a} \: v$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{VARPARAM}_\text{BSS}]$
+\end{minipage}
+\\
+\begin{minipage}{.8\linewidth}
+\centering
+$env_v, \: sto \vdash \langle x \rangle \xrightarrow{}\textsubscript{a} \: v $
+\\
+if $env_v, \: sto \vdash x \xrightarrow{} \textsubscript{a} \: v$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{GRPPARAMCONT}_\text{BSS}]$
+\end{minipage}
+\\
+\begin{minipage}{.8\linewidth}
+\centering
+$env_v, \: sto \vdash \langle gx, \: \text{D\textsubscript{P}} \rangle \xrightarrow{}\textsubscript{a} \: v $
+\\
+if $env_v, \: sto \vdash gx \xrightarrow{} \textsubscript{a} \: v$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{GRPPARAM}_\text{BSS}]$
+\end{minipage}
+\\
+\begin{minipage}{.8\linewidth}
+\centering
+$env_v, \: sto \vdash \langle gx \rangle \xrightarrow{}\textsubscript{a} \: v $
+\\
+if $env_v, \: sto \vdash gx \xrightarrow{} \textsubscript{a} \: v$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{ADTPARAMCONT}_\text{BSS}]$
+\end{minipage}
+\\
+\begin{minipage}{.8\linewidth}
+\centering
+$env_v, \: sto \vdash \langle adt \: x, \: \text{D\textsubscript{P}} \rangle \xrightarrow{}\textsubscript{a} \: v $
+\\
+if $env_v, \: sto \vdash x \xrightarrow{} \textsubscript{a} \: v$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{ADTPARAM}_\text{BSS}]$
+\end{minipage}
+\\
+\begin{minipage}{.8\linewidth}
+\centering
+$env_v, \: sto \vdash \langle adt \: x \rangle \xrightarrow{}\textsubscript{a} \: v $
+\\
+if $env_v, \: sto \vdash x \xrightarrow{} \textsubscript{a} \: v$
+\end{minipage}
+\end{equation}
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{LSTPARAMCONT}_\text{BSS}]$
+\end{minipage}
+\\
+\begin{minipage}{.8\linewidth}
+\centering
+$env_L, \: env_G, \: env_v, \: sto \vdash \langle lx, \: \text{D\textsubscript{P}} \rangle \xrightarrow{}\textsubscript{a} \: v $
+\\
+if $env_L, \: env_G, \: env_v, \: sto \vdash lx \xrightarrow{} \textsubscript{a} \: x...x_n$
+\end{minipage}
+\end{equation}
+
+
+\begin{equation}
+\begin{minipage}{.2\linewidth}
+$[\text{LSTPARAM}_\text{BSS}]$
+\end{minipage}
+\\
+\begin{minipage}{.8\linewidth}
+\centering
+$env_L, \: env_G, \: env_v, \: sto \vdash \langle lx \rangle \xrightarrow{}\textsubscript{a} \: v $
+\\
+if $env_L, \: env_G, \: env_v, \: sto \vdash lx \xrightarrow{} \textsubscript{a} \: x...x_n$
+\end{minipage}
+\end{equation}
+
+\section{Remaining categories}
+Some syntactical categories have been left out of this appendix to avoid redundant repetitions, and will instead be informally explained in the following subsections.\\
+\subsection*{Program setup}
+For the semantic rules for the statements in the body of the repeat function we refer to the rules established in Section~\ref{AppSec:SemanticsDeclarations}. For function declaration we refer to the rules pertaining to functions established in Section~\ref{AppSec:SemanticsDeclarations}. The setup body is detailed in the following subsection.
+\subsection*{Setup body}
+The setup body can either contain declarations or statements. Instead of describing those twice rules, refer to Sections~\ref{AppSec:SemanticsStatements} and \ref{AppSec:SemanticsDeclarations}.
+\subsection*{Parameter options}
+PHAL allows a function to be declared with either the keyword \textit{none} or a set of parameters. Due to the simplistic nature of this feature, it has not been described.
+\subsection*{Return types}
+PHAL requires the return type to be specified for a function declaration, and this is done through this category. No semantic rules are established since the only difference is the type of the return value.
+\subsection*{Advanced data types}
+This category illustrates the names for the advanced data types PHAL supports. There are no established rules for the same reason as the return types.
