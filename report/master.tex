@@ -17,7 +17,7 @@
 \input{setup/preamble.tex}% package inclusion and set up of the document
 \input{setup/hyphenations.tex}% 
 \input{setup/macros.tex}% my new macros
-
+\input{setup/settings.tex}
 \begin{document}
 %frontmatter
 \pagestyle{empty} %disable headers and footers
@@ -29,18 +29,29 @@
 \pdfbookmark[0]{Contents}{label:contents}
 \pagestyle{fancy} %enable headers and footers again
 \tableofcontents
-\listoftodos
-\input{sections/preface.tex}
 \cleardoublepage
 %mainmatter
 \pagenumbering{arabic} %use arabic page numbering in the mainmatter
-\input{sections/introduction.tex}
-%\input{sections/ch2name.tex}
-%\input{sections/conclusion.tex}
+\listoftodos
+\input{sections/rapportstructure}
 
 \printbibliography[heading=bibintoc]
 \label{bib:mybiblio}
+\listoffigures
+\listoftables
+\lstlistoflistings
 
-%\appendix
-%\input{sections/appAname.tex}
+%\listoftodos
+%\todo{Todo regler:}
+%\todo[color=purple]{Purple = Skal diskuteres}
+%\todo[color=green]{Green = Er skrevet færdigt, men mangler at blive læst.}
+%\todo[color=blue]{Blue = Skal skives, men vi har ikke haft om det endnu.}
+%\todo[color=red]{Red = Ændret, men ikke færdigt.}
+%\todo[color=white]{White = Kommentar}
+%\todo[color=pink]{Pink = T. Hansen er i gang.}
+%\todo[color=yellow]{Yellow = R. Eduardsen er i gang.}
+%\todo[color=gray]{Gray = J.P. Tróndarson er i gang.}
+%\todo[color=cyan]{Cyan = D. Andersen er i gang.}
+%\todo[color=brown]{Brown = F. Schrøder er i gang.}
+%\todo[color=magenta]{Magenta = A. Stenshøj er i gang.}
 \end{document}
