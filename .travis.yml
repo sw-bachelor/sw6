@@ -2,6 +2,9 @@ sudo: required
 language: generic
 services: docker
 
+notifications:
+    email: false
+
 script:
   # We use the docker image from https://hub.docker.com/r/dxjoke/tectonic-docker/
   - docker pull dxjoke/tectonic-docker
