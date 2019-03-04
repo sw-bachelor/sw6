@@ -4,23 +4,24 @@ This is done so that we have an idea of what our starting point will be,
 but also to learn about what work was done on the project last year and what work was left undone. 
 \\\\
 Previously a lot of the backend had been rewritten which meant that many of the apps are no longer working correctly. 
-This meant that last year's focus was to atleast get the weekplanner working again as a minimal viable product.
+This meant that last year's focus was to at least get the weekplanner working again as a minimal viable product.
 \\\\
 At the moment the weekplanner is not very stable or responsive, and it is still missing some convenient functionalities. 
-The login functionality was tested on a tablet a couple of times and it did not seem to work. This could have something to do with the version of the tablet.
+We test the login functionality on a tablet a couple of times and it does not seem to work. This can have something to do with the version of the tablet.
 Instead of accepting the login information, the app is loading for a long time until the user eventually gets a message that a problem has occurred. 
 Therefore functionality can not be tested further on the tablet at the moment. Also it is not very clear to the user that the app is processing the login information. 
-There is not implemented any loading spinner to indicate that the user must wait. Instead it seems more like the app has frozen when it is loading.
-On the phone we are able to succesfully login and then choose a citizen from the 'choose citizen' page.
+There is not implemented any loading spinner to indicate that the user should wait. Instead it seems like the app is frozen when it is loading.
+On the phone we are able to successfully login and then choose a citizen from the 'choose citizen' page.
 \\\\
 Functionality in the weekplanner:
 \begin{itemize}
-    \item \textbf{Choosing a weekplan:} After choosing a citizen there is funcitonality that allows the guardian to choose an already existing weekplan for that citizen. 
+    \item \textbf{Choosing a weekplan:} After choosing a citizen there is functionality that allows the guardian to choose an already existing weekplan for that citizen. 
     On this page the guardian can also choose to create a new weekplan.
     \\
     \item \textbf{Weekplan overview:} After choosing an existing weekplan or choosing to create a new weekplan, the user is redirected to the weekplan overview. 
-    Here it is possible to see all of the days of the week and what activities that are planned for these days. There are switches that allows the guardian to delete a weekday plan, and buttons that allow the guardian to add activities to a weekday. 
-    A slidebar functionality is added when there are too many activies on a weekday to be able to show on the weekplan.
+    Here it is possible to see all of the days of the week and what activities that are planned for these days. 
+    There are switches that allows the guardian to delete a weekday plan, and buttons that allow the guardian to add activities to a weekday. 
+    A slidebar functionality is added when there are too many activities on a weekday to be able to show on the weekplan.
     \\
     \item \textbf{Creating a new weekplan:} When the guardian chooses to create a new weekplan, the app redirects to an input page. 
     Here the guardian can enter a name for this specific weekplan, choose the year and week for the weekplan and also choose a pictogram to represent the weekplan. 
@@ -57,3 +58,5 @@ Functionality in the weekplanner:
     Here the user can delete the activity or mark the activity as done. The user can the save the change to the activity which then returns them to the weekplan overview.
     \\
 \end{itemize}
+Overall the weekplanner has a lot of good functionality implemented but it still has many flaws which need to be ironed out. 
+The group from last year has also compiled a list of bugs that needs to be fixed, and they have presented a few important user stories which include functionality that the customer would like implemented in the app
