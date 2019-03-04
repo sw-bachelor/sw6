@@ -3,10 +3,11 @@ The purpose of this section is to describe the current state of Giraf as it is d
 This is done so that we have an idea of what our starting point will be,
 but also to learn about what work was done on the project last year and what work was left undone. 
 \\\\
-Previously a lot of the backend had been rewritten which meant that many of the apps were no longer working correctly. 
+Previously a lot of the backend had been rewritten which meant that many of the apps are no longer working correctly. 
 This meant that last year's focus was to atleast get the weekplanner working again as a minimal viable product.
 \\\\
-At the moment the weekplanner is not very stable or responsive, and it is still missing some convenient functionalities. The login functionality was tested on a tablet a couple of times, and it did not seem to work. This could have something to do with the version of the tablet.
+At the moment the weekplanner is not very stable or responsive, and it is still missing some convenient functionalities. 
+The login functionality was tested on a tablet a couple of times and it did not seem to work. This could have something to do with the version of the tablet.
 Instead of accepting the login information, the app is loading for a long time until the user eventually gets a message that a problem has occurred. 
 Therefore functionality can not be tested further on the tablet at the moment. Also it is not very clear to the user that the app is processing the login information. 
 There is not implemented any loading spinner to indicate that the user must wait. Instead it seems more like the app has frozen when it is loading.
@@ -34,9 +35,9 @@ Functionality in the weekplanner:
     The pop up asking if the guardian is sure they want to delete the weekday is a bit misleading, because the functionality works more like a hide functionality that hides the weekday from the view. 
     The weekday is being deleted as the app says, because the guardian can press the switch for the weekday again to make it visible again.
     \\
-    \item \textbf{Saving a weekplan:} The guardian has the ability to save changes made to a weekplan. A change can be for example adding a new activity to a weekday. 
+    \item \textbf{Saving a weekplan:} The guardian has the ability to save changes made to a weekplan. A change can be for example adding a new activity to a weekday.
     A button can then be pressed to save the changes made to the weekplan, and this functionality seems to be working fine.
-    Another good functionality that has been implemented is that it alerts the user if they leave the weekplan overview with unsaved changed. The user then gets a last opportunity to saved the changes they made.
+    Another good functionality that has been implemented is that it alerts the user if they leave the weekplan overview with unsaved changed. The user then gets a last opportunity to save the changes they made.
     \\
     \item \textbf{Switching from guardian to citizen:} In the top bar there is an icon that allows the user to switch between guardian and citizen. 
     When this icon is pressed it is not very responsive but eventually it does switch the user to a different mode. 
