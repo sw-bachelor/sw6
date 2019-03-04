@@ -7,10 +7,10 @@ This meant that last year's focus was to, at least, get the weekplanner working 
 \\\\
 At the moment the weekplanner is not very stable or responsive, and it is still missing some convenient functionalities.
 We tested the login functionality on a tablet several times and it seems to not function properly.
-Instead of accepting the login information, the app loads for a long time until the user eventually receives a message that a problem might have occurred.
+Instead of accepting the login information, the application loads for a long time until the user eventually receives a message that a problem might have occurred.
 Therefore, functionality can not be tested further on the tablet at the moment.
-Also, it is not very clear to the user that the app is processing the login information, as there is no spinner or loading bar to indicate this.
-This results in the app being seemingly frozen when it is loading.
+Also, it is not very clear to the user that the application is processing the login information, as there is no spinner or loading bar to indicate this.
+This results in the application being seemingly frozen when it is loading.
 On the phone we are able to successfully login and then choose a citizen from the \texttt{choose citizen} page.
 \\\\
 The weekplanner currently has the following functionalities:
@@ -23,7 +23,7 @@ The weekplanner currently has the following functionalities:
     There are switches that allow the guardian to delete a weekday plan, and buttons that allow the guardian to add activities to a weekday.
     A slidebar functionality is added when there are too many activities on a weekday to be able to show on the weekplan.
     \\
-    \item \textbf{Creating a new weekplan:} When the guardian chooses to create a new weekplan, the app redirects to an input page.
+    \item \textbf{Creating a new weekplan:} When the guardian chooses to create a new weekplan, the application redirects to an input page.
     Here the guardian can enter a name for this specific weekplan, choose the year and week for the weekplan and also choose a pictogram to represent the weekplan.
     Finally, the guardian can choose to create a fresh weekplan or use an already existing template to build it. The functionality used for creating a weekplan seems to be working correctly.
     \\
@@ -31,13 +31,13 @@ The weekplanner currently has the following functionalities:
     On this page the guardian can choose to create a new template, and this basically works the same way as creating a weekplan.
     Creating a template and then saving it with a given name seemed to be working fine.
     \\
-    \item \textbf{Deleting a weekday:} The guardian can choose to delete one of the weekdays when viewing a weekplan. 
+    \item \textbf{Deleting a weekday:} The guardian can choose to delete one of the weekdays when viewing a weekplan.
     Each weekday has a switch to allow the guardian to delete it.
     When this switch is pressed, a window pops up to ask the guardian if they are sure they want to delete the weekplan to which the guardian can answer yes or no.
     The pop up asking if the guardian is sure they want to delete the weekday is a bit misleading, because the functionality works more like a hide functionality that hides the weekday from view.
-    The weekday is not being deleted as the app says, because the guardian can press the switch for the weekday again to make it visible again.
+    The weekday is not being deleted as the application says, because the guardian can press the switch for the weekday again to make it visible again.
     \\
-    \item \textbf{Saving a weekplan:} The guardian has the ability to save changes made to a weekplan. 
+    \item \textbf{Saving a weekplan:} The guardian has the ability to save changes made to a weekplan.
     A change can be, for example, adding a new activity to a weekday.
     A button can then be pressed to save the changes made to the weekplan, and this functionality seems to be working fine.
     Another functionality that has been implemented is that it alerts the user if they leave the weekplan overview with unsaved changed.
@@ -47,10 +47,10 @@ The weekplanner currently has the following functionalities:
     When this icon is pressed it is not very responsive, but eventually it does switch the user to a different mode.
     The weekplan view changes to view the current day's activities when it is switched to citizen.
     \\
-    \item \textbf{Switching from citizen to guardian:} The app sometimes does not respond very well when clicking the icon again to switch back to guardian mode.
+    \item \textbf{Switching from citizen to guardian:} The application sometimes does not respond very well when clicking the icon again to switch back to guardian mode.
     Eventually the user is redirected to the login page to login as a guardian again.
     \\
-    \item \textbf{Adding an activity:} A guardian can add activities to the weekdays in a weekplan. 
+    \item \textbf{Adding an activity:} A guardian can add activities to the weekdays in a weekplan.
     This is done by pressing an \textit{Add} button at the bottom of the weekday the guardian wants to add an activity to.
     This action will redirect the guardian to a page where they can search for a pictogram that resembles the activity they wish to add.
     The search functionality on this page sometimes gives weird results, but overall it works okay.
@@ -60,7 +60,7 @@ The weekplanner currently has the following functionalities:
     \item \textbf{Interacting with activities from the weekplan overview:}  The user is able to interact with an activity after adding it to a weekday.
     First of all, activities can be dragged up and down to change the order of the activities for the day.
     Secondly, each activity can be interacted with by pressing it which takes the user to the activity's page.
-    Here the user can delete the activity or mark the activity as done. 
+    Here the user can delete the activity or mark the activity as done.
     The user can then save the change to the activity which returns them to the weekplan overview.
     \\
 \end{itemize}
