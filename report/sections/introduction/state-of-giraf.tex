@@ -1,62 +1,62 @@
 \section{State of Giraf}
-The purpose of this section is to describe the current state of Giraf as it is delivered to us. 
-This is done so that we have an idea of what our starting point will be,
-but also to learn about what work was done on the project last year and what work was left undone. 
+The purpose of this section is to describe the current state of Giraf as it is delivered to us.
+This is done to ensure that we have an basic understanding of what our starting point will be, but also to learn understand the work that was done on the project last year and what work was left undone.
 \\\\
-Previous year a lot of the backend had been rewritten which meant that many of the apps are no longer working correctly. 
+Previous year a lot of the backend had been rewritten which meant that many of the apps are no longer working correctly.
 This meant that last year's focus was to at least get the weekplanner working again as a minimal viable product.
 \\\\
-At the moment the weekplanner is not very stable or responsive, and it is still missing some convenient functionalities. 
-We test the login functionality on a tablet a couple of times and it does not seem to work. This can have something to do with the version of the tablet.
-Instead of accepting the login information, the app is loading for a long time until the user eventually gets a message that a problem has occurred. 
-Therefore functionality can not be tested further on the tablet at the moment. Also it is not very clear to the user that the app is processing the login information. 
-There is not implemented any loading spinner to indicate that the user should wait. Instead it seems like the app is frozen when it is loading.
-On the phone we are able to successfully login and then choose a citizen from the 'choose citizen' page.
+At the moment the weekplanner is not very stable or responsive, and it is still missing some convenient functionalities.
+We tested the login functionality on a tablet several times and it seems unfunctional.
+Instead of accepting the login information, the app loads for a long time until the user eventually gets a message that a problem has occurred.
+Therefore, functionality can not be tested further on the tablet at the moment.
+Also it is not very clear to the user that the app is processing the login information, as there is no spinner or loading bar to indicate this.
+This results in the app being seemingly frozen when it is loading.
+On the phone we are able to successfully login and then choose a citizen from the \texttt{choose citizen} page.
 \\\\
 Functionality in the weekplanner:
 \begin{itemize}
-    \item \textbf{Choosing a weekplan:} After choosing a citizen there is functionality that allows the guardian to choose an already existing weekplan for that citizen. 
+    \item \textbf{Choosing a weekplan:} After choosing a citizen there is functionality that allows the guardian to choose an already existing weekplan for that citizen.
     On this page the guardian can also choose to create a new weekplan.
     \\
-    \item \textbf{Weekplan overview:} After choosing an existing weekplan or choosing to create a new weekplan, the user is redirected to the weekplan overview. 
-    Here it is possible to see all of the days of the week and what activities that are planned for these days. 
-    There are switches that allows the guardian to delete a weekday plan, and buttons that allow the guardian to add activities to a weekday. 
+    \item \textbf{Weekplan overview:} After choosing an existing weekplan or choosing to create a new weekplan, the user is redirected to the weekplan overview.
+    Here it is possible to see all of the days of the week and what activities that are planned for these days.
+    There are switches that allows the guardian to delete a weekday plan, and buttons that allow the guardian to add activities to a weekday.
     A slidebar functionality is added when there are too many activities on a weekday to be able to show on the weekplan.
     \\
-    \item \textbf{Creating a new weekplan:} When the guardian chooses to create a new weekplan, the app redirects to an input page. 
-    Here the guardian can enter a name for this specific weekplan, choose the year and week for the weekplan and also choose a pictogram to represent the weekplan. 
+    \item \textbf{Creating a new weekplan:} When the guardian chooses to create a new weekplan, the app redirects to an input page.
+    Here the guardian can enter a name for this specific weekplan, choose the year and week for the weekplan and also choose a pictogram to represent the weekplan.
     Finally the guardian can choose to create a fresh weekplan or use an already existing template to build it. The functionality used for creating a weekplan seems working correctly.
     \\
-    \item \textbf{Creating a new template:} As mentioned before a template can be used when creating a new weekplan. 
-    On this page the guardian can choose create a new template, and this basically works the same way as creating a weekplan. 
+    \item \textbf{Creating a new template:} As mentioned before a template can be used when creating a new weekplan.
+    On this page the guardian can choose create a new template, and this basically works the same way as creating a weekplan.
     Creating a template and then saving it with a given name seemed to be working fine.
     \\
     \item \textbf{Deleting a weekday:} When viewing a weekplan, the guardian can choose to delete one of the weekdays. Each weekday has a switch to allow the guardian to delete it.
-    When this switch is pressed, a window pops up to ask the guardian if they are sure they want to delete the weekplan to which the guardian can answer yes or no. 
-    The pop up asking if the guardian is sure they want to delete the weekday is a bit misleading, because the functionality works more like a hide functionality that hides the weekday from the view. 
+    When this switch is pressed, a window pops up to ask the guardian if they are sure they want to delete the weekplan to which the guardian can answer yes or no.
+    The pop up asking if the guardian is sure they want to delete the weekday is a bit misleading, because the functionality works more like a hide functionality that hides the weekday from the view.
     The weekday is not being deleted as the app says, because the guardian can press the switch for the weekday again to make it visible again.
     \\
     \item \textbf{Saving a weekplan:} The guardian has the ability to save changes made to a weekplan. A change can be for example adding a new activity to a weekday.
     A button can then be pressed to save the changes made to the weekplan, and this functionality seems to be working fine.
     Another good functionality that has been implemented is that it alerts the user if they leave the weekplan overview with unsaved changed. The user then gets a last opportunity to save the changes they made.
     \\
-    \item \textbf{Switching from guardian to citizen:} In the top bar there is an icon that allows the user to switch between guardian and citizen. 
-    When this icon is pressed it is not very responsive but eventually it does switch the user to a different mode. 
+    \item \textbf{Switching from guardian to citizen:} In the top bar there is an icon that allows the user to switch between guardian and citizen.
+    When this icon is pressed it is not very responsive but eventually it does switch the user to a different mode.
     When it is switched to citizen, the weekplan view changes to view the current day's activities.
     \\
-    \item \textbf{Switching from citizen to guardian:} When clicking the icon again to switch back to guardian mode, the app sometimes does not respond very well. 
+    \item \textbf{Switching from citizen to guardian:} When clicking the icon again to switch back to guardian mode, the app sometimes does not respond very well.
     Eventually the user is redirected to the login page to login as a guardian again.
     \\
     \item \textbf{Adding an activity:} A guardian can add activities to the weekdays in a weekplan. This is done by pressing an "Add" button at the bottom of a weekday the guardian wants to add an activity to.
     This action will redirect the guardian to a page where they can search for a pictogram that resembles the activity they wish to add. The searches on this page sometimes give weird results, but overall it works okay.
-    One problem on this page is that the guardian is not able to see pictograms during the search, but instead the whole screen is taken up by the keyboard. 
+    One problem on this page is that the guardian is not able to see pictograms during the search, but instead the whole screen is taken up by the keyboard
     Other than that, the functionality to add activities to a weekday works fine.
     \\
-    \item \textbf{Interacting with activities from the weekplan overview:} After adding an activity to a weekday the user is able to interact with this activity. 
-    First of all, activities can be dragged up an down to change the order of the activities for the day. 
-    Secondly, the each activity can be interacted with by pressing it which takes the user to the activity's page. 
+    \item \textbf{Interacting with activities from the weekplan overview:} After adding an activity to a weekday the user is able to interact with this activity.
+    First of all, activities can be dragged up an down to change the order of the activities for the day.
+    Secondly, the each activity can be interacted with by pressing it which takes the user to the activity's page.
     Here the user can delete the activity or mark the activity as done. The user can the save the change to the activity which then returns them to the weekplan overview.
     \\
 \end{itemize}
-Overall the weekplanner has a lot of good functionality implemented but it still has many flaws which need to be ironed out. 
-The group from last year has also compiled a list of bugs that needs to be fixed, and they have presented a few important user stories which include functionality that the customer would like implemented in the app
+Overall the weekplanner has a lot of good functionality implemented but it still has many flaws which need to be improved upon.
+The group from last year compiled a list of bugs that needs to be fixed, and they have presented a few important user stories which include functionality that the customer would like to be implemented in the app.
