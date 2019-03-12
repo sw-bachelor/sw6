@@ -1,0 +1,91 @@
+\section{Before sprint 1}
+Before the first semester wide sprint could start, our group had some work to do as preparation hereof.
+First of all, during the readthrough of the reports from previous years, it was discovered that the PO group of 2018 had left us a suggestion for content in the first sprint:
+
+\subsection*{Suggested sprint 1}
+\subsubsection*{Relevant user stories}
+\begin{itemize}
+    \item T1005: As a guardian, I would like to be able to mark activity(s). 
+    \item T1242: Setting - Change the way an activity is marked as completed. 
+\end{itemize}
+
+\subsubsection{Requirements}
+This release focuses on one small guardian quality-of-life feature, as well as a setting for the citizens.
+
+\paragraph{Mark activities}
+The guardian must be able to enter a mark state from a button on the master-detail page. The mark state enables the guardian to mark one or multiple activities (much like how it works with email inboxes, where you can mark the emails you wish to interact with.) Then after they have entered this mark state, the button to enter marked mode must be replaced by a return button that leaves mark mode and removes all marks. Also, the ability to delete all marked activities should be implemented.
+
+\paragraph{Completed marker}
+The completed marker is the ability to change the way an activity is marked as completed. The following options must be implemented for this release:
+
+\begin{itemize}
+    \item Checkmark: A checkmark is placed on top of the activity. (This is already implemented, but must be an option once more options are added)
+    \item Hide activity: The activity disappears from the citizens perspective but must still be visible to guardians so they can remove the completion marker.
+    \item  Move to the right: Move the activity further to the right in the day-column. This should only be available if the citizen also only prefers to have the weekplanner shown in portrait mode, and thus prefers to have a single day shown.
+\end{itemize}
+This must be implemented on the settingspage.
+
+\subsection*{Suggested sprint 2}
+\subsubsection*{Relevant user stories}
+
+\begin{itemize}
+    \item T913: As a user, I would like to be able to time tasks using a timer.
+    \item T922: As a user, I would like to be able change the visual representation of the timer
+\end{itemize}
+
+\subsubsection*{Requirements}
+The release focuses on a timer for the activitypage, which is the page you get when tapping an activity. This timer is used by the citizens to keep track of time for those activities that need it, and thus the guardians must be able to place a timer on the activity page, which the citizens can then access.
+
+\paragraph{The timer}
+The guardian must be able to add a timer to an activity. The purpose of the timer is to time the activities that need to be timed, to remove the necessity of the guardians using a physical timer. If the guardian chooses to time an activity, the timer must be placed on the activitypage of the given activity. The guardian must also be able to set the specific length of the timer, with the visualization of a timer adapting to the length. Furthermore, the guardian must be able to add timers to future activities, to prevent them having to constantly enter the application to add a timer to an activity.
+
+A citizen must be able to start the timer by entering the activity page for an activity marked as active and pressing a “Start” button. If the activity is not marked as active, the timer cannot be started.
+
+\paragraph{Setting for visualization of timer}
+
+Citizens visualize time in different ways. It is, therefore, necessary for the guardians to be able to choose the specific timer that a citizen wants to use. The citizens must, therefore, have a setting that specifies the visualization of the timer. As a start, the visualization setting must include the following different timers.
+
+\begin{itemize}
+    \item Digital clock
+    \item Egg-clock
+    \item Hourglass
+\end{itemize}
+The chosen visualization must then be used as the timer in the activity.
+
+\subsection{User stories}
+A major part of the work as a PO group is to define \texttt{user stories} to describe a feature and why it is wanted in the simple format of: As a (user type) I would like (feature) so that (reason).
+The development team should then be able to transform these user stories into technical requirements that they can distribute within their own group.
+Based on the suggested sprints from the previous PO group and the interview with Emil, we defined a series of user stories with suggested features, which primarily focused on increasing usability and the user experience of the application.
+For the first sprint, the following user stories were included, in order of importance:
+% TODO: Overvej om alle de her skal med i den endelige rapport eller smides i appendix
+\begin{itemize}
+    \item As a citizen I want a time timer so that I know how long is left of my current activity
+    \item As a user I would like the icons to be updated so that they are modern and easy to understand
+    \item As a citizen I would like to be able to choose how many days I see at a time on my weekplanner, so that it fits my personal preference
+    \item As a guardian, I would like that the app is fully available offline so that I can still use it if the internet is down 
+    \item As a guardian I would like the user selection screen to look better so it makes it easier for me to find the correct user 
+    \item As a guardian, I would like to be able to mark activity(s)
+    \item As a guardian I would like to confirm with a password that the system is changing to guardian mode so that a citizen cannot gain access to it 
+    \item As a guardian I would like to be able to see results as I'm typing the name of a pictogram so that I can see if there are any results instead of just seeing my keyboard
+    \item As a guardian, I would like to be able to copy the content of a plan in the weekplanner from one user to another so that I won't have to do it twice, if two citizens have the same schedule
+    \item As a guardian, I would like a way to add pictograms directly from google so that I can quickly improvise if the system does not have the activity I want 
+    \item As a citizen I would like to disable colors in the app so that it does not overstimulate me
+    \item As a citizen I would like the ability to choose how my day is represented (horizontally or vertically) so that it fits my personal preference 
+    \item As a guardian I would like a better login screen so that the application is more appealing
+    \item As a citizen I would like different ways to mark an activity as done so that it fits my personal preference
+    \item As a guardian I would like guides available for the system so that it is easy to look up the features that I don't fully understand how to use 
+    \item As a citizen I would like the icons to be consistent throughout the system so that I instinctively know their meaning 
+\end{itemize}
+
+\subsection{Design guide}
+A design guide was available, made by the previous years.
+However, this guide seemed to be last updated in 2015 and seemed to never have been properly used for implementation.
+So in order to ensure that the guide is up to date, we decided to start working on a renewed version of the design guide, which should be available in the github wiki instead of as a separate pdf document.
+The changes that are being imagined for the new design guide are, first of all, a set of rules for ensuring the user experience of the application by updating the icons, and to make the application seem less like a special needs tool, as this has been requested in the interview with Emil.
+
+\subsection{Producing Prototypes in Adobe XD}
+In addition to updating the design guide, we decided to update the prototypes to a more suitable program type.
+The currently available prototypes are made by putting images into a PowerPoint presentation and making clickable areas to navigate through them.
+This has resulted in prototype consisting of 122 slides, which could not be edited by other means than replacing a given element in every single slide.
+By changing this to Adobe XD, it is possible to mark a part of the prototype as a symbol, and by changing this symbol in one place it will be replaced in all aspects of the prototype.
+This allows for easier updates of the design in comparison to the prototypes made in PowerPoint.
