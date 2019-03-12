@@ -414,3 +414,7 @@ TSWLatexianTemp*
 
 # Don't push report pls
 *.pdf
+
+report/\.vscode/settings\.json
+
+report/\.vscode/spellright\.dict
