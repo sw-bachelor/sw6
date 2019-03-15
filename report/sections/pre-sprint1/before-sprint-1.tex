@@ -1,56 +1,22 @@
 \section{Before sprint 1}
 Before the first semester wide sprint could start, our group had some work to do as preparation hereof.
-First of all, during the readthrough of the reports from previous years, it was discovered that the PO group of 2018 had left us a suggestion for content in the first sprint:
+First of all, during the readthrough of the reports from previous years, 
+it was discovered that the PO group of 2018 had left us a suggestion for content in the first sprint:
 
 \subsection*{Suggested sprint 1}
-\subsubsection*{Relevant user stories}
-\begin{itemize}
-    \item T1005: As a guardian, I would like to be able to mark activity(s). 
-    \item T1242: Setting - Change the way an activity is marked as completed. 
-\end{itemize}
-
-\subsubsection{Requirements}
-This release focuses on one small guardian quality-of-life feature, as well as a setting for the citizens.
-
-\paragraph{Mark activities}
-The guardian must be able to enter a mark state from a button on the master-detail page. The mark state enables the guardian to mark one or multiple activities (much like how it works with email inboxes, where you can mark the emails you wish to interact with.) Then after they have entered this mark state, the button to enter marked mode must be replaced by a return button that leaves mark mode and removes all marks. Also, the ability to delete all marked activities should be implemented.
-
-\paragraph{Completed marker}
-The completed marker is the ability to change the way an activity is marked as completed. The following options must be implemented for this release:
-
-\begin{itemize}
-    \item Checkmark: A checkmark is placed on top of the activity. (This is already implemented, but must be an option once more options are added)
-    \item Hide activity: The activity disappears from the citizens perspective but must still be visible to guardians so they can remove the completion marker.
-    \item  Move to the right: Move the activity further to the right in the day-column. This should only be available if the citizen also only prefers to have the weekplanner shown in portrait mode, and thus prefers to have a single day shown.
-\end{itemize}
-This must be implemented on the settingspage.
+The first sprint that the previous PO group suggests includes two user stories. 
+The first user story presents the need for a guardian to be able to mark multiple activities and perform actions on this activities together. 
+The second one says that the a user must be able to change the way that an activity is marked as being complete. This could for example be represented by a checkmark, by hiding the activity or by moving the activity a bit to the right on the schema for the day.
+These user stories are suggested for the first sprint because it should be easy for the developers during the start of the project, 
+because they aren't familiar with the codebase yet.
 
 \subsection*{Suggested sprint 2}
-\subsubsection*{Relevant user stories}
+This sprint suggests two user stories where the first one is that a user should be able to time activities with a timer. This is needed so the citizens know how long time their activities take. The guardian should be able to add this timer with a specific time and connect to the activity. The citizen should then be the one that starts the timer. 
 
-\begin{itemize}
-    \item T913: As a user, I would like to be able to time tasks using a timer.
-    \item T922: As a user, I would like to be able change the visual representation of the timer
-\end{itemize}
+The second user story concerns a feature for guardians that allows them to choose between a set of visual representations for the timers that they add for the activites. This is needed because the citizens have different preferences when it comes to representation of the time.
 
-\subsubsection*{Requirements}
-The release focuses on a timer for the activitypage, which is the page you get when tapping an activity. This timer is used by the citizens to keep track of time for those activities that need it, and thus the guardians must be able to place a timer on the activity page, which the citizens can then access.
+Again, this suggested sprint is meant to be quite light in workload to allow the developers to get familiar with the codebase, and to ensure that all groups can finish their tasks for the sprint.
 
-\paragraph{The timer}
-The guardian must be able to add a timer to an activity. The purpose of the timer is to time the activities that need to be timed, to remove the necessity of the guardians using a physical timer. If the guardian chooses to time an activity, the timer must be placed on the activitypage of the given activity. The guardian must also be able to set the specific length of the timer, with the visualization of a timer adapting to the length. Furthermore, the guardian must be able to add timers to future activities, to prevent them having to constantly enter the application to add a timer to an activity.
-
-A citizen must be able to start the timer by entering the activity page for an activity marked as active and pressing a “Start” button. If the activity is not marked as active, the timer cannot be started.
-
-\paragraph{Setting for visualization of timer}
-
-Citizens visualize time in different ways. It is, therefore, necessary for the guardians to be able to choose the specific timer that a citizen wants to use. The citizens must, therefore, have a setting that specifies the visualization of the timer. As a start, the visualization setting must include the following different timers.
-
-\begin{itemize}
-    \item Digital clock
-    \item Egg-clock
-    \item Hourglass
-\end{itemize}
-The chosen visualization must then be used as the timer in the activity.
 
 \subsection{User stories}
 A major part of the work as a PO group is to define \texttt{user stories} to describe a feature and why it is wanted in the simple format of: As a (user type) I would like (feature) so that (reason).
