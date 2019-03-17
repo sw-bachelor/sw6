@@ -1,0 +1,28 @@
+\section{Change of framework}
+As previously mentioned, the developers of last year had made the choice of changing the development framework from purely using Android Studio to Xamarin in order to support building the application for iOS.
+However, with the introduction of full-stack this lead to a series of issues, as approximately 1/4th of the developers on the GIRAF project this year were using some variation of Linux as their operating system which Xamarin does not officially support.
+Previously, this had not been a problem, as only the dedicated front-end development group would be working with Xamarin, and only the people in this group would need to be on Windows or MacOS in order to compile the front-end part of the application.
+With full-stack groups, more or less every group would be affected by this problem, having group members who could not compile the front-end of the application, which is the main focus of this year.
+This lead to a group spending a lot of time investigating different ways to make the Xamarin project compile on Linux, but as time progressed it was deemed infeasible to implement a series of workarounds to make the project compile.
+Instead, the front-end focus group held a meeting to discuss the pros and cons of making the Xamarin project work versus changing to another framework, which would natively support Linux.
+During the meeting, a series of pros and cons for changing the framework was worked out:
+
+\begin{itemize}
+    \item [\textbf{Pros}]
+    \item The most difficult part to reimplement is authorization
+    \item It is difficult to maintain the Linux compatibility for Linux, as the problems varied between machines
+    \item The Swagger API generates bad code, which can be fixed while changing the framework
+    \item It would be possible to implement a cleaner UI while re-working the front-end 
+    \item It will be easier for future students to work on GIRAF if it works on Linux
+    \item [\textbf{Cons}]
+    \item Changing will require a new language that the developers may not have worked with before
+    \item Some people have managed to get Xamarin to compile
+    \item It is possible to compile Xamarin using Windows, which is offered for free by the university
+    \item It will increase the time that is spent before a product can be released to the customers
+\end{itemize}
+
+After discussing the pros and cons internally in the focus group, all the developers on the GIRAF project were invited to an open discussion, to hear the input of people who were not in the front-end focus group, as it felt like a decision that was too big to make without hearing everyone out.
+After the open meeting, it was clear that the majority of the developers were ready to make the change, and it was decided to go with \texttt{Flutter} as a new framework, which is an open-source mobile application development framework by Google, that uses the Dart language.
+One of the major reasons for choosing Flutter over alternative frameworks such as \texttt{React Native} or \texttt{Ionic} is the availability of tutorials and guides, for both Flutter and Dart. 
+Likewise, it was deemed that due to it being developed by Google, the chance that it will be outdated anytime soon is highly unlikely.
+In order to ease the transition from Xamarin to Flutter, a Flutter team was assembled who were assigned to spending the upcoming weekend on setting up the base of the Flutter project, and help the other students with getting started by running a Flutter workshop in the coming week.
