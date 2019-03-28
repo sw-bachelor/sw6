@@ -35,7 +35,18 @@ The overall architecture is illustrated in \autoref{fig:architecture-giraf}.
   \caption{The architecture of GIRAF}
   \label{fig:architecture-giraf}
 \end{figure}
-As show, the bottom layer is the model. 
+As shown, the bottom layer is the model.
+This layer is responsible for data, making sure what is required can be provided.
+The next layer is the \texttt{API}, which is responsible for communication with the backend, to make sure that relevant data can be retrieved.
+The \texttt{BLoC} layer is responsible for business logic. 
+It uses streams and sinks to create states.
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.6\textwidth]{streamsandsinks.JPG}
+  \caption{A visual of streams and sinks}
+  \label{fig:streamsandsinks}
+\end{figure}
+As seen on \autoref{fig:streamsandsinks}, 
 
 
 
