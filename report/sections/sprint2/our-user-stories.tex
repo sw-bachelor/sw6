@@ -46,9 +46,10 @@ It uses streams and sinks to create states.
   \caption{A visual of streams and sinks}
   \label{fig:streamsandsinks}
 \end{figure}
-As seen on \autoref{fig:streamsandsinks}, 
-
-
+As seen on \autoref{fig:streamsandsinks}, widgets send data to the \texttt{BLoC} through sinks, and streams send data from the \textt{BLoC} to widgets.
+This pattern is used to help ensure separation of responsibility, such that business logic can be changed without interfering with the application.  
+Next is the \texttt{screen}, which is a page that can be visited, something that can be viewed.
+Finally are the widgets, smaller components that assist \texttt{screens} and help construct the actual layout of the page. 
 
 \subsection{Our user stories and how we implemented them}
 For sprint 2 we were assigned the following user stories:
@@ -59,8 +60,21 @@ For sprint 2 we were assigned the following user stories:
 \end{itemize}
 These user stories define essential functionality for the week planner - actually viewing the plan for both guardians and citizens.
 This means we needed to implement the design for the basic view of the week planner, as defined by our prototypes.
-The following prototypes show the plan for the design:
+The following prototypes show the planned designs:
 
-
+\begin{figure}[H]
+  \begin{subfigure}{0.5\textwidth}
+  \includegraphics[width=1\linewidth, height=5cm]{ugeplan_guardian_view.png} 
+  \caption{The guardian week plan}
+  \label{fig:previous_weekplan_view}
+  \end{subfigure}
+  \begin{subfigure}{0.5\textwidth}
+      \includegraphics[width=1\linewidth, height=5cm]{weekplan_citizen_view.PNG}
+  \caption{The citizen week plan}
+  \label{fig:new_weekplan_view}
+  \end{subfigure} 
+  \caption{This figure shows both designs for the week plan.}
+  \label{fig:weekplan_view}
+\end{figure}
 
 
