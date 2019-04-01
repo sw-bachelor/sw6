@@ -6,6 +6,9 @@ The first thing we wanted to do was make the design guide more compact.
 The old design guide was an 80 pages long pdf file that could be downloaded from Phabricator.
 The new design guide is instead found on the GitHub wiki alongside the rest of the GIRAF project, making it is easier to find the guide and find the sections that a developer would need.
 As seen on \autoref{fig:designguides}, the new one has fewer options, whereas the old one had 4 pages of content in the PDF file.
+The reason that the new design guide is so much smaller, is mostly that a lot of the content in the old guide was talking about Android Studio specific implementation details, which is not relevant for the project development in Flutter, as it natively encourages following the material design guidelines.
+However, the new design guide will most likely grow larger as the project goes on, but this should be an easy task for future students now that it is available as markdown files rather than a pdf document without any source available. 
+
 \begin{figure}[H]
     \begin{subfigure}{0.6\textwidth}
     \includegraphics[width=1\linewidth, height=5cm]{figures/table-of-content-designguide.JPG}
@@ -37,8 +40,8 @@ Every icon in the old design guide has been changed for the new design guide.
 The old icons had an out of date look, and did not result in a good design for the application.
 Most of the icons that are used in this project are icons from the \textit{Font Awesome} project, which is a font and CSS framework.
 These are easy to import in \texttt{Flutter}, and by using the icons in the same package the application is more consistent and will give the users a better experience, as they know the icons throughout the program.
-Three custom icons needed to be created. 
-These can be seen on \autoref{fig:change-profile-icons}. 
+Three custom icons needed to be created. \\
+These can be seen on \autoref{fig:change-profile-icons}. \\\\
 These icons are used for switching from guardian to citizen and vice versa and a new add timer icon.
 In the old design guide there was only one icon for switching between guardian and citizen.
 We wanted to make it more obvious which mode the user is in and decided to have two icons, one for each switch.
