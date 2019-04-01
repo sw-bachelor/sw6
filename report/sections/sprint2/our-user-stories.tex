@@ -78,4 +78,140 @@ The following prototypes show the planned designs:
   \label{fig:story_weekplan_views}
 \end{figure}
 
+\subsubsection{The BLoC for the week plan view}
+To implement the view the first thing needed is to implement the \texttt{BLoC} required, as this is the lowest level of the architecture that needs to be added for this functionality.
+
+\begin{lstlisting}[caption={The week plan BLoC},label={lst:weekplanbloc}]
+  class WeekplanBloc extends BlocBase {
+  final Api _api;
+  final BehaviorSubject<WeekModel> _week = BehaviorSubject<WeekModel>();
+
+  WeekplanBloc(this._api);
+
+  Stream<WeekModel> get week => _week.stream;
+
+  void setWeek(WeekModel week) {
+      _week.add(week);
+  }
+
+  @override
+  void dispose() {
+    _week.close();
+  }
+\end{lstlisting}
+The \texttt{WeekPlanBloc} class we implement extends the \texttt{BlocBase} abstract class.
+This class acts as the base of all \texttt{BLoCs}, making sure they implement an override method.
+At first we define an object of the \texttt{Api} class, which is used as a parameter for the constructor. 
+We also instantiate a variable of the \texttt{WeekModel} class as a \texttt{BehaviorSubject}.
+This means we instantiate a subject.
+This subject has both a sink and a stream to control data.
+Listeners can listen to the stream and be notified of updates.
+As the subject is a \texttt{BehaviourSubject}, this means that, when subscribing to the stream, the listener is notified of the last event that happened on the stream prior to subscribing.
+They are defined with the keyword \texttt{final} since they do not change values.
+We instantiate the stream through the \texttt{week} variable.
+The \texttt{setWeek} method creates the sink.
+
+
+\subsubsection{The screen for the week plan view}
+The \texttt{Screen} has to be implemented to give something for the user to view.
+\begin{lstlisting}[caption={Setting up the screen},label={lst:screensetup}]
+class WeekplanScreen extends StatelessWidget {
+  final WeekplanBloc weekplanBloc = di.getDependency<WeekplanBloc>();
+
+  WeekplanScreen({Key key, WeekModel week}) : super(key: key) {
+    weekplanBloc.setWeek(week);
+  }
+\end{lstlisting}
+\autoref{lst:screensetup} gets the necessary dependencies for the screen. 
+It receives an instance of the weekPlanBloc through dependency injection.
+The constructor takes a \texttt{Key} parameter, which is an identifier for widgets.
+This key is received from the superclass.
+The constructor also takes a \texttt{WeekModel} parameter, which is the definition of the week in the model component of the architecture. 
+Finally it calls the \texttt{setWeek} method from the \texttt{BLoC} with the model for the week.
+
+\begin{lstlisting}[caption={Building the structure},label={lst:screenstructure}]
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: GirafAppBar(
+        title: 'Ugeplan',
+      ),
+      body: StreamBuilder<WeekModel>(
+        stream: weekplanBloc.week,
+        initialData: null,
+        builder: (BuildContext context, AsyncSnapshot<WeekModel> snapshot) {
+          if (snapshot.hasData) {
+            return _buildWeeks(snapshot.data);
+          } else {
+            return const Text('Data not ready');
+          }
+        },
+      ),
+    );
+  }
+\end{lstlisting}
+\autoref{lst:screenstructure} shows how the overall structure of the screen is built. 
+It returns a \texttt{Scaffold} that ensures the use of the GIRAF \texttt{AppBar}.
+The \texttt{AppBar} is the bar at the top of most GIRAF screens that gives the user access to different functionalities.
+It also defines the body of the scaffold, which is defined by a \texttt{StreamBuilder}.
+The \texttt{StreamBuilder} is a widget that builds itself based on the latest interaction with a stream. 
+The stream it builds itself is based on the \texttt{weekplanBloc.week} stream.
+If the snapshot is not ready it just returns a \texttt{Text} message.
+
+\begin{lstlisting}[caption={Building the week},label={lst:screenbuildweek}]
+  Row _buildWeeks(WeekModel weekModel) {
+  const List<int> weekColors = <int>[
+    0xFF08A045,
+    0xFF540D6E,
+    0xFFF77F00,
+    0xFF004777,
+    0xFFF9C80E,
+    0xFFDB2B39,
+    0xFFFFFFFF
+  ];
+  final List<Widget> weekDays = <Widget>[];
+  for (int i = 0; i < weekModel.days.length; i++) {
+    weekDays.add(Expanded(
+        child: Card(
+            color: Color(weekColors[i]),
+            child: _day(weekModel.days[i].day, weekModel.days[i].activities))));
+  }
+  return Row(children: weekDays);
+}
+\end{lstlisting}
+\autoref{lst:screenbuildweek} builds the actual week on the screen.
+At first, the colors are defined in hexadecimal, based on the colors defined in the design guide as determined by the customers.
+A list of \texttt{Widgets} is instantiated, and a child is added for each day.
+This child is of the widget type \texttt{Card}, which is the design used for a day.
+These children are then returned as a \texttt{Row} widget, meaning that they are aligned horizontally.
+
+\begin{lstlisting}[caption={Building days and activities},label={lst:screendaysandactivities}]
+  Column _day(Weekday day, List<ActivityModel> activities) {
+  return Column(
+    children: <Widget>[
+      _translateWeekDay(day),
+      Expanded(
+        child: ListView.builder(
+          itemBuilder: (BuildContext context, int index) {
+            return PictogramImage(
+                //TODO: Redirect to show activity when it is implemented
+                pictogram: activities[index].pictogram,
+                onPressed: () => null);
+          },
+          itemCount: activities.length,
+        ),
+      ),
+    ],
+  );
+  }
+\end{lstlisting}
+\autoref{lst:screendaysandactivities} shows how a day is built.
+Days are of the \texttt{Column} class, meaning it is aligned vertically.
+It takes a day as a parameter and a list of activities.
+At first the name of the day is translated from English to Danish.
+The a \texttt{ListView} is created, which is a scrollable array, since there can be a large amount of activities in a day.
+This \texttt{ListView} is populated by pictogram images based on the index of the activity.
+When pressed, it should redirect to the detail page for this activity.
+However, at the time of us completing this user story, the functionality to show detail for an activity was not implemented.
+
 
