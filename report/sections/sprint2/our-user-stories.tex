@@ -3,7 +3,8 @@ For sprint 2 we were assigned two user stories to implement on top of our respon
 In the following section we give a short introduction to Flutter, the work flow followed by the GIRAF project and how we implemented the stories.
 
 \subsection{Introduction to Flutter}
-Flutter is built on the concept of widgets. Widgets describe what their view should look like given their current configuration and state\cite{Flutterwidget}. 
+Flutter is built on the concept of widgets.
+Widgets describe what their view should look like given their current configuration and state\cite{Flutterwidget}. 
 They are classes to build UIs, used for both layout and UI elements.
 Composing simple widgets lets you build complex widgets to create a layout\cite{Flutterlayout}.
 Widgets typically extend either the \texttt{StatelessWidget} or \texttt{StatefulWidget} classes from the Flutter library.
@@ -24,10 +25,10 @@ The basic widgets used to create a layout are\cite{FlutterBasicWidgets}:
 Most of these widgets are self explanatory. 
 Rows let you layout a list of child widgets in the horizontal direction, columns let you do that in the vertical direction.
 Container lets you customize its child widgets with, for example, margins or borders.
-Scaffold helps structure the application, for example, by determining where to place the top bar.
+Scaffold helps structure the application, for example by determining where to place the top bar.
 
 \subsection{The architecture of GIRAF}
-The architecture of GIRAF us built on separate blocks to create functionality. 
+The architecture of GIRAF is built on separate blocks to create functionality. 
 The overall architecture is illustrated in \autoref{fig:architecture-giraf}.
 \begin{figure}[h]
   \centering
@@ -35,7 +36,7 @@ The overall architecture is illustrated in \autoref{fig:architecture-giraf}.
   \caption{The architecture of GIRAF}
   \label{fig:architecture-giraf}
 \end{figure}
-As shown, the bottom layer is the model.
+As shown in \autoref{fig:architecture-giraf}, the bottom layer is the \texttt{model}.
 This layer is responsible for data, making sure what is required can be provided.
 The next layer is the \texttt{API}, which is responsible for communication with the backend, to make sure that relevant data can be retrieved.
 The \texttt{BLoC} layer is responsible for business logic. 
@@ -50,7 +51,8 @@ It uses streams and sinks to create states.
 As seen on \autoref{fig:streamsandsinks}, widgets send data to the \texttt{BloC} through sinks, and streams send data from the \texttt{BLoC} to widgets.
 This pattern is used to help ensure separation of responsibility, such that business logic can be changed without interfering with the application.  
 Next is the \texttt{screen}, which is a page that can be visited, something that can be viewed.
-Finally are the widgets, smaller components that assist \texttt{screens} and help construct the actual layout of the page. 
+Widgets are the final component.
+These are smaller components that assist \texttt{screens} and help construct the actual layout of the page. 
 
 \subsection{Our user stories and how we implemented them}
 For sprint 2 we were assigned the following user stories:
@@ -122,8 +124,8 @@ class WeekplanScreen extends StatelessWidget {
     weekplanBloc.setWeek(week);
   }
 \end{lstlisting}
-\autoref{lst:screensetup} gets the necessary dependencies for the screen. 
-It receives an instance of the weekPlanBloc through dependency injection.
+\autoref{lst:screensetup} shows how the necessary dependencies for the screen are retrieved. 
+It receives an instance of the \texttt{weekPlanBloc} through dependency injection.
 The constructor takes a \texttt{Key} parameter, which is an identifier for widgets.
 This key is received from the superclass.
 The constructor also takes a \texttt{WeekModel} parameter, which is the definition of the week in the model component of the architecture. 
@@ -155,7 +157,7 @@ It returns a \texttt{Scaffold} that ensures the use of the GIRAF \texttt{AppBar}
 The \texttt{AppBar} is the bar at the top of most GIRAF screens that gives the user access to different functionalities.
 It also defines the body of the scaffold, which is defined by a \texttt{StreamBuilder}.
 The \texttt{StreamBuilder} is a widget that builds itself based on the latest interaction with a stream. 
-The stream it builds itself is based on the \texttt{weekplanBloc.week} stream.
+The stream it builds is based on the \texttt{weekplanBloc.week} stream.
 If the snapshot is not ready it just returns a \texttt{Text} message.
 
 \begin{lstlisting}[caption={Building the week},label={lst:screenbuildweek}]
@@ -181,7 +183,7 @@ If the snapshot is not ready it just returns a \texttt{Text} message.
 \end{lstlisting}
 \autoref{lst:screenbuildweek} builds the actual week on the screen.
 At first, the colors are defined in hexadecimal, based on the colors defined in the design guide as determined by the customers.
-A list of \texttt{Widgets} is instantiated, and a child is added for each day.
+A list of \texttt{widgets} is instantiated, and a child is added for each day.
 This child is of the widget type \texttt{Card}, which is the design used for a day.
 These children are then returned as a \texttt{Row} widget, meaning that they are aligned horizontally.
 
@@ -206,12 +208,11 @@ These children are then returned as a \texttt{Row} widget, meaning that they are
   }
 \end{lstlisting}
 \autoref{lst:screendaysandactivities} shows how a day is built.
-Days are of the \texttt{Column} class, meaning it is aligned vertically.
+Days are of the \texttt{Column} widget class, meaning it is aligned vertically.
 It takes a day as a parameter and a list of activities.
 At first the name of the day is translated from English to Danish.
-The a \texttt{ListView} is created, which is a scrollable array, since there can be a large amount of activities in a day.
+Then a \texttt{ListView} is created, which is a scrollable array. 
+This is necessary since there can be a large amount of activities in a day, and the list of activities might exceed the size of the screen.
 This \texttt{ListView} is populated by pictogram images based on the index of the activity.
 When pressed, it should redirect to the detail page for this activity.
 However, at the time of us completing this user story, the functionality to show detail for an activity was not implemented.
-
-
