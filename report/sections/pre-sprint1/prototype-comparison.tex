@@ -2,14 +2,14 @@
 We inherited a set of PowerPoint slides from the last year's product owner group.
 This was a large collection of 122 slides where each slide was simply a single picture with clickable areas for navigation, making it difficult to update them.
 Some of these slides were also not visually acceptable, leading to us making the decision of redoing the prototypes.
-As described in \autoref{technologies-and-tools}, Adobe XD was used to create a new design and 
+As described in \autoref{technologies-and-tools}, Adobe XD was used to create a new design.
 Adobe XD allows for easier updating of both the design and interactions.
 The different functionalities of the prototypes will be explained in the following section.
 The most relevant updated prototypes will also be compared to the previous versions.
 
 \subsection{The functionalities of the prototypes}
 As we decided to make new prototypes, it was essential that we fulfilled all the necessary functionality determined by the previous year in conjunction with the customers.
-From reading the reports and looking at the inherited prototypes we defined the following list of functionality to develop prototypes for:
+From reading the reports of the previous year and looking at the inherited prototypes we defined the following list of functionality to develop prototypes for:
 \begin{itemize}
     \item Login functionality
     \item Select a citizen to view the week plans
@@ -45,6 +45,48 @@ We removed the large area reserved for the name of the week plan on the previous
     \end{subfigure} 
     \caption{This figure shows both designs for the week plan from a guardian point of view.}
     \label{fig:weekplan_view}
+\end{figure}
+
+\subsubsection{Mark mode functionality}
+In order to improve usability the weekplanner should support functionality to perform actions on different activities at a time.
+The previous prototypes featured a retractable side menu that the new prototypes do not.
+As such, the main difference is in how \textit{mark mode} is activated. 
+On the new prototypes we implemented a symbol on the top bar to activate this functionality.
+The following figure shows a comparison of the two solutions:
+
+\begin{figure}[H]
+    \begin{subfigure}{0.5\textwidth}
+    \includegraphics[width=1\linewidth, height=5cm]{old_markmode.JPG} 
+    \caption{The previous mark mode functionality}
+    \label{fig:old_markmode}
+    \end{subfigure}
+    \begin{subfigure}{0.5\textwidth}
+        \includegraphics[width=1\linewidth, height=5cm]{new_markmode.PNG}
+    \caption{The proposed new way to use mark mode}
+    \label{fig:new_markmode}
+    \end{subfigure} 
+    \caption{This figure shows the different mark mode prototypes.}
+    \label{fig:markmode_prototypes}
+\end{figure}
+
+\subsubsection{Details for an activity}
+Users should be able to look at the details of an activity.
+When they do this, they should be able to add timers or change the status of the activity.
+We kept the structure of the previous prototype, but redid the design for this to include less text. 
+This was done since the customers expressed an interest in as little text as possible.
+\begin{figure}[H]
+    \begin{subfigure}{0.5\textwidth}
+    \includegraphics[width=1\linewidth, height=5cm]{old_activity_detail.JPG} 
+    \caption{The previous detail prototype}
+    \label{fig:old_activity_detail}
+    \end{subfigure}
+    \begin{subfigure}{0.5\textwidth}
+        \includegraphics[width=1\linewidth, height=5cm]{new_activity_detail.JPG}
+    \caption{The new detail prototype}
+    \label{fig:new_activity_details}
+    \end{subfigure} 
+    \caption{This figure shows the screens for activity details.}
+    \label{fig:activity_detail_prototypes}
 \end{figure}
 
 \subsubsection{The login and choosing citizen screens}
@@ -111,39 +153,16 @@ We developed the greyscale prototype seen below with the intention to have it ev
     \begin{subfigure}{0.5\textwidth}
     \includegraphics[width=1\linewidth, height=5cm]{previous_color_change.JPG} 
     \caption{The previous colour prototype}
-    \label{fig:previous_grayscale_prototype}
+    \label{fig:previous_greyscale_prototype}
     \end{subfigure}
     \begin{subfigure}{0.5\textwidth}
         \includegraphics[width=1\linewidth, height=5cm]{greyscale_functionality.png}
     \caption{The proposed greyscale colouring}
-    \label{fig:new_grayscale_prototype}
+    \label{fig:new_greyscale_prototype}
     \end{subfigure} 
     \caption{This figure shows different colouring options.}
-    \label{fig:grayscale_prototype}
+    \label{fig:greyscale_prototype}
 \end{figure}
-
-\subsubsection{Mark mode functionality}
-In order to improve usability the weekplanner should support functionality to perform actions on different activities at a time.
-The previous prototypes featured a retractable side menu that the new prototypes do not.
-As such, the main difference is in how \textit{mark mode} is activated. 
-On the new prototypes we implemented a symbol on the top bar to activate this functionality.
-The following figure shows a comparison of the two solutions:
-
-\begin{figure}[H]
-    \begin{subfigure}{0.5\textwidth}
-    \includegraphics[width=1\linewidth, height=5cm]{old_markmode.JPG} 
-    \caption{The previous mark mode functionality}
-    \label{fig:old_markmode}
-    \end{subfigure}
-    \begin{subfigure}{0.5\textwidth}
-        \includegraphics[width=1\linewidth, height=5cm]{new_markmode.PNG}
-    \caption{The proposed new way to use mark mode}
-    \label{fig:new_markmode}
-    \end{subfigure} 
-    \caption{This figure shows different colouring options.}
-    \label{fig:markmode_prototypes}
-\end{figure}
-
 
 
 
