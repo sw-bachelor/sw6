@@ -1,11 +1,34 @@
 \section{The revised prototypes}
 We inherited a set of PowerPoint slides from the last year's product owner group.
-This was a large collection of 122 slides where each slide was simply a single picture with clickable areas for simple navigation, making it difficult to update them.
+This was a large collection of 122 slides where each slide was simply a single picture with clickable areas for navigation, making it difficult to update them.
 Some of these slides were also not visually acceptable, leading to us making the decision of redoing the prototypes.
-As described in \autoref{technologies-and-tools}, Adobe XD was used to create a new design and allow for interaction in the design.
-The most relevant updated prototypes will be compared to the previous versions in the following section.
+As described in \autoref{technologies-and-tools}, Adobe XD was used to create a new design.
+Adobe XD allows for easier updating of both the design and interactions.
+The different functionalities of the prototypes will be explained in the following section.
+The most relevant updated prototypes will also be compared to the previous versions.
 
-\subsection{The overall week plan view}
+\subsection{The functionalities of the prototypes}
+As we decided to make new prototypes, it was essential that we fulfilled all the necessary functionality determined by the previous year in conjunction with the customers.
+From reading the reports of the previous year and looking at the inherited prototypes we defined the following list of functionality to develop prototypes for:
+\begin{itemize}
+    \item Login functionality
+    \item Select a citizen to view the week plans
+    \item Add a week plan to a citizen
+    \item View an actual week plan
+    \item Add activities to a week plan
+    \item Mark activities in the week plan
+    \item Add timers to activities
+    \item View and change settings
+\end{itemize}
+Producing the necessary prototypes left us with a total of around 65 different prototype illustrations of different views and functionalities of the GIRAF weekplanner application.
+This included different prototypes with the same base design that showed prompts to the user when they performed an action that warranted one.
+The \textit{mark mode} prototypes were examples of this, different interactions such as marking multiple activities were performed on the same base design of the weekplanner screen.
+When the user would decide to delete the marked activities, a new prototype showing the confirmation prompt would be necessary.
+
+\subsection{Comparisons of old and new prototypes}
+The following section presents and compares new and old prototypes. 
+We only present a subset of some of the more relevant new prototypes.
+\subsubsection{The overall week plan view}
 The main changes made in the overall view of the week plan is just the design. 
 The top bar was changed to include new icons, and the generic phone/tablet bar was added to let the user keep an overview of the status of their device.
 We removed the large area reserved for the name of the week plan on the previous suggestions, to give more space for the week plan to be used. 
@@ -24,11 +47,68 @@ We removed the large area reserved for the name of the week plan on the previous
     \label{fig:weekplan_view}
 \end{figure}
 
-\subsection{The login screen and choosing citizen}
+\subsubsection{Mark mode functionality}
+In order to improve usability the weekplanner should support functionality to perform actions on different activities at a time.
+The previous prototypes featured a retractable side menu that the new prototypes do not.
+As such, the main difference is in how \textit{mark mode} is activated. 
+On the new prototypes we implemented a symbol on the top bar to activate this functionality.
+The following figure shows a comparison of the two solutions:
+
+\begin{figure}[H]
+    \begin{subfigure}{0.5\textwidth}
+    \includegraphics[width=1\linewidth, height=5cm]{old_markmode.JPG} 
+    \caption{The previous mark mode functionality}
+    \label{fig:old_markmode}
+    \end{subfigure}
+    \begin{subfigure}{0.5\textwidth}
+        \includegraphics[width=1\linewidth, height=5cm]{new_markmode.PNG}
+    \caption{The proposed new way to use mark mode}
+    \label{fig:new_markmode}
+    \end{subfigure} 
+    \caption{This figure shows the different mark mode prototypes.}
+    \label{fig:markmode_prototypes}
+\end{figure}
+
+\subsubsection{Details for an activity}
+Users should be able to look at the details of an activity.
+When they do this, they should be able to add timers or change the status of the activity.
+We kept the structure of the previous prototype, but redid the design for this to include less text. 
+This was done since the customers expressed an interest in as little text as possible.
+\begin{figure}[H]
+    \begin{subfigure}{0.5\textwidth}
+    \includegraphics[width=1\linewidth, height=5cm]{old_activity_detail.JPG} 
+    \caption{The previous detail prototype}
+    \label{fig:old_activity_detail}
+    \end{subfigure}
+    \begin{subfigure}{0.5\textwidth}
+        \includegraphics[width=1\linewidth, height=5cm]{new_activity_detail.JPG}
+    \caption{The new detail prototype}
+    \label{fig:new_activity_details}
+    \end{subfigure} 
+    \caption{This figure shows the screens for activity details.}
+    \label{fig:activity_detail_prototypes}
+\end{figure}
+
+\subsubsection{The login and choosing citizen screens}
 The base design of the previous login screen was functionally acceptable. 
 The background colour used was just a dull yellow, and as such updated the background to be a little more dynamic but keeping the separate bars in which to input username and password.
-The design change used for login in was also employed in the confirmation screen from swapping from citizen to guardian mode. 
+The design change used for logging in was also employed in the confirmation screen from swapping from citizen to guardian mode. 
 The previous design and the new design for changing from citizen to guardian, as well as the general layout for logging in, can be viewed in the following figures:
+\begin{figure}[H]
+    \begin{subfigure}{0.5\textwidth}
+    \includegraphics[width=1\linewidth, height=5cm]{old_login.JPG} 
+    \caption{The previous login screen}
+    \label{fig:previous_login}
+    \end{subfigure}
+    \begin{subfigure}{0.5\textwidth}
+        \includegraphics[width=1\linewidth, height=5cm]{new_login.JPG}
+    \caption{The proposed new login screen}
+    \label{fig:new_login}
+    \end{subfigure} 
+    \caption{This figure shows both designs for the login screen.}
+    \label{fig:guardian_confirm}
+\end{figure}
+\noindent
 \begin{figure}[H]
     \begin{subfigure}{0.5\textwidth}
     \includegraphics[width=1\linewidth, height=5cm]{previous_password_change.JPG} 
@@ -51,36 +131,38 @@ A comparison of the screen in which a citizen is selected is illustrated in the 
     \begin{subfigure}{0.5\textwidth}
     \includegraphics[width=1\linewidth, height=5cm]{previous_citizen_select.JPG} 
     \caption{The previous citizen selection}
-    \label{fig:previous_guardian_confirm}
+    \label{fig:previous_citizen_select}
     \end{subfigure}
     \begin{subfigure}{0.5\textwidth}
         \includegraphics[width=1\linewidth, height=5cm]{copy_weekplan_choose_citizen.png}
     \caption{The proposed new citizen selection}
-    \label{fig:new_guardian_confirm}
+    \label{fig:new_citizen_select}
     \end{subfigure} 
     \caption{This figure shows both designs for choosing a citizen to view their week plans.}
-    \label{fig:guardian_confirm}
+    \label{fig:citizen_select}
 \end{figure}
 \noindent
 
-\subsection{Greyscale functionality}
+\subsubsection{Greyscale functionality}
 GIRAF should support the different preferences of the citizens. 
 As such, a greyscale functionality is preferable.
-This was also documented by the previous year, but they have not made a prototype for this functionality.
+This was also documented by the previous year, but they had not made a prototype for this functionality.
 Instead, they proposed a yellow colour scheme.
 We developed the greyscale prototype seen below with the intention to have it evaluated by company representatives.
 \begin{figure}[H]
     \begin{subfigure}{0.5\textwidth}
     \includegraphics[width=1\linewidth, height=5cm]{previous_color_change.JPG} 
     \caption{The previous colour prototype}
-    \label{fig:previous_citizen_select}
+    \label{fig:previous_greyscale_prototype}
     \end{subfigure}
     \begin{subfigure}{0.5\textwidth}
         \includegraphics[width=1\linewidth, height=5cm]{greyscale_functionality.png}
     \caption{The proposed greyscale colouring}
-    \label{fig:new_citizen_select}
+    \label{fig:new_greyscale_prototype}
     \end{subfigure} 
     \caption{This figure shows different colouring options.}
-    \label{fig:citizen_select}
+    \label{fig:greyscale_prototype}
 \end{figure}
+
+
 
