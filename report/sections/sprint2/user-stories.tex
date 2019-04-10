@@ -1,0 +1,38 @@
+\section{User stories for sprint 2}
+Due to the migration from Xamarin to Flutter, a series of new user stories had to be created, in order to assure that all the functionality from the original application is re-created in the new one.
+This lead to the creation of 29 new user stories.
+Unlike in sprint 1, where we only provided the team with the user story, a short description and prototypes to show how the task should be done, we have now started to add more technical specifications to the tasks, to give the development teams a better understanding of exactly what is wanted.
+An example of this is for the user story ``\texttt{As a guardian I would like to be able to view a given citizens week plan so that I can get an overview of what is happening this week for them}``, which has an associated prototype and the following technical specification:
+
+\begin{itemize}
+    \item Make the BLoC needed (Reuse as much as possible)
+    \item Make the UI reactive (i.e. show the relevant data)
+    \item Make sure the UI upholds the settings set for the user (color, and so on)
+\end{itemize}
+These technical description were, as mentioned above, created in collaboration with the group SW611F19.
+
+\todo{Ensure that this is still 16 after sprint 2 is done}
+\noindent
+For this sprint, 16 of the 29 user stories are being worked on:
+
+\begin{enumerate}
+    \item As a guardian I would like to be able to access parts of the system through the top bar so that I can easily go to the screen I want
+    \item As a guardian I would like to be able to view a given citizens week plan so that I can get an overview of what is happening this week for them
+    \item As a citizen I would like to be able to view my week plan so that I know what is going to happen
+    \item As a guardian I would like to be able to search for pictograms when adding a new activity so that I can find a pictogram that suits the activity
+    \item As a guardian I would like to be able to choose a citizen so that I can choose who I’m editing the week plan for
+    \item As a guardian I would like to be able to log into the system using a username and password, so that I can see my associated citizens
+    \item As a guardian I would like to be able to log out so that the system is not left logged in after I’m done using it. 
+    \item As a guardian I would like to be able to choose which week plan to show the citizen so that I can have multiple plans available to each citizen
+    \item As a guardian I would like to be able to create a new week plan so that it is suited to the given citizens week 
+    \item As a guardian I would like to be able to add a new activity on a citizens week plan so that it fits their schedule
+    \item As a guardian I would like to be able to switch to citizen mode so that I can give the tablet to the citizen for use.
+    \item As a guardian I would like to be able to switch from citizen mode to guardian mode with the press of a button so that I can change the users schedule without restarting the application
+    \item As a guardian I would like to be prompted for a password when changing from citizen to guardian mode, so that a citizen cannot access the guardian mode
+    \item As a guardian I would like to be able to remove an activity from the week plan so that cancelled activities can be removed from the citizens plan
+    \item As a citizen I would like to be able to mark an activity as done so that I know how far along in my day I am
+    \item As a developer I would like a button widget so that I do not have duplicated code and waste time
+\end{enumerate}
+
+\noindent As some of these issues are naturally blocking each other due to dependencies, some additional tasks have been made in the wiki part of the system that are aimed primarily at the server focus group and relates to updating the server structure and documenting the process for future students on the GIRAF project.
+Additionally, as the developers are beginning to get an understanding of the system, they have begun reporting feature requests and bug reports on GitHub, which we are continuously evaluating and converting to tasks or user stories with a priority depending on how essential they are deemed to fulfil the customers wishes.

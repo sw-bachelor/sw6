@@ -15,6 +15,7 @@
 %  You can find the GNU General Public License at <http://www.gnu.org/licenses/>.
 %
 \documentclass[11pt,twoside,a4paper,openright]{report}
+\setcounter{tocdepth}{1}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Language, Encoding and Fonts
 % http://en.wikibooks.org/wiki/LaTeX/Internationalization
@@ -62,6 +63,7 @@
 % The framed package is used in the example environment
 \usepackage{framed}
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Mathematics
 % http://en.wikibooks.org/wiki/LaTeX/Mathematics
@@ -108,7 +110,9 @@
 % Enable arithmetics with length. Useful when
 % typesetting the layout.
 \usepackage{calc}
-
+\usepackage{graphicx}
+\graphicspath{ {./figures/}{./figures/prototype-comp/} }
+\usepackage{subcaption}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Bibliography
 % http://en.wikibooks.org/wiki/LaTeX/Bibliography_Management
@@ -255,3 +259,8 @@ classoffset=0,
 }
 
 \usepackage{mathtools}
+
+\usepackage{graphicx}
+\graphicspath{ {./figures/}{./figures/prototype-comp/} }
+\usepackage{subcaption}
+\usepackage{listings}
