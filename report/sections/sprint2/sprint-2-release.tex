@@ -1,0 +1,44 @@
+\section{release 2019S2R1}
+Four days before sprint 2 ended the preparations for the release started.
+We started by looking at which functionalities were implemented throughout the sprint and creating an overview of these.
+These can be seen on \autoref{table:user-stories-sprint-2-release}.
+
+\begin{table}[H]
+    \small
+    \begin{tabular}{|p{2.8cm}|p{7cm}|p{2cm}|}
+    \hline
+    Issue ID        & User story                                                                                                                                                                               & Group assigned      \\ \hline
+    Weekplanner\#23 & As a guardian I would like to be able to access parts of the system through the top bar so that I can easily go to the screen I want                                                     & Group 2             \\ \hline
+    Weekplanner\#43 & As a guardian I would like to be able to view a given citizens week plan so that I can get an overview of what is happening this week for them                                           & Group 10            \\ \hline
+    Weekplanner\#44 & As a citizen I would like to be able to view my week plan so that I know what is going to happen                                                                                         & Group 10            \\ \hline
+    Weekplanner\#46 & As a guardian I would like to be able to search for pictograms when adding a new activity so that I can find a pictogram that suits the activity                                         & Group 11            \\ \hline
+    Weekplanner\#47 & As a guardian I would like to be able to choose a citizen so that I can choose who I’m editing the week plan for                                                                         & Group 9             \\ \hline
+    Weekplanner\#49 & As a guardian I would like to be able to log out so that the system is not left logged in after I’m done using it.                                                                       & Group 12            \\ \hline
+    Weekplanner\#50 & As a guardian I would like to be able to choose which week plan to show the citizen so that I can have multiple plans available to each citizen                                          & Group 13            \\ \hline
+
+    Weekplanner\#55 & As a guardian I would like to be able to switch from citizen mode to guardian mode with the press of a button so that I can change the users schedule without restarting the application & Group 12            \\ \hline
+    Weekplanner\#56 & As a guardian I would like to be prompted for a password when changing from citizen to guardian mode, so that a citizen cannot access the guardian mode                                  & Group 12            \\ \hline
+
+    \end{tabular}
+    \caption{User stories worked on in sprint 2 by all development groups.}\label{table:user-stories-sprint-2-release}
+\end{table}
+
+\noindent A release branch was created where all the fixes that needed to be done before the program was ready for a release could be implemented.
+
+\noindent We created a pdf that explained what functionality we wanted to see in the release based on the known statuses of the user stories.
+It also explained how we wanted the other groups to review the different functionalities and how they should report issues that they found in the program.
+All groups were assigned to review some functionality that was implemented throughout the sprint and create issues on Github related to the problems that they discovered while reviewing. 
+The process group was the group that was responsible for assigning groups to the different issues as they were being created for the functionalities that had been implemented. 
+
+\noindent We then started to look at which problems existed in the application.
+These were the initial problems that we became aware of:
+\begin{itemize}
+    \item Choose citizen needs to be connected to the week plan selecter
+    \item When selecting a week plan the week plan needs to be passed along to the week plan screen
+    \item When on the week plan page we need a button to add an activity
+    \item When changing from citizen to guardian mode, the user is logged out if the password is incorrect
+\end{itemize}
+
+\noindent We created user stories for these issues and delegated the user stories to the groups that had created the screens that they were present on. 
+The release branch was merged in to the master and the develop branch when all of the groups had approved their area of responsibility and we had confirmed tat they worked as expected. 
+Finally a release party was held where all the groups could meet and the PO group presented the current state of the app.
