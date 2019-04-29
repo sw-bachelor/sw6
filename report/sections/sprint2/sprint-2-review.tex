@@ -1,6 +1,8 @@
 \section{Sprint review}
+The GIRAF groups held the review and retrospective of sprint 2 on April 4th.
+\autoref{sprint-2-review-table} shows the status of the user stories included in the sprint as the release was prepared.
 
-\begin{longtable}{|p{2.8cm}|p{7cm}|p{1.5cm}|p{1.4cm}|}
+\begin{longtable}{|p{2.8cm}|p{7cm}|p{1.5cm}|p{1.8cm}|}
     \hline
     Issue ID        & User story                                                                                                                                                                               & Group assigned  & Status     \\ \hline
     Weekplanner\#23 & As a guardian I would like to be able to access parts of the system through the top bar so that I can easily go to the screen I want                                                     & Group 2         & Resolved      \\ \hline
@@ -11,13 +13,13 @@
     Weekplanner\#48 & As a guardian I would like to be able to log into the system using a username and password, so that I can see my associated citizens                                                     & Group 11        & Resolved  \\ \hline
     Weekplanner\#49 & As a guardian I would like to be able to log out so that the system is not left logged in after I’m done using it.                                                                       & Group 12        & Resolved     \\ \hline
     Weekplanner\#50 & As a guardian I would like to be able to choose which week plan to show the citizen so that I can have multiple plans available to each citizen                                          & Group 13        & Resolved\\ \hline
-    Weekplanner\#51 & As a guardian I would like to be able to create a new week plan so that it is suited to the given citizens week                                                                          & Group 8         & Invalid    \\ \hline
-    Weekplanner\#52 & As a guardian I would like to be able to add a new activity on a citizens week plan so that it fits their schedule                                                                       & Group 2         & Invalid    \\ \hline
-    Weekplanner\#54 & As a guardian I would like to be able to switch to citizen mode so that I can give the tablet to the citizen for use.                                                                    & Group 2         & Invalid    \\ \hline
+    Weekplanner\#51 & As a guardian I would like to be able to create a new week plan so that it is suited to the given citizens week                                                                          & Group 8         & Incomplete    \\ \hline
+    Weekplanner\#52 & As a guardian I would like to be able to add a new activity on a citizens week plan so that it fits their schedule                                                                       & Group 2         & Incomplete    \\ \hline
+    Weekplanner\#54 & As a guardian I would like to be able to switch to citizen mode so that I can give the tablet to the citizen for use.                                                                    & Group 2         & Incomplete    \\ \hline
     Weekplanner\#55 & As a guardian I would like to be able to switch from citizen mode to guardian mode with the press of a button so that I can change the users schedule without restarting the application & Group 12        & Resolved    \\ \hline
     Weekplanner\#56 & As a guardian I would like to be prompted for a password when changing from citizen to guardian mode, so that a citizen cannot access the guardian mode                                  & Group 12        & Resolved    \\ \hline
-    Weekplanner\#57 & As a guardian I would like to be able to remove an activity from the week plan so that cancelled activities can be removed from the citizens plan                                        & Group 13        & Invalid    \\ \hline
-    Weekplanner\#75 & As a citizen I would like to be able to mark an activity as done so that I know how far along in my day I am                                                                             & Group 13        & Invalid    \\ \hline
+    Weekplanner\#57 & As a guardian I would like to be able to remove an activity from the week plan so that cancelled activities can be removed from the citizens plan                                        & Group 13        & Incomplete    \\ \hline
+    Weekplanner\#75 & As a citizen I would like to be able to mark an activity as done so that I know how far along in my day I am                                                                             & Group 13        & Incomplete    \\ \hline
     Weekplanner\#85 & As a developer I would like a button widget so that I do not have duplicated code and waste time                                                                                         & Group 8         & Incomplete    \\ \hline
     Wiki\#5         & Migrate pages under Server Administration pages                                                                                                                                          & Group 13        & Resolved    \\ \hline
     Wiki\#7         & Migrate pages under Xamarin Development(Week Planner) and Android Development                                                                                                            & Group 12        & Resolved    \\ \hline
@@ -25,14 +27,18 @@
     Wiki\#31        & Migrate the WEB-API to Docker and document the work.                                                                                                                                     & Group 12        & Resolved    \\ \hline
     Wiki\#36        & Migrate the MySQL Database to Docker and document the work                                                                                                                               & Group 12        & Resolved    \\ \hline
     Web-API\#7      & API should time out after a while to prevent requests from crashing the API                                                                                                              & Group 9         & Resolved    \\ \hline
-    \caption{User stories worked on in sprint 2 by all development groups.}
+    \caption{User stories worked on in sprint 2 by all development groups.}\label{sprint-2-review-table}
 \end{longtable}
+\noindent
+As was the case with sprint 1, as seen in \autoref{sprint-1-review}, a lot of user stories ended up being incomplete.
+This was attributed to groups generally overestimating their work capacity, leading to them not having enough time.
 
 \subsubsection{PO goal review}
 Most of our goals this sprint were resolved.
 The two user stories were implemented and included in the release. 
-We prepared the release as detailed in \todo{ref til afsnit om release prep} and got the release ready for the usability test.
-However, as explained in \todo{referer til "Usability test in sprint 2"} there were no customers available at the chosen date due to sudden complications.
+We prepared the release as detailed in \autoref{sprint-2-release} and got the release ready for the usability test.
+However, as explained in \autoref{sprint-2-usability-test} there were no customers available at the chosen date due to sudden complications.
+\autoref{PO-goal-sprint-2-review} shows the status of our goals as sprint 2 ended.
 
 
 \begin{table}[H]
@@ -43,7 +49,7 @@ However, as explained in \todo{referer til "Usability test in sprint 2"} there w
     Implement weekplanner\#44                & Resolved  \\ \hline
     Implement weekplanner\#43                & Resolved  \\ \hline
     Prepare release                          & Resolved \\ \hline
-    Have a usability test                   & Invalid \\ \hline
+    Conduct a usability test                   & Invalid \\ \hline
     Prepare sprint 3                         & Resolved \\ \hline
     \end{tabular}
     \caption{Goals for the PO group in sprint 2}
