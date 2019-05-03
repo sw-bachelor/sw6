@@ -1,7 +1,6 @@
 \section{PO advice for next the next year PO group} \label{appendix:PO-advise}
 
-This document servers as a list of advice for the next PO group based on the experience we gathered throughout the semester.
-\\
+This document serves as a list of advice for the next PO group based on the experience we gathered throughout the semester.
 The PO group's main responsibility is to communicate with the customers of the GIRAF project and document this interaction.
 It is important that the customers reactions, opinions and wishes, towards the program, are written down as these are the base for all the decisions that you as the PO group will take.
 Further in-depth of how we advise to handle customer contact and what we used the information gathered is described in the following sections.
@@ -55,38 +54,80 @@ Below is an image of a user story.
 \end{figure}
 As you can see on \autoref{fig:userstory} the user story has the number 88 and was created by the user Eduardsen.
 It has the tags "priority: highest" and "type: feature" and is under the milestone called sprint 2.
-In the right hand side you can see the profile picture of the user currently assigned to fixing this user story.
+In the right hand side you can see the profile picture of the developer currently assigned to fixing this user story.
+\\
+Another way to create user stories are when developer groups create feature requests.
+In most cases these need to be rewritten into user stories if the problem they are describing has not been formulated correct.
 
 \subsection{Prototypes}
 One of the important tasks of the PO group is to create and maintain prototypes.
 Prototypes should conform to the design guide which can be found on the Github Wiki-page.
+Previous years PO groups seems to have been using PowerPoint to create prototypes but we found this process to be slow and have a lot of repetitive work.
+Instead we opted to use Adobe XD which reduced repetitive work and has the ability to import the exact icons we used throughout the design guide making the prototypes much more consistent.
+Doing meetings with the customers you should show them the prototypes you have made since last time you spoke.
+It is a very good idea to get customer feedback so that you know you are headed in the right direction and so that if developers have a creative way to interpret a user story you can with certainty show them how it should be.
+
+\subsection{Distribution of user stories}
+In the beginning of a new sprint you should present the goals of the sprint to all the other groups.
+Here you should also present the user stories you think corresponds to these goals.
+Afterwards groups are free to take one or two user stories that they can start working on.
+If they finish their user stories before the sprint is over they are free to write to or visit the PO group to ask for permission to start a new user story.
+\\
+For the final sprint we chose to decide how to distribute user stories.
+We did this because we had a lot of documentation tasks that needed to be done and decided to distribute these as well to increase the likelihood of them being finished for next years groups.
 
 
+\subsection{Communication with other groups}
+During a sprint it is crucial to keep track of the status of other groups.
+Certain user stories can be blocked by other user stories and therefore you should regularly walk to the other groups group rooms and ask how their work is proceeding.
+\\
+Being the PO group you should have a good overview of the developer groups skills.
+If a certain group is stuck with an user story you should then ask other groups to help them complete it.
+This is a great way to share knowledge and speed up development in some cases.
+\\
+Knowing what people are working on also gives you the advantage of knowing in what documents they most likely are making changes.
+This information can help you decide which user stories developer groups should take so that you reduce the amount of merge conflicts.
 
 
-What is the role of the PO group? -----
-Customer contact----
-Creating user stories ----
-prototypes
-distribution of tasks
-Communication with other groups (keeping status)
--Making sure that groups dont work on the same files more than necessary
-Approval of designs
-release preperation
-usability testing
-maintenance of user stories
-Approval of bug reports
-cooperation with the process group
-planning of sprints
-be present in your group rooms so that people can ask you questions
-sharing knowledge in the po group
+\subsection{Cooperation with process group}
+A lot of the choices in regards to the process affects the work of the PO group, because of this it is essential that you communicate with them and ensure that you are in agreement about what is being planned.
 
+\subsection{Approval of designs}
+We recommend enforcing that the PO group should be assigned to all pull requests that deal with the user interface of the application, as we are the group with the best understanding of how the customers interact with the system.
+This means that the design should be consistent with the prototypes that have been approved by the customer, and be very intuitive for them to use.
+It is a commonly known fact that software engineers are not designers and do not always think of user friendliness, so remember to keep them in check, so the customers can actually figure out how to use the system.
+Some things we have noticed that you should pay special attention towards in design related PRs are: Good error messages are shown to the user, icons are only used for \textit{one} thing and the design is consistent with the design guide.
 
+\subsection{Release preparation}
+Be prepared that at the end of every sprint you won't have much time to finish your assigned user stories. Because the last four days of every sprint will be spent on preparing for the release.
+\\
+At the first release preparation we tried to get as many user stories included in the release. This ment that we were actually waiting for some groups to finnish their user stories. We realized that this was not feasible and that we had to make a concrete deadline. This deadline had to be kept. Even though one of the user stories just needed 10 minutes more before it would be completed it would have to wait until next release to be included. Because it was not feasible for us to keep delaying the release.
+\\
+when the deadline was over the release branch was created. Then we would assign groups to review the different user stories that had been implemented throughout the sprint and try to find bugs. When they found a bug they create a release fix issue and the group that originally implemented the user story that was being investigated would be assigned to fixing this. At the first release we just assigned every group to some issues and let them review them by them self. This worked allright but was a bit hard to cordinate because all the communication was done through Slack. At the second release we choose in collaboration with the process group to host a hackaton for the release fixing where all the groups sat together. This made it much easier to communicate between all the groups and we felt that the process was much smoother because of this.
 
+\subsection{Usability testing}
+At the end of each sprint, a usability test should be conducted to get feedback on the features that have been developed in the sprint, and on potential new prototypes.
+We recommend that you arrange the usability tests shortly after the sprint has ended, so that you have time to translate the results into user stories.
+The customers usually prefer that the usability tests are held on weekdays at around 8am, so that they can do it before going to work.
+Remember to book a room for the usability test, and have someone from the group bring coffee and mugs to make it cozier for the customers - that makes them want to come back.
+\\
+For the usability tests, you should have a series of assignments prepared for the users, based on the latest release. If it goes smoothly, you can show them additional features on develop, even though they may be buggy.
+Finally, after having conducted the usability test, you can show them new prototypes to get feedback on them. 
 
-for
+\subsection{Keeping GitHub issues updated}
+GitHub is the primary place for keeping track of the system, all features are listed as issues that are spread across the repositories of GIRAF. Thus, it is very important that you keep the information on GitHub up to date.
+This includes regularly going through the issues and checking if the issues are still relevant, and updating the priorities of the issues. 
+At the end of every sprint, it is important that you go through issues to re-order the priorities of user stories, as each sprint will most likely deplete the repositories of stories that are marked as highest and high priority.
+Likewise, it is important to keep an eye on the bug reports and feature requests that are reported by other groups and translating these into user stories.
 
+\subsection{Sprint planning}
+The PO group is responsible for planning what should be done in each sprint.
+At the beginning of each sprint, the PO group will do a short presentation with the goals of the upcoming sprint and present which user stories they have picked out as a focus for the sprint.
+We came to the conclusion that it is better to include fewer, but more essential, user stories to the sprint and let groups come talk to us when they are done with that user story, so that we are sure that they will be able to finish within the time period of the sprint.
+In the first sprints, we let the groups choose an assignment from the presented user stories themselves, whereas in the last sprint we picked some user stories for each group, based on what they had previously worked on and what essential features we needed to include to have a minimum viable product available.
+Try to spread the user stories across the system as much as possible, so that multiple groups will not be working on the same screens if this can be avoided. This decreases the amount of merge conflicts and frustration for the developers.
 
-
-
-
+\subsection{Internal sharing of knowledge}
+An often overlooked problem for us was to ensure that all members of the PO group shared what information was given to groups when they came in for advice on a user story.
+If knowledge is not shared properly within the group, it is very easy to cause confusion for not only the PO group, but also the group asking the question, as it may not always be the same person in the PO group they talk to.
+It may be a good idea to keep a shared document where you can write down your decisions and which groups it was discussed with.
