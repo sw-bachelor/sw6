@@ -1,0 +1,40 @@
+\section{User stories}
+The new user stories for this sprint can be seen on \autoref{table:user-stories-sprint-3}.
+In this sprint there were a lot of tasks that were not new user stories, but either bugs or small refactoring tasks that needed to be completed.
+During sprint 2 the PO didn't have to approve every pull request on Github. 
+This resulted in some pull requests getting merged without PO approval, resulting in inconsistent design in the app.
+Due to this, we prioritized some of the issues regarding refactoring of different parts of the system, so that we do not have to fix it later.
+These tasks are Weekplanner\#137, Weekplanner\#138, Weekplanner\#146, Weekplanner\#149, Weekplanner\#157, Weekplanner\#165 and Weekplanner\#166.
+\\\\
+The new features that were introduced in this sprint were Weekplanner\#45, Weekplanner\#53, Weekplanner\#57, Weekplanner\#106 and Weekplanner\#132.
+Especially Weekplanner\#132 was very important, since a lot of other features were depending on it being implemented. 
+A lot of user stories depended on either only wanting the guardian or the citizen to have access to the feature.
+
+\begin{longtable}{|p{2.9cm}|p{8cm}|p{2cm}|}
+    \hline
+    Issue ID        & Tasks                                                                                                                                                                             & Assigned to      \\ \hline
+    Weekplanner\#45 & As a citizen I would like to view details about the currently ongoing activity (such as time left and only the associated pictogram) so that I know what is happening and how long is left & Group 13            \\ \hline
+    Weekplanner\#53 & As a guardian I would like to be able to re-order the activities in a week plan, so that I can easily re-prioritize the activities for the citizen                                      & Group 9           \\ \hline
+    Weekplanner\#57 & As a guardian I would like to be able to remove an activity from the week plan so that cancelled activities can be removed from the citizens plan                                    & Group 13           \\ \hline
+    Weekplanner\#92 & As a developer I would like the application to use a default font so that I can easily change it                                                                                       & Group 10           \\ \hline
+    Weekplanner\#106 & As a user I would like to get a response when my search request times out so that I know what is going on                                                                             & Group 2           \\ \hline
+    Weekplanner\#112 & Entering an incorrect password when changing from citizen to guardian logs out the user                                                                                                  & Group 2          \\ \hline
+    Weekplanner\#125 & Exception thrown when rendering WeekPlanScreen, issue \#44                                                                                                                             & Group 10           \\ \hline
+    Weekplanner\#132 & As a user I would like to be able to switch between guardian and citizen mode so that I can only access the parts of the system that I should be able to                            & Group 2           \\ \hline
+    Weekplanner\#133 & As a guardian I would like to be able to logout when I am on the choose citizen page so that i can return to the login page                                                              & Group 10           \\ \hline
+    Weekplanner\#137 & A loading spinner should be shown when logging in (waiting for response from API).                                                                                                    & Group 9            \\ \hline
+    Weekplanner\#138 & Show an alert when trying to log in with the wrong information                                                                                                                         & Group 9           \\ \hline
+    Weekplanner\#146 & Change buttons on activity screen                                                                                                                                                    & Group 8          \\ \hline
+    Weekplanner\#149 & Change button on Notify Dialog                                                                                                                                                        & Group 8           \\ \hline
+    Weekplanner\#157 & As a user I want to be prompted an error message when failing to login correctly during a change from guardian to citizen                                                             & Group 2            \\ \hline
+    Weekplanner\#158 & As a developer i would like a default widget for confirmation dialogs.                                                                                                                  & Group 9           \\ \hline
+    Weekplanner\#165 & Change buttons on ConfirmDialog                                                                                                                                                        & Group 8           \\ \hline
+    Weekplanner\#166 & Logout button needs to use Confirm Dialog                                                                                                                                             & Group 9           \\ \hline
+    Weekplanner\#181 & The timer on the activity screen does not work                                                                                                                                         & Group 8           \\ \hline
+    Wiki\#34         & Migrate the WEB-API to Docker and document the work                                                                                                                                     & Group 12           \\ \hline
+    Wiki\#35         & Migrate the MySQL Database to Docker and document the work.                                                                                                                            & Group 12           \\ \hline
+    Web-API\#6      & Considering updating frameworks in web-api                                                                                                                                            & Group 12       \\ \hline
+    Web-API\#9      & Make new endpoint to get all weekplans for a citizen in a single request so that we dont have to make a new request for each weekplans                                                & Group 11           \\ \hline
+    \caption{User stories worked on in sprint 3 by all groups.}\label{table:user-stories-sprint-3}
+\end{longtable}
+
