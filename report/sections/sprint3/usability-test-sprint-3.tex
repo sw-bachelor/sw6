@@ -9,21 +9,29 @@ The purpose of the usability test was to have Emil perform a certain set of task
 These tasks would be performed mostly on his own without our help, and he would narrate his thoughts as he performed them.
 This was done to generate an impression of how intuitive the program was, and how easily he would be able to complete these fundamental tasks.
 We provided the required information for tasks that needed it, such as username and password when logging in. 
-The tasks were as such:
-\begin{itemize}
-    \item 1 - Log into the system
-    \item 2 - Navigate to a certain citizen's week plan and determine the activities they would do on a certain day
-    \item 3 - Add an activity that symbolizes going to the toilet to this citizen's week plan on Monday
-    \item 4 - Move the newly added activity to Thursday, between the breakfast and playground activitites
-    \item 5 - Mark the newly added activity as completed
-    \item 6 - Determine the activities another citizen has to partake in on the Wednesday in a certain week plan connected to this new citizen
-    \item 7 - Make a new week plan for this citizen
-    \item 8 - Add a normal plan for a regular Monday as you might do at your job right now
-    \item 9 - Log out 
-\end{itemize}
+The tasks can be seen on \autoref{table:usability_tasks}.
+\begin{table}[H]
+    \small
+    \begin{tabular}{|p{1.3cm}|p{10cm}|p{1.8cm}|}
+    \hline
+    Task number      &Task                                                                                                                & Time      \\ \hline
+    1 & Log into the system                                                                                                               & 15 seconds  \\ \hline
+    2 & Navigate to a certain citizen's week plan and determine the activities they would do on a certain day                              & 15 seconds  \\ \hline
+    3 & Add an activity that symbolizes going to the toilet to this citizen's week plan on Monday                                          &  15 seconds \\ \hline
+    4 & Move the newly added activity to Thursday, between the breakfast and playground activitites                                        & 30 seconds   \\ \hline
+    5 & Mark the newly added activity as completed                                                                                            & 12 seconds   \\ \hline
+    6 & Determine the activities another citizen has to partake in on the Wednesday in a certain week plan connected to this new citizen     & 17 seconds   \\ \hline
+    7 & Make a new week plan for this citizen                                                                                                & 1 minute   \\ \hline
+    8 & Add a normal plan for a regular Monday as you might do at your job right now                                                          & 3 minutes   \\ \hline
+    9 & Log out                                                                                                                              & 30 seconds   \\ \hline
+    \end{tabular}
+    \caption{Tasks for the usability test and the time it took to complete the tasks.}\label{table:usability_tasks}
+\end{table}
+
 \noindent
 Emil did generally not struggle with these assignments.
-Most of the issues took around 15 seconds, with only assignments 4, 7 and 8 deviating from this.
+Most of the issues took around 15 seconds, with only assignments 4, 7, 8 and 9 deviating from this.
+\\
 Assignment 4 took him 30 seconds to complete.
 He made a mistake by pressing the activity once, opening the details page, rather than doing a \textit{long press} and dragging the activity.
 However, when narrating his thoughts as the assignment was being performed, he said that he expected to complete this assignment by performing a \textit{long press}.
@@ -37,9 +45,14 @@ After resolving the issue, he was confused about the image that has to be chosen
 This image is just used as an illustration for the week plan, but he thought it might be seen as a pictogram causing confusion.
 After this hurdle, he performed the task without issues.
 \\\\
-For assignment 8, he simply did not notice the log out button initially, causing it to take a little longer.
-After completing the assignments we asked Emil to fill out two regular days, such that we could examine how long it would take and what a typical day would look like. 
-Filling out a day with 18-20 activities took Emil around three minutes.
+For assignment 8, he did not have any major problems with completing his tasks even though it took around 3 minutes to complete.
+He did however have some issues finding the specific pictograms that he wanted.
+If he was not able to find a pictogram that he thought look appopiate, he was good at searching on another keyword to get another result. 
+An example could be that he searched for iPad, where there were no good results, but then he quickly changed the search to tablet, and found a fitting pictogram.
+He added 18 pictograms to monday, and explained that 18-20 pictograms probably would be around the amount of pictograms that would be in a day.
+He also told us, that the following days in the week typically would be very identical only with small adjustments.
+\\\\
+For assignment 9, he simply did not notice the log out button initially, causing it to take a little longer.
 
 \subsection{Clarifying questions}
 Upon completing the test we posed some clarifying questions to examine his opinion of the program.
@@ -67,9 +80,13 @@ The guardian would be able to choose that the timer should be locked when adding
 
 \subsection{Prototype feedback}
 After the test and the questions, we presented the updated and new prototypes from the sprint.
-These can be seen in section \todo{REF TILSPIRINT 3 PROTOTYPER}.
+These can be seen in \autoref{sprint-3-prototypes}.
 Emil thought that they all looked adequate and simple, and did not have many comments in regards to improvements.
 None of the prototypes were denied or described as unacceptable.
+As we made two protoypes for copying multiple activities to other days, we asked him which one he prefered.
+These prototypes can be seen on \autoref{fig:mark_mode_copy_dropdown_and_checkbox}.
+The difference on the prototypes is that one has a dropdown menu, and the other has a checkbox for each day.
+He prefered \autoref{fig:mark_mode_copy_checkbox}, as it was easier to copy to multiple days.
 The prototype for adding new pictograms from the phone gallery generated a new discussion.
 Emil thought it would be useful to have a priority ranking system on pictograms when one searches for them.
 You might have a large amount of pictograms, but realistically a core few would be heavily used.
