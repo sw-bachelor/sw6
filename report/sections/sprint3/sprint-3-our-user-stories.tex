@@ -39,7 +39,7 @@ We cleaned up the initial implementation of it, moving all the code related to i
 \autoref{lst:appbarbuild} receives a context from which it updates the icons through the \texttt{updateIcons} method in the toolbar BLoc, which can be seen in \autoref{lst:updateicons}.
 Within the \texttt{AppBar} widget that is returned, the icons are defined through the list of \texttt{IconButtons} on line 8.
 \texttt{IconButton} is an enum we created defining all possible icons.
-The order in which one inputs the arguments when instantiating the appbar determines in which order the icons are rendered on the page. 
+The order in which one inputs the arguments when instantiating the appbar determines the order in which the icons are rendered on the page. 
 
 \begin{lstlisting}[caption={Updating the icons in the appbar},label={lst:updateicons}]
   void updateIcons(List<AppBarIcon> icons, BuildContext context) {
@@ -67,7 +67,7 @@ It instantiates a list of the enum \texttt{IconButton}.
 If the input list of icons is null, no arguments have been given to the appbar, meaning it should be created with the standard icons, settings and logout.
 If any icons were defined, it uses the \texttt{\_addIconButton} method to add it.
 Finally a new \texttt{BehaviorSubject} is created and the list of now instantiated buttons are added to it.
-This is required for the appbar to update correctly whenever the icons that it is supposed to render changes.
+This is required for the appbar to update correctly whenever the icons that are supposed to be rendered change.
 
 \begin{lstlisting}[caption={Testing the appbar with certain icons},label={lst:appbaricontest}]
   testWidgets('Change to citizen button is displayed',
@@ -83,13 +83,16 @@ This is required for the appbar to update correctly whenever the icons that it i
   });
   
 \end{lstlisting}
+To ensure the quality of the code the GIRAF project requires tests to be written.
+\autoref{lst:appbaricontest} shows an example of one of the test constructed to achieve satisfactory coverage.
+This specific test tests that the \textit{Change to citizen} button is displayed correctly on the appbar when it is provided as an argument.
+This is done by instantiating a test widget of the appbar with the \textit{Change to citizen} icon on lines 2-7.
+Line 7 uses the \texttt{pumpWidget} method to render the UI of the given widget.
+Line 8 employs the \texttt{pump} method to rebuild the widget.
+If a button is pressed to change state, for example, Flutter will not automatically rebuild the environment to reflect the change.
+As such, we use the \texttt{pump} method to ensure that the environment is as expected.
+Finally we search for the tooltip of the icon to ensure it exists in the environment.
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=1\textwidth]{sprint-3-133.png}
-    \caption{The prototype for Weekplanner\#133}
-    \label{fig:proto-weekplanner133}
-  \end{figure}
 \subsection{Weekplanner\#92}
 This user story was relatively simple.
 After discussing the issue of fonts with the customers, we were made aware that they wanted a font as close to text regularly written by humans as possible.
@@ -117,11 +120,50 @@ Whenever it was opened, an exception would be thrown.
 We deduced that it was related to the pictogram images. 
 When the application would get these the exception would be thrown.
 The issue turned out to be related to a custom widget called \texttt{PictogramImage}.
-To change this, 
+When we used the \texttt{PictogramImage} widget, we could not define a width or height.
+When these were undefined, it would default to 0 and throw the exception.
+To change this, we swapped from using the \texttt{PictogramImage} custom widget.
 
-
-f,lexbox to set heiught or width, otherwise it defaults to 0 and blows up
-
-Gesturedetector just lets the widget detect contact.
-
-PiuctogramImage is a custom widget made by us.
+\begin{lstlisting}[caption={An excerpt showing the use of FittedBox instead of PictogramImage},label={lst:exceptionfix}]
+  child: Card(
+    child: FittedBox(
+      child: Stack(
+        alignment: AlignmentDirectional.center,
+        children: <Widget>[
+          SizedBox(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.width,
+            child: FittedBox(
+              child: _getPictogram(activities[index]),
+            ),
+          ),
+          Icon(
+            Icons.check,
+            key: const Key('IconComplete'),
+            size: MediaQuery.of(context).size.width,
+            color: Colors.green,
+          ),
+        ],
+      ),
+    ),
+\end{lstlisting}
+As can be seen on line 2 of \autoref{lst:exceptionfix} we swapped to using a \texttt{FittedBox} widget. This widget lets us define a child widget called \texttt{SizedBox} on line 6, in which we can properly define the size of the box. This avoids the exception.
+We also updated the method for accessing the details of a pictogram.
+This method was changed to get the data from the \texttt{PictogramImage} to ensure it was properly retrieved even if they were shown through the \texttt{FittedBox} widgets on the week plan screen.
+\begin{lstlisting}[caption={The getPictogram method to retrieve the details of a pictogram},label={lst:getPictogram}]
+  Widget _getPictogram(ActivityModel activity) {
+    final PictogramImageBloc bloc = di.getDependency<PictogramImageBloc>();
+    bloc.loadPictogramById(activity.pictogram.id);
+    return StreamBuilder<Image>(
+      stream: bloc.image,
+      builder: (BuildContext context, AsyncSnapshot<Image> snapshot) {
+        if (snapshot.data == null) {
+          return const CircularProgressIndicator();
+        }
+        return Container(
+          child: snapshot.data, 
+          key: const Key('PictogramImage'));
+      },
+    );
+  }
+\end{lstlisting}
