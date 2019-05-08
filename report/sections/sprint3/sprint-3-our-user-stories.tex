@@ -150,6 +150,7 @@ To change this, we swapped from using the \texttt{PictogramImage} custom widget.
 As can be seen on line 2 of \autoref{lst:exceptionfix} we swapped to using a \texttt{FittedBox} widget. This widget lets us define a child widget called \texttt{SizedBox} on line 6, in which we can properly define the size of the box. This avoids the exception.
 We also updated the method for accessing the details of a pictogram.
 This method was changed to get the data from the \texttt{PictogramImage} to ensure it was properly retrieved even if they were shown through the \texttt{FittedBox} widgets on the week plan screen.
+This method can be seen on \autoref{lst:getPictogram}.
 \begin{lstlisting}[caption={The getPictogram method to retrieve the details of a pictogram},label={lst:getPictogram}]
   Widget _getPictogram(ActivityModel activity) {
     final PictogramImageBloc bloc = di.getDependency<PictogramImageBloc>();
@@ -167,3 +168,5 @@ This method was changed to get the data from the \texttt{PictogramImage} to ensu
     );
   }
 \end{lstlisting}
+\autoref{lst:getPictogram} makes use of the \texttt{BLoC} created for pictograms to load one by its id.
+It then returns the corresponding data as a \texttt{container} widget or shows a progress indicator that the data retrieval is in progress.
