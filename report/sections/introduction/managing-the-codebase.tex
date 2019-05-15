@@ -1,0 +1,11 @@
+\section{Managing the codebase}
+As mentioned in \autoref{sec:introduction-product-vision}, one of our goals was to migrate documentation from Phrabricator to GitHub and also have the codebase be hosted on GitHub instead of GitLab. We had different parts of the codebase in different repositories
+
+\begin{itemize}
+    \item \textbf{web-api:} The repository containing the backend API written in C\# using the dotnet-core framework.
+    \item \textbf{weekplanner:} The repository containing the code for the frontend of the weekplanner application written in Dart using the Flutter framework. 
+    \item \textbf{api_client:} The repository containing the API, written in Dart, which communicates with the web-api. Used in the weekplanner to request data from the database through the backend endpoints.
+    \item \textbf{wiki:} The repository containing all the documentation for the GIRAF project. 
+\end{itemize}
+
+\subsection{GitFlow}
