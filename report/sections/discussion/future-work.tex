@@ -13,6 +13,7 @@ These are the tasks of highest priority for the GIRAF project that would add the
     \item Weekplanner\#200 As a guardian I would like for the week plans to be sorted consistently every time I look at the week plans for a specific citizen
     \item Weekplanner\#220 As a guardian I would like to be able to create a choice board so that I can create an activity where the citizen can make a choice between multiple activities 
     \item Weekplanner\#233 Week names split into multiple lines if the display resolution is not high enough 
+    \item Weekplanner\#245 Show error on pictogram upload failed
 \end{itemize}
 
 \noindent
@@ -35,26 +36,30 @@ This is due to them recognizing the entire word and not recognizing the individu
 If the word is split onto two lines, then it can be incomprehensible for them.
 This is something that Emil pointed out, pointing out that this bug is important to fix.
 
+\textit{Weekplanner\#245} it is important to give feedback when errors ocours. 
+The user will not know what happend if an error ocours, and that will leave frustration and will give the user a feeling that the application is unstable.
+As the customers specified as being extremely important in \autoref{presentation-from-birken} was that the application needs to be stable.
+
 \subsection{High prioritized tasks}
 These user stories are prioritized as high. 
 This means that these user stories are very important, but do not give the same amount of value to the customer as the highest prioritized user stories.
 \begin{itemize}
-    \item Weekplanner\#10 As a citizen I would like to disable colors in the app so that it does not overstimulate me
+    \item Weekplanner\#9 As a guardian, I would like that the app is fully available offline so that I can still use it if the internet is down
     \item Weekplanner\#15 As a guardian I would like to be able to choose how many days a citizen can see at a time on their weekplanner, so that it fits their personal preference 
     \item Weekplanner\#62 As a guardian I would like to be able to remove a timer from an activity so that the activity is no longer time specific
     \item Weekplanner\#162 As a guardian I would like to be able to setup a template week so that I don't have to duplicate the same week plan  
     \item Weekplanner\#177 As a guardian I would like the week plans on "vælg ugeplan" screen to show the week and year of each plan so that I can easily find the right plan 
     \item Weekplanner\#221 As a guardian I would like to be able to lock a citizens timer so that they can not pause or stop them once they are started
     \item Weekplanner\#227 As a guardian, I would like the search for pictograms to be ordered by how popular a pictogram is, so that I can find the most commonly used pictogram quickly
+    \item Weekplanner\#264 As a citizen I would like a ding sound to play when my timer is completed so that I can hear that I'm done with my activity
+    \item Weekplanner\#265 As a guardian I would like an error message to be shown if I try to log in while I'm offline so that I know that I'm offline
 \end{itemize}
 \noindent
-\textit{Weekplanner\#10} gives some citzens a better experience when looking at the weekplanner. 
-Some citizens will get overwhelmed by the amount of colors in the application and can get confused by them. 
-This function is however only needed for a few citizens, but the application would be less useful for them if they are unable to understand the pictograms due to having too many colors, or avoid them being overwhelmed by the different colors used for the specific days.
+\textit{Weekplanner\#9} purpose is to make the application useful even when they are not near an available WIFI. 
+The citizens also get very frustrated when the internet is not usable, and this will increase their frustration if they are not able to see their schedule.
 \\\\
-\textit{Weekplanner\#15} is linked very closely with \textit{Weekplanner\#10}. 
-It is the same reasoning behind this user story, as some citizens will be overwhelmed by too many days with a lot of pictograms. 
-They will be unable to relate to the pictograms and understand which day it is.
+For \textit{Weekplanner\#15} it is important to show fever days to not overwhelm and confuse the citizens.
+They will be unable to relate to the pictograms and understand which day it is. because there is too much visual stimulation.
 As the citizens grow older and get used to the system, the guardians would usually give them more days to look at.
 \\\\
 For \textit{Weekplanner\#62} it is important to be able to remove timers from activities. 
@@ -80,16 +85,25 @@ During the usability test described in \autoref{usability-test-sprint-3}, Emil s
 To make the search function better he suggested that it could be sorted by the popularity of it, so that the guardians tend to pick the same pictograms.
 The reason why it is important to use the same pictograms is because that the citizens have a specific understanding of the pictograms.
 
+The purpose of \textit{Weekplanner\#264} is to enhance the timer functionality.
+When the citizens use their current timer, they get a ding sound when the timer is completed.
+The citizens will not always pay attention timer, so for them to realise that the timer is up, they need to get a ding sound.
+
+\textit{Weekplanner\#265} is a requirement we discovered in \autoref{usability-test-14-05}. 
+Currently the user will get an error message that either the username or password is wrong. 
+This will get the user to try logging in again instead of solving the problem with the internet connection.
+This will again leave frustration and give the user an experience that the program is unstable.
+
 \subsection{Sprint 2020S1}
 For sprint 1 in 2020 we suggest that the following user stories are being worked on:
 
 \begin{itemize}
     \item Weekplanner\#15 As a guardian I would like to be able to choose how many days a citizen can see at a time on their weekplanner, so that it fits their personal preference 
-    \item Weekplanner\#62 As a guardian I would like to be able to remove a timer from an activity so that the activity is no longer time specific
     \item Weekplanner\#177 As a guardian I would like the week plans on "vælg ugeplan" screen to show the week and year of each plan so that I can easily find the right plan 
-    \item Weekplanner\#227 As a guardian, I would like the search for pictograms to be ordered by how popular a pictogram is, so that I can find the most commonly used pictogram quickly
-    \item Weekplanner\#220 As a guardian I would like to be able to create a choice board so that I can create an activity where the citizen can make a choice between multiple activities 
+    \item Weekplanner\#200 As a guardian I would like for the week plans to be sorted consistently every time I look at the week plans for a specific citizen
+    \item Weekplanner\#202 As a guardian I would like to be able to edit weekplan details (name, picture) so that I can fix mistakes I made
     \item Weekplanner\#233 Week names split into multiple lines if the display resolution is not high enough 
+    \item Weekplanner\#264 As a citizen I would like a ding sound to play when my timer is completed so that I can hear that I'm done with my activity
 \end{itemize}
 \noindent
 All of the mentioned user stories are either prioritized as highest or high. 
