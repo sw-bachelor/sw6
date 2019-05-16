@@ -1,22 +1,21 @@
-\section{Scrum of Scrums}\label{scrum-of-scrums}
-Scrum is a framework that is used extensively in software projects.
+\section{The GIRAF process}\label{the-giraf-process}
+Scrum is a framework that is used extensively in software development projects.
 It is an agile approach to working with complex and changing problems where a normal waterfall model does not work optimally.
-In this project all groups used Scrum of Scrums (SoS) to structure the groups across the whole GIRAF team.
-SoS is a modification of Scrum made to scale it better for bigger teams.
-Many of the activities are similar to normal Scrum.
-The sprint process of SoS works in the following way:
+
+In this project all groups use a modified version of scrum to structure the groups across the whole GIRAF team.
+We originally used Scrum of Scrums which is already a modified version of scrum, but the process group ended up modifying it even further to better fit our workflow.
+The sprint structure for our process worked like this:
 
 \begin{itemize}
-    \item Sprint Planning/Sprint Introduction
-    \item SoS Stand Up
+    \item Sprint Introduction
+    \item Stand Up meetings
     \item Skill Group Meetings
     \item Release Preparation
-    \item Sprint Review
-    \item Sprint Retrospective
     \item Release Party
+    \item Sprint Retrospective
 \end{itemize}
 
-\subsection{Sprint Planning} \label{subsec:SoS-sprint-planning}
+\subsection{Sprint Planning} \label{subsec:sprint-planning}
 Initially the GIRAF project used sprint planning but later changed to use sprint introduction instead.
 Sprint introduction is described after this section.
 \\
@@ -38,22 +37,26 @@ Afterwards, the groups will look at the user stories that are in the the backlog
 Then the user stories are distributed among the groups as fair as possible such that each group has one user story.
 Each group then tries to approximate the time required to solve the user story and whether or not it should be split into smaller tasks.
 
-\subsection{Sprint Introduction} \label{subsec:SoS-sprint-introduction}
-Sprint introduction is a meeting on the first day of a new sprint where all groups and their members are expected to show. 
-The start of the meeting takes the same form as the start of the sprint planning described in \autoref{subsec:SoS-sprint-planning}.
-\\
-\\
-Afterwards, the groups then choose a user story from the highest prioritized user stories in a first come, first served manner.
-Before the groups can begin working, they have to get their choice approved by the PO group.
-When all the groups have had their choices approved, the sprint introduction is over and development can begin.
 
-\subsection{SoS Stand Up}
-During a normal sprint week there will be at least one SoS Stand Up meeting.
+\subsection{Sprint Introduction} \label{subsec:sprint-introduction}
+Sprint introduction is a meeting on the first day of a new sprint where all groups and their members are expected to show. 
+The meeting starts with a presentation from the PO group where they present the project vision, the sprint vision and the user stories the PO group want to be implemented throughout the sprint.
+The project vision is overall vision of what the PO group wants to achieve at the end of the semester.
+The sprint vision is what the PO group wants to achieve throughout the coming sprint.
+The user stories that are presented are chosen based on feedback from the customer and what the PO groups deems is most essential for the application at the current time.
+\\
+\\
+After the meeting, the groups choose a user story from the presented user stories in a first come, first served manner.
+Before the groups can begin working, they have to get their choice approved by the PO group.
+When the groups have had their choice approved by the PO group they can start working on their user story.
+
+\subsection{Stand Up}
+During a normal sprint week there will be one or two Stand Up meetings.
 All groups should send one person to these meetings, but if necessary more can attend, though the goal should be to send just the one.
 A \textit{Stand Up} meeting takes at most 15 minutes.
 When 15 minutes have passed, the meeting ends no matter what.
-\newline
-\newline
+\\
+\\
 During the meeting each group should present what they have worked on, are working on, and what they will work on until the next meeting.
 They should also notify the others of what problems they faced or are facing, and if they are about to introduce something new that could affect other groups.
 Each group representative presents in turns, if there is time afterwards people may ask questions to the other groups.
@@ -65,13 +68,12 @@ During previous years the responsibility of the project was spread out across th
 Most groups had one area of responsibility.
 These were frontend, backend and server.
 One group also worked as PO and one as scrum masters beside their normal area of responsibility.
-This spread of responsibility seemed to have been inefficient and caused the groups to feel less responsibility for the project as a whole.
+This spread of responsibility seemed to be inefficient and caused the groups to feel less responsibility for the project as a whole.
 \newline
 \newline
-Therefore, the groups were advised to split into skill groups, where each group has at least one specialist in each of the areas of responsibility.
-This, in theory, should give all groups a sense of responsibility for the project as a whole.
-\newline
-\newline
+
+In our semester we had full stack groups instead, where all groups where responsible for frontend, backend and server. Every group then had one specialist in each of the areas of responsibility.
+This, in theory, should give all groups a sense of responsibility for the project as a whole.\\
 All the specialist in the same area then become members of skill groups, so that decisions and experience can be shared across all the regular groups in the project.
 The skill groups decide for themselves when they choose to have meetings, but usually they meet once a week or more if there are certain difficulties that need to be fixed.
 The skill groups are ultimately responsible for the decision making regarding their area, such as which framework to use or how the code should be standardized.
@@ -79,30 +81,24 @@ The skill groups are ultimately responsible for the decision making regarding th
 \subsection{Release Preparation}
 As the sprint comes to an end the sprint goals should hopefully have been completed.
 This means a lot of new features have been made which need to be added to the release version of the program.
-Four days before the sprint ends the PO group opens a release branch.
-This branch is for all the features which the PO group have accepted as finished and all the groups are responsible for their own code functioning properly with the rest of the newly added features.
+Two working days before the sprint ends the PO group opens a release branch.
+This branch is for all the features which the PO group have accepted as finished.
+All groups are assigned to review user stories that have been implemented throughout the sprint and creating issues if they find any bugs or anything that is lackluster.
+The group that implemented the user story originally is then responsible for fixing these issues.
 
-
-\subsection{Sprint Review} \label{subsec:SoS-sprint-review}
-The sprint review is a meeting at the end of a sprint. 
-Each group should be represented by one of the group members. 
-It can be an advantage to have multiple members of the PO group present if questions about some of the features that have been developed should arise.
-Each group presents the current state of their work, gives feedback on the quality of the product, as well as discuss new issues that may have arisen and could be included in the next sprint.
-After all the groups have presented there is an open discussion about the projects state and the work of the different groups.
+\subsection{Release Party}
+The release party is an optional social gathering celebrating the new release. 
+The state of the application is presented so that everyone can see what has been accomplished throughout the sprint.
+This is a chance for all the groups to socialize with each other and feel a sense of pride due to the new release.
 
 \subsection{Sprint Retrospective}
-The sprint retrospective is a big meeting usually held right after the sprint review.
-All members of all groups should participate in this meeting.
+The sprint retrospective is a big meeting usually held the first working day after the release party.
+Every members of all of the groups should participate in this meeting.
 The goal of the sprint retrospective is to have a discussion about the process of the sprint, what was good, what was bad, new ideas etc.
 All participants are split into discussion groups where all groups on the project should have at least one representative.
 \newline
 \newline
-Each discussion group then talks about their experiences during the sprint and comes up with feedback and new ideas that could be implemented into SoS.
+Each discussion group then talks about their experiences during the sprint and give feedback and new ideas that could be implemented into the process.
 All the topics that are being discussed in the discussion groups are noted, and a list of proposals for things that should change for the next sprint is compiled.
-Each attendee has three votes that can be used to vote for what they think are good proposals.
-Afterwards the process group takes the most voted for proposals and decides if some version of these should be incorporated into the new sprint.
-
-\subsection{Release Party}
-The release party is an optional social gathering celebrating the new release. 
-This is a chance for all the groups to socialize with each other and feel a sense of pride due to the new release.
+Afterwards the process group creates a questionnaire with all of the feedback and everyone in the GIRAF project then has the chance to answer on how much they agree with the points that were raised in the discussion groups.
 
