@@ -1,1 +1,45 @@
 \section{Sprint review}
+Just as in sprint 3, we did not have an official sprint review for this sprint, but we still evaluated what had been completed during the sprint internally in the PO group.
+For this sprint, as mentioned in the introduction in \autoref{sec:sprint-4-introduction}, we delegated the user stories to the different groups to make sure that the most necessary stories would be completed. There were also some leftover user stories from sprint 3 that the development groups had to finish.
+\\
+The user stories for sprint 4 and their status can be seen on \autoref{table:sprint-4-review}.
+\begin{longtable}{|p{2.9cm}|p{8cm}|p{2cm}|p{2cm}|}
+    \hline
+    Issue ID        & Tasks                                                                                                                                                                                    & Assigned to  & Status   \\ \hline
+    Weekplanner\#2 & As a citizen I want a time timer so that I know how long is left of my current activity                                                                                                   & Group 9      & Completed  \\ \hline
+    Weekplanner\#58 & As a guardian I would like to be able to mark an activity as cancelled so that I can let the citizen know that an activity has been cancelled                                            & Group 8      & Completed   \\ \hline
+    Weekplanner\#59 & As a guardian I would like to be able to cancel and copy multiple activities at once by marking them so that I don't have to manually do it for each activity I want to change           & Group 13     & Completed   \\ \hline
+    Weekplanner\#61 & As a guardian I would like to be able to add a timer to an activity so that the citizen can see how much time is to be spent on this activity                                            & Group 9      & Completed    \\ \hline
+    Weekplanner\#62 & As a guardian I would like to be able to remove a timer from an activity so that the activity is no longer time specific                                                                 & Group 9      & Completed    \\ \hline
+    Weekplanner\#112 & Entering an incorrect password when changing from citizen to guardian logs out the user                                                                                                 & Group 2      & Completed    \\ \hline
+    Weekplanner\#128 & When changing from citizen to guardian, the password is saved in the input field                                                                                                        & Group 11     & Completed    \\ \hline
+    Weekplanner\#135 & As a guardian, I would like a way to add pictograms by choosing an image from my phone gallery so that I can quickly improvise if the system does not have the activity I want          & Group 11     & Completed   \\ \hline
+    Weekplanner\#157 & As a user I want to be prompted an error message when failing to login correctly during a change from guardian to citizen                                                               & Group 2      & Completed    \\ \hline
+    Weekplanner\#198 & As a guardian I would like to be able to delete week plans so that I can avoid clutter and not be overwhelmed                                                                           & Group 13     & Completed    \\ \hline
+    Weekplanner\#214 & Change buttons on NewWeekplanScreen                                                                                                                                                     & Group 8      & Completed    \\ \hline
+    Web-API\#9 & Make new endpoint to get all weekplans for a citizen in a single request so that we dont have to make a new request for each weekplan                                                                                                                                                      & Group 11      & Completed    \\ \hline
+    Web-API\#17 & New Add and Delete Activity Endpoints                                                                                                                                                      & Backend metagroup     & Completed    \\ \hline
+    Web-API\#18 & An update activity endpoint                                                                                                                                                      & Group 13     & Completed    \\ \hline
+    Web-API\#29 & Unable to log in on the admin panel                                                                                                                                                       & Group 12     & Completed    \\ \hline
+    Web-API\#32 & Updating timer through the update activity endpoint and adding Timer to the database                                                                                                                                                       & Group 9     & Completed    \\ \hline
+    \caption{Status of all user stories for sprint 4.}\label{table:sprint-4-review}
+\end{longtable}
+\noindent
+As can be seen on \autoref{table:sprint-4-review}, all of the user stories were completed. Furthermore, it shoud be mentioned that for each \texttt{web-api} issue completed that introduced a new endpoint, there was also an equivalent endpoint made in the \texttt{api-client} to allow communication between the backend and the frontend.
+
+\subsection{PO goals review}
+All the sprint goals for sprint 4 were completed.
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|}
+    \hline
+    Goals:  & Status \\ \hline
+     Create prototypes for new user stories for next year & Completed\\ \hline
+     Write advice for next year's PO  & Completed  \\ \hline
+     Conduct usability test & Completed  \\ \hline
+     General documentation for handover & Completed \\ \hline
+     Prepare final release & Completed  \\ \hline
+    \end{tabular}
+    \caption{Goals for the PO group in sprint 4}
+\end{table}
+
