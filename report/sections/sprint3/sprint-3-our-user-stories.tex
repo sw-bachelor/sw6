@@ -13,7 +13,7 @@ This evolved however after an initial pull request was created.
 Based on feedback from the development groups and our workload, we decided to extend the issue to be the creation of a easily implementable navigation bar.
 This navigation bar should have a default state, and allow for developers to include arguments defining which icons should be on the bar.
 
-\begin{lstlisting}[caption={Building the appbar},label={lst:appbarbuild}]
+\begin{lstlisting}[caption={Building the appbar},label={lst:appbarbuild},language={[Sharp]C}]
   @override
   Widget build(BuildContext context) {
     toolbarBloc.updateIcons(appBarIcons, context);
@@ -41,7 +41,7 @@ Within the \texttt{AppBar} widget that is returned, the icons are defined throug
 \texttt{IconButton} is an enum we created defining all possible icons.
 The order in which one inputs the arguments when instantiating the appbar determines the order in which the icons are rendered on the page. 
 
-\begin{lstlisting}[caption={Updating the icons in the appbar},label={lst:updateicons}]
+\begin{lstlisting}[caption={Updating the icons in the appbar},label={lst:updateicons},language={[Sharp]C}]
   void updateIcons(List<AppBarIcon> icons, BuildContext context) {
   List<IconButton> _iconsToAdd;
   _iconsToAdd = <IconButton>[];
@@ -69,7 +69,7 @@ If any icons were defined, it uses the \texttt{\_addIconButton} method to add it
 Finally a new \texttt{BehaviorSubject} is created and the list of now instantiated buttons are added to it.
 This is required for the appbar to update correctly whenever the icons that are supposed to be rendered change.
 
-\begin{lstlisting}[caption={Testing the appbar with certain icons},label={lst:appbaricontest}]
+\begin{lstlisting}[caption={Testing the appbar with certain icons},label={lst:appbaricontest},language={[Sharp]C}]
   testWidgets('Change to citizen button is displayed',
   (WidgetTester tester) async {
   final GirafAppBar girafAppBar = GirafAppBar(
@@ -99,7 +99,7 @@ After discussing the issue of fonts with the customers, we were made aware that 
 This required a change of font.
 To make a new font the default used by the application, we added it to the theme settings when the application is initially run:
 
-\begin{lstlisting}[caption={An excerpt of the run method},label={lst:fontfamily}]
+\begin{lstlisting}[caption={An excerpt of the run method},label={lst:fontfamily},language={[Sharp]C}]
   void _runApp() {
   runApp(MaterialApp(
       title: 'Weekplanner',
@@ -108,7 +108,7 @@ To make a new font the default used by the application, we added it to the theme
 \autoref{lst:fontfamily} shows the beginning of the \texttt{\_runApp} method.
 Changing the default font was done by adding the \texttt{fontFamily} to the theme.
 The font family was defined in the \texttt{pubspec} file, which is where packages are specified in Flutter.
-\begin{lstlisting}[caption={An excerpt of the pubspec file. Multiple assets are in the file for different styles, such as regular font.},label={lst:fontpubspec}]
+\begin{lstlisting}[caption={An excerpt of the pubspec file. Multiple assets are in the file for different styles, such as regular font.},label={lst:fontpubspec},language={[Sharp]C}]
   fonts:
   - family: 'Quicksand'
     fonts:
@@ -124,7 +124,7 @@ When we used the \texttt{PictogramImage} widget, we could not define a width or 
 When these were undefined, it would default to 0 and throw the exception.
 To change this, we swapped from using the \texttt{PictogramImage} custom widget.
 
-\begin{lstlisting}[caption={An excerpt showing the use of FittedBox instead of PictogramImage},label={lst:exceptionfix}]
+\begin{lstlisting}[caption={An excerpt showing the use of FittedBox instead of PictogramImage},label={lst:exceptionfix},language={[Sharp]C}]
   child: Card(
     child: FittedBox(
       child: Stack(
@@ -151,7 +151,7 @@ As can be seen on line 2 of \autoref{lst:exceptionfix} we swapped to using a \te
 We also updated the method for accessing the details of a pictogram.
 This method was changed to get the data from the \texttt{PictogramImage} to ensure it was properly retrieved even if they were shown through the \texttt{FittedBox} widgets on the week plan screen.
 This method can be seen on \autoref{lst:getPictogram}.
-\begin{lstlisting}[caption={The getPictogram method to retrieve the details of a pictogram},label={lst:getPictogram}]
+\begin{lstlisting}[caption={The getPictogram method to retrieve the details of a pictogram},label={lst:getPictogram},language={[Sharp]C}]
   Widget _getPictogram(ActivityModel activity) {
     final PictogramImageBloc bloc = di.getDependency<PictogramImageBloc>();
     bloc.loadPictogramById(activity.pictogram.id);
