@@ -1,0 +1,140 @@
+ \section{Prototype work}
+For this sprint we created a few new prototypes as well as refactored some of the older designs. 
+Most of the new prototypes were created based on the feedback we received from the usability test we held in sprint 3 (see \autoref{usability-test-sprint-3})
+
+\subsection{Choiceboard}
+The choiceboard was requested by Emil from Egebakken during the usability test. 
+When adding an activity, it should be possible to create a choiceboard of multiple activities. 
+As seen on \autoref{subfig:choiceboard_1}, there is a button to add a choiceboard on the show activity screen. 
+On \autoref{subfig:choiceboard_2} the guardian can add more activities to the choiceboard.
+\begin{figure}[H]
+    \begin{subfigure}{0.5\textwidth}
+    \includegraphics[width=1\linewidth, height=5cm]{choiceboard_1.png}
+    \caption{Adding choiceboard to an activity}
+    \label{subfig:choiceboard_1}
+    \end{subfigure}
+    \begin{subfigure}{0.5\textwidth}
+    \includegraphics[width=1\linewidth, height=5cm]{choiceboard_2.png}
+    \caption{Adding more activities to a choiceboard}
+    \label{subfig:choiceboard_2}
+    \end{subfigure} 
+    \caption{}
+    \label{fig:choiceboardadd}
+\end{figure}
+\noindent
+When the choiceboard has been created, it should be indicated on the citizen's weekplan that a choice can be made between a number of activities, as seen on \autoref{subfig:choiceboard_5}.
+\autoref{subfig:choiceboard_6} shows how it would look when the citizen taps the choiceboard to choose between the four activities.
+\begin{figure}[H]
+    \begin{subfigure}{0.5\textwidth}
+    \includegraphics[width=1\linewidth, height=5cm]{choiceboard_5.png}
+    \caption{Choiceboard as seen on the citizens view}
+    \label{subfig:choiceboard_5}
+    \end{subfigure}
+    \begin{subfigure}{0.5\textwidth}
+        \includegraphics[width=1\linewidth, height=5cm]{choiceboard_6.png}
+    \caption{Citizen chooses an activity from choiceboard}
+    \label{subfig:choiceboard_6}
+    \end{subfigure} 
+    \caption{}
+    \label{fig:choiceboardcitizen}
+\end{figure}
+
+\subsection{Lock timer}
+Emil also requested the ability to lock a timer during the usability test in sprint 3. 
+This would mean that the citizen should not be able to pause or stop that timer.
+On \autoref{subfig:lock_timer_1} the prototype has a checkbox to let the guardian choose to lock the timer when it is created.
+\autoref{subfig:lock_timer_3} illustrates how the locked timer has no pause button in the citizen view after the citizen has started it. 
+\begin{figure}[H]
+    \begin{subfigure}{0.5\textwidth}
+    \includegraphics[width=1\linewidth, height=5cm]{lock_timer_1.png}
+    \caption{Checkmark to lock timer}
+    \label{subfig:lock_timer_1}
+    \end{subfigure}
+    \begin{subfigure}{0.5\textwidth}
+        \includegraphics[width=1\linewidth, height=5cm]{lock_timer_3.png}
+    \caption{No pause button for citizen on the timer}
+    \label{subfig:lock_timer_3}
+    \end{subfigure} 
+    \caption{}
+    \label{fig:lock_timer}
+\end{figure}
+
+\subsection{Drag and drop activities}
+We learned during the usability test in sprint 3 that it was difficult to see where the pictogram would be placed when dragging and dropping it.
+Therefore, we created these prototypes that show how it could look when a pictogram is being repositioned.
+\autoref{subfig:drag_n_drop_2} shows the start of a drag and drop action.
+It indicates for each weekday where it can be placed. 
+On \autoref{subfig:drag_n_drop_3} the positions of the existing activities on a weekday are changed when dragging an activity between two existing activities to indicate where it would be positioned.
+\begin{figure}[H]
+    \begin{subfigure}{0.5\textwidth}
+    \includegraphics[width=1\linewidth, height=5cm]{drag_n_drop_2.png}
+    \caption{Dragging an activity}
+    \label{subfig:drag_n_drop_2}
+    \end{subfigure}
+    \begin{subfigure}{0.5\textwidth}
+        \includegraphics[width=1\linewidth, height=5cm]{drag_n_drop_3.png}
+    \caption{Indicatates where an activity would land when dropping between activities}
+    \label{subfig:drag_n_drop_3}
+    \end{subfigure} 
+    \caption{}
+    \label{fig:drag_n_drop}
+\end{figure}
+
+\subsection{Adding citizens}
+During one of the first interviews we had with the customers (\autoref{interview13-3}), we learned that they would like to be able add citizens through the application. 
+The first prototype on \autoref{subfig:add_citizen_1} has an icon on the choose citizen screen that can be tapped to create a new citizen.
+\autoref{subfig:add_citizen_2} shows the screen where a new citizen can be created by entering a name and adding a picture.
+\begin{figure}[H]
+    \begin{subfigure}{0.5\textwidth}
+    \includegraphics[width=1\linewidth, height=5cm]{add_citizen_1.png}
+    \caption{Icon to add new citizen}
+    \label{subfig:add_citizen_1}
+    \end{subfigure}
+    \begin{subfigure}{0.5\textwidth}
+        \includegraphics[width=1\linewidth, height=5cm]{add_citizen_2.png}
+    \caption{The screen where a new citizen can be created}
+    \label{subfig:add_citizen_2}
+    \end{subfigure} 
+    \caption{}
+    \label{fig:add_citizen}
+\end{figure}
+
+\subsection{Edit citizens}
+The guardians also needed to be able to edit their citizens, as the citizen could have changed class or be needing a new picture. 
+\autoref{subfig:edit_citizen_1} is the settings screen where the guardian can go and change the currently selected citizen's information. 
+\autoref{subfig:edit_citizen_2} shows the screen for changing the selected citizen's information.
+This screen should show the citizen's current name, picture and class.
+\begin{figure}[H]
+    \begin{subfigure}{0.5\textwidth}
+    \includegraphics[width=1\linewidth, height=5cm]{edit_citizen_1.png}
+    \caption{Settings screen where the guardian can go to the citizens edit screen}
+    \label{subfig:edit_citizen_1}
+    \end{subfigure}
+    \begin{subfigure}{0.5\textwidth}
+        \includegraphics[width=1\linewidth, height=5cm]{edit_citizen_2.png}
+    \caption{Edit citizen screen where name, picture and class can be changed}
+    \label{subfig:edit_citizen_2}
+    \end{subfigure} 
+    \caption{}
+    \label{fig:edit_citizen}
+\end{figure}
+
+\subsection{Deleting week plans}
+When testing the application we learned that deleting week plans was a much needed feature, because otherwise the screen could become cluttered with week plans, making it hard to find the ones that were relevant.
+We thought it would be intuitive to have week plan deletion work the same way as deleting activities, by pressing an edit button in the top bar and selecting the week plans to be deleted.
+\\\\
+On \autoref{subfig:delete_weekplan_2} the edit icon has been tapped so the bottom bar shows up, and a week plan has been marked. \autoref{subfig:delete_weekplan_3} shows the dialog after pressing the delete button in the bottom bar.
+\begin{figure}[H]
+    \begin{subfigure}{0.5\textwidth}
+    \includegraphics[width=1\linewidth, height=5cm]{delete_weekplan_2.png}
+    \caption{Mark week plans through the edit mode}
+    \label{subfig:delete_weekplan_2}
+    \end{subfigure}
+    \begin{subfigure}{0.5\textwidth}
+        \includegraphics[width=1\linewidth, height=5cm]{delete_weekplan_3.png}
+    \caption{Deleting the marked week plans}
+    \label{subfig:delete_weekplan_3}
+    \end{subfigure} 
+    \caption{}
+    \label{fig:delete_weekplan}
+\end{figure}
