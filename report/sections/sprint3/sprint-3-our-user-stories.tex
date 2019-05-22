@@ -1,5 +1,5 @@
-\section{Our assigned user stories}
-As described in \autoref{sprint-3-po-goals}, we had the goal of implementing the following three user stories.
+\section{Our assigned user stories}\label{sec:sprint-3-our-stories}
+As described in \autoref{sprint-3-po-goals}, we had the goal of implementing the following user stories:
 \begin{itemize}\label{item:our-stories-sprint-3}
     \item Weekplanner\#133 - "As a guardian I would like to be able to logout when I'm on the choose citizen page so that I can return to the login page"
     \item Weekplanner\#92 - "As a developer I would like the application to use a default font so that I can easily change it"
@@ -9,9 +9,9 @@ As described in \autoref{sprint-3-po-goals}, we had the goal of implementing the
 \subsection{Weekplanner\#133}
 The initial user story seemed simple to implement.
 It just defined that the guardian should have the ability to logout when on the choose citizen page.
-This evolved however after an initial pull request was created.
-Based on feedback from the development groups and our workload, we decided to extend the issue to be the creation of a easily implementable navigation bar.
-This navigation bar should have a default state, and allow for developers to include arguments defining which icons should be on the bar.
+However, this evolved after an initial pull request was created.
+Based on feedback from the development group who reviewed the pull request and our workload, we decided to extend the issue to be the creation of an easily implementable navigation bar.
+This navigation bar should have a default state, and allow for developers to include arguments defining which icons should be included.
 
 \begin{lstlisting}[caption={Building the appbar},label={lst:appbarbuild},language={[Sharp]C}]
   @override
@@ -34,12 +34,12 @@ This navigation bar should have a default state, and allow for developers to inc
         ]);
   }
 \end{lstlisting}
-\autoref{lst:appbarbuild} shows the way we created the application bar widget.
+\autoref{lst:appbarbuild} shows the way we implemented the application bar widget.
 We cleaned up the initial implementation of it, moving all the code related to instantiating icons to the \texttt{toolbar BLoC}.
-\autoref{lst:appbarbuild} receives a context from which it updates the icons through the \texttt{updateIcons} method in the toolbar BLoc, which can be seen in \autoref{lst:updateicons}.
+\autoref{lst:appbarbuild} receives a context from which it updates the icons through the \texttt{updateIcons} method in the toolbar BLoC, which can be seen in \autoref{lst:updateicons}.
 Within the \texttt{AppBar} widget that is returned, the icons are defined through the list of \texttt{IconButtons} on line 8.
-\texttt{IconButton} is an enum we created defining all possible icons.
-The order in which one inputs the arguments when instantiating the appbar determines the order in which the icons are rendered on the page. 
+\texttt{IconButton} is an \texttt{enum} we created defining all possible icons.
+The order in which one inputs the arguments when instantiating the navigation bar determines the order in which the icons are rendered on the page. 
 
 \begin{lstlisting}[caption={Updating the icons in the appbar},label={lst:updateicons},language={[Sharp]C}]
   void updateIcons(List<AppBarIcon> icons, BuildContext context) {
@@ -64,10 +64,10 @@ The order in which one inputs the arguments when instantiating the appbar determ
 \autoref{lst:updateicons} shows the method used in the \texttt{toolbarBloc}.
 It takes a list of icons and a context as input.
 It instantiates a list of the enum \texttt{IconButton}.
-If the input list of icons is null, no arguments have been given to the appbar, meaning it should be created with the standard icons, settings and logout.
+If the input list of icons is null, no arguments have been given to the navigation bar, meaning it should be created with the standard icons, settings and logout.
 If any icons were defined, it uses the \texttt{\_addIconButton} method to add it.
-Finally a new \texttt{BehaviorSubject} is created and the list of now instantiated buttons are added to it.
-This is required for the appbar to update correctly whenever the icons that are supposed to be rendered change.
+Finally a new \texttt{BehaviorSubject} was created and the list of now instantiated buttons were added to it.
+This was required for the navigation bar to update correctly whenever the icons that should be rendered changed.
 
 \begin{lstlisting}[caption={Testing the appbar with certain icons},label={lst:appbaricontest},language={[Sharp]C}]
   testWidgets('Change to citizen button is displayed',
@@ -85,13 +85,12 @@ This is required for the appbar to update correctly whenever the icons that are 
 \end{lstlisting}
 To ensure the quality of the code the GIRAF project requires tests to be written.
 \autoref{lst:appbaricontest} shows an example of one of the test constructed to achieve satisfactory coverage.
-This specific test tests that the \textit{Change to citizen} button is displayed correctly on the appbar when it is provided as an argument.
-This is done by instantiating a test widget of the appbar with the \textit{Change to citizen} icon on lines 2-7.
+This specific test tests that the \textit{Change to citizen} button is displayed correctly on the navigation bar when it is provided as an argument.
+This is done by instantiating a test widget of the navigation bar with the \textit{Change to citizen} icon on lines 2-7.
 Line 7 uses the \texttt{pumpWidget} method to render the UI of the given widget.
 Line 8 employs the \texttt{pump} method to rebuild the widget.
 If a button is pressed to change state, for example, Flutter will not automatically rebuild the environment to reflect the change.
-As such, we use the \texttt{pump} method to ensure that the environment is as expected.
-Finally we search for the tooltip of the icon to ensure it exists in the environment.
+Finally, we search for the tooltip of the icon to ensure it exists in the environment.
 
 \subsection{Weekplanner\#92}
 This user story was relatively simple.
@@ -114,15 +113,15 @@ The font family was defined in the \texttt{pubspec} file, which is where package
     fonts:
       - asset: assets/fonts/Quicksand-Bold.ttf
 \end{lstlisting}
+
 \subsection{Weekplanner\#125}
 This issue related to the main screen of the weekplanner application.
 Whenever it was opened, an exception would be thrown.
 We deduced that it was related to the pictogram images. 
-When the application would get these the exception would be thrown.
 The issue turned out to be related to a custom widget called \texttt{PictogramImage}.
 When we used the \texttt{PictogramImage} widget, we could not define a width or height.
 When these were undefined, it would default to 0 and throw the exception.
-To change this, we swapped from using the \texttt{PictogramImage} custom widget.
+To change this, we stopped using the \texttt{PictogramImage} custom widget.
 
 \begin{lstlisting}[caption={An excerpt showing the use of FittedBox instead of PictogramImage},label={lst:exceptionfix},language={[Sharp]C}]
   child: Card(
@@ -147,7 +146,7 @@ To change this, we swapped from using the \texttt{PictogramImage} custom widget.
       ),
     ),
 \end{lstlisting}
-As can be seen on line 2 of \autoref{lst:exceptionfix} we swapped to using a \texttt{FittedBox} widget. This widget lets us define a child widget called \texttt{SizedBox} on line 6, in which we can properly define the size of the box. This avoids the exception.
+As can be seen on line 2 of \autoref{lst:exceptionfix} we swapped to using a \texttt{FittedBox} widget. This widget lets us define a child widget called \texttt{SizedBox} on line 6, in which we can properly define the size of the box.
 We also updated the method for accessing the details of a pictogram.
 This method was changed to get the data from the \texttt{PictogramImage} to ensure it was properly retrieved even if they were shown through the \texttt{FittedBox} widgets on the week plan screen.
 This method can be seen on \autoref{lst:getPictogram}.
@@ -169,4 +168,4 @@ This method can be seen on \autoref{lst:getPictogram}.
   }
 \end{lstlisting}
 \autoref{lst:getPictogram} makes use of the \texttt{BLoC} created for pictograms to load one by its id.
-It then returns the corresponding data as a \texttt{container} widget or shows a progress indicator that the data retrieval is in progress.
+It then returns the corresponding data as a \texttt{Container} widget or shows a progress indicator that the data retrieval is in progress.

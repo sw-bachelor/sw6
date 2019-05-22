@@ -1,6 +1,6 @@
 \section{Our assigned user stories}\label{our-assigned-user-stories-sprint-2}
-For sprint 2 we were assigned two user stories to implement on top of our responsibilities as PO.
-In the following section we give a short introduction to Flutter, the work flow followed by the GIRAF project and how we implemented the stories.
+For sprint 2 we were assigned two user stories to implement.
+In the following section we give a short introduction to Flutter and how we implemented the stories.
 
 \subsection{Introduction to Flutter}
 Flutter is built on the concept of widgets.
@@ -12,15 +12,14 @@ Widgets typically extend either the \texttt{StatelessWidget} or \texttt{Stateful
 The difference is that \texttt{StatefulWidget} has the concept of a state within the widget, meaning it can change during the lifetime of the widget.
 \texttt{StatefulWidgets} are used when part of the UI can change dynamically.
 \texttt{StatelessWidgets} conversely do not have states, meaning they are useful when part of the UI does not depend on anything other than the basic information of the widget. 
-The basic widgets used to create a layout are \cite{FlutterBasicWidgets}:
+Some of the basic widgets used to create a layout are \cite{FlutterBasicWidgets}:
  \begin{itemize}
     \item Container
     \item Row
     \item Column  
     \item Scaffold
     \item Text
-    \item Image
-    \item RaisedButton 
+    \item Image 
  \end{itemize} 
 Most of these widgets are self explanatory. 
 Rows let you layout a list of child widgets in the horizontal direction, columns let you do that in the vertical direction.
@@ -38,7 +37,7 @@ The overall architecture is illustrated in \autoref{fig:architecture-giraf}.
 \end{figure}
 As shown in \autoref{fig:architecture-giraf}, the bottom layer is the \texttt{model}.
 This layer is responsible for data, making sure what is required can be provided.
-The next layer is the \texttt{API}, which is responsible for communication with the backend, to make sure that relevant data can be retrieved.
+The next layer is the \texttt{API}, which is responsible for communication with the back end, to make sure that relevant data can be retrieved.
 The \texttt{BLoC} layer is responsible for business logic. 
 It uses streams and sinks to create states.
 \begin{figure}[h]
@@ -48,7 +47,7 @@ It uses streams and sinks to create states.
   \label{fig:streamsandsinks}
 \end{figure}
 \noindent
-As seen on \autoref{fig:streamsandsinks}, widgets send data to the \texttt{BloC} through sinks, and streams send data from the \texttt{BLoC} to widgets.
+As seen on \autoref{fig:streamsandsinks}, widgets send data to the \texttt{BLoC} through sinks, and streams send data from the \texttt{BLoC} to widgets.
 This pattern is used to help ensure separation of responsibility, such that business logic can be changed without interfering with the application.  
 Next is the \texttt{screen}, which is a page that can be visited, something that can be viewed.
 Widgets are the final component.
@@ -63,7 +62,7 @@ For sprint 2 we were assigned the following user stories:
 \end{itemize}
 These user stories define essential functionality for the week planner - actually viewing the plan for both guardians and citizens.
 This means we needed to implement the design for the basic view of the week planner, as defined by our prototypes.
-The following prototypes show the planned designs:
+The prototypes in \autoref{fig:story_weekplan_views} show the planned designs.
 
 \begin{figure}[H]
   \begin{subfigure}{0.5\textwidth}
@@ -85,20 +84,21 @@ To implement the view the first thing needed is to implement the \texttt{BLoC} r
 
 \begin{lstlisting}[caption={The week plan BLoC},label={lst:weekplanbloc},language={[Sharp]C}]
   class WeekplanBloc extends BlocBase {
-  final Api _api;
-  final BehaviorSubject<WeekModel> _week = BehaviorSubject<WeekModel>();
+    final Api _api;
+    final BehaviorSubject<WeekModel> _week = BehaviorSubject<WeekModel>();
 
-  WeekplanBloc(this._api);
+    WeekplanBloc(this._api);
 
-  Stream<WeekModel> get week => _week.stream;
+    Stream<WeekModel> get week => _week.stream;
 
-  void setWeek(WeekModel week) {
-      _week.add(week);
-  }
+    void setWeek(WeekModel week) {
+        _week.add(week);
+    }
 
-  @override
-  void dispose() {
-    _week.close();
+    @override
+    void dispose() {
+      _week.close();
+    }
   }
 \end{lstlisting}
 The \texttt{WeekPlanBloc} class we implement extends the \texttt{BlocBase} abstract class.
@@ -123,6 +123,7 @@ class WeekplanScreen extends StatelessWidget {
   WeekplanScreen({Key key, WeekModel week}) : super(key: key) {
     weekplanBloc.setWeek(week);
   }
+  ...
 \end{lstlisting}
 \autoref{lst:screensetup} shows how the necessary dependencies for the screen are retrieved. 
 It receives an instance of the \texttt{weekPlanBloc} through dependency injection.
@@ -182,8 +183,8 @@ If the snapshot is not ready it just returns a \texttt{Text} message.
 }
 \end{lstlisting}
 \autoref{lst:screenbuildweek} builds the actual week on the screen.
-At first, the colors are defined in hexadecimal, based on the colors defined in the design guide as determined by the customers.
-A list of \texttt{widgets} is instantiated, and a child is added for each day.
+At first, the colors are defined in hexadecimal, based on the colors defined in the design guide.
+A list of widgets is instantiated, and a child is added for each day.
 This child is of the widget type \texttt{Card}, which is the design used for a day.
 These children are then returned as a \texttt{Row} widget, meaning that they are aligned horizontally.
 
@@ -221,13 +222,12 @@ However, at the time of us completing this user story, the functionality to show
 \subsubsection{The final design}
 The design that was pushed to the develop branch of the GIRAF project at the end of the second sprint is shown in \autoref{fig:weekplanner_design}.
 This design is used as the foundation for both the citizen mode and guardian mode views of the weekplanner.
-It is based on the design constructed in the prototypes and features the colors specified by the customers for each weekday.
 The code in \autoref{lst:screenbuildweek} is responsible for the horizontal structure of the week, and the code from \autoref{lst:screendaysandactivities} is responsible for the vertical structure of single days.
 
 
-\begin{figure}[h!]
+\begin{figure}[H]
   \centering
-  \includegraphics[width=0.6\textwidth]{ugeplan_view_implemented.PNG}
+  \includegraphics[width=0.5\textwidth]{ugeplan_view_implemented.PNG}
   \caption{The design of the weekplanner application as it was pushed to the master branch.}
   \label{fig:weekplanner_design}
 \end{figure}
