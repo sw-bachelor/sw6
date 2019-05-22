@@ -1,14 +1,23 @@
 \section{Back end workshop}
-The following section describes a collaboration between all the groups of the Giraf project of 2019. 
+The following section describes a collaboration between all the groups of the GIRAF project of 2019. 
 On the 29th of April, the back end skill group held a workshop, where the agenda was doing some collaborative fixing of unit tests, identifying issues, and fixing these issues. 
 The overall goal of the workshop was to share knowledge about back end development since the level of competence with, for example, REST API development varied a lot between the back end skill group members.
 \\\\
-Before the skill group workshop, several unit tests failed due to performance enhancements performed by the server skill group. The back end skill group set out to fix these unit tests in a mob programming manner to include all members of the skill group in resolving these issues. The mob programming was also intended to be an activity in which less experienced members could become more comfortable with the REST API repository and the unit testing of endpoints.
+Before the skill group workshop, several unit tests failed due to performance enhancements performed by the server skill group.
+The back end skill group set out to fix these unit tests in a mob programming manner to include all members of the skill group in resolving these issues.
+The mob programming was also intended to be an activity in which less experienced members could become more comfortable with the REST API repository and the unit testing of endpoints.
 \\\\
-All of the unit tests were updated to correctly pass. As some of the tests for the \texttt{PictogramController} failed after the new changes were made to how pictograms were stored, the pictogram tests had to be changed to create test images that could be used in every test. This was achieved by ensuring that each test would generate all test images. As each test was now independent, they could no longer fail if a different test had modified the test image.
+All of the unit tests were updated to correctly pass.
+As some of the tests for the \texttt{PictogramController} failed after the new changes were made to how pictograms were stored, the pictogram tests had to be changed to create test images that could be used in every test.
+This was achieved by ensuring that each test would generate all test images.
+As each test was now independent, they could no longer fail if a different test had modified the test image.
 \\\\
 Additionally, it was discovered that some of the existing unit tests were of lesser quality, which should be addressed in the future if code quality of the back end is of priority.
 \\\\
-The back end issues #18, #17 and #15 in the \texttt{web-api} repository were identified and initiated during the workshop. Issue #15 revolved around the warnings that were thrown when building the REST API. Both issue #18 and #17 revolved around adding create, read, update and delete endpoints for activities. These endpoints were found necessary since currently adding, deleting or updating an activity required using the update week endpoint, updating an entire week plan instead of a single activity. 
+The back end issues #18, #17 and #15 in the \texttt{web-api} repository were identified and initiated during the workshop.
+Issue #15 revolved around the warnings that were thrown when building the REST API.
+Both issue #18 and #17 revolved around adding create, read, update and delete endpoints for activities.
+These endpoints were found necessary since currently adding, deleting or updating an activity required using the update week endpoint, updating an entire week plan instead of a single activity. 
 \\\\
-In conclusion, the groups thought the workshop served as a good introduction to development in the REST API repository, and would advice future groups to do the same. In retrospect, the groups could have benefited from having the workshop sooner, but the weekplanner was of higher priority in the initial sprints and the REST API was already in a functioning condition.
+In conclusion, the groups thought the workshop served as a good introduction to development in the REST API repository, and would advice future groups to do the same.
+In retrospect, the groups could have benefited from having the workshop sooner, but the weekplanner was of higher priority in the initial sprints and the REST API was already in a functioning condition.
