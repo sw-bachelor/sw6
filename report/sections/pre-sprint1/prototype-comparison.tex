@@ -1,6 +1,5 @@
 \section{Remaking GIRAF prototypes}\label{prototype-comp}
 We inherited a set of PowerPoint slides from the last year's product owner group, as described in \autoref{prepared-work-from-previous-years}.
-We used adobe XD to create new prototypes, since it allows for easier updating of both the design and interactions.
 The different functionalities of the prototypes will be explained in the following section.
 The most relevant updated prototypes will also be compared to the previous versions.
 
@@ -17,21 +16,15 @@ From reading the reports of the previous year and looking at the inherited proto
     \item Add timers to activities
     \item View and change settings
 \end{itemize}
-Designing the necessary prototypes left us with a total of around 65 different prototypes of different screens and functionalities of the GIRAF weekplanner application.
-This included different prototypes with the same base design that showed prompts to the user when they performed an action that warranted one.
-The \textit{mark mode} prototypes which are explained below show examples of this. 
-Different interactions such as marking multiple activities were performed on the same base design of the weekplanner screen.
-When the user would decide to delete the marked activities, a new prototype showing the confirmation prompt was necessary.
+Designing the necessary prototypes left us with a total of around 65 different prototypes of different screens of the GIRAF weekplanner application.
 
 \subsection{Comparisons of old and new prototypes}
-The following section presents and compares new and old prototypes. 
-We only present a subset of some of the more relevant new prototypes.
+The following section presents and compares a subset of the new and old prototypes. 
 
 \subsubsection{The login and choosing citizen screens}
 The base design of the previous login screen was functionally acceptable. 
 The background colour used was just a dull yellow, and as such we decided to update the background to be a little more dynamic but keeping the separate bars in which to input \texttt{username} and \texttt{password}.
 The design change used for logging in was also employed in the confirmation screen from swapping from citizen to guardian mode. 
-The previous design and the new design for changing from citizen to guardian, as well as the general layout for logging in, can be viewed in the following figures:
 \begin{figure}[H]
     \begin{subfigure}{0.5\textwidth}
     \includegraphics[width=1\linewidth, height=5cm]{old_login.JPG} 
@@ -64,7 +57,6 @@ The previous design and the new design for changing from citizen to guardian, as
 \noindent
 The design of the screen where citizens are selected was also changed.
 It was  primarily changed to make it more aesthetically pleasing, with the main selection area being changed to a scrollable window with two columns. 
-A comparison of the screen in which a citizen is selected is illustrated in the following figures:
 \begin{figure}[H]
     \begin{subfigure}{0.5\textwidth}
     \includegraphics[width=1\linewidth, height=5cm]{previous_citizen_select.JPG} 
@@ -101,12 +93,10 @@ We removed the large area reserved for the name of the week plan on the previous
 \end{figure}
 
 \subsubsection{Mark mode functionality}
-In order to improve usability the weekplanner should support functionality to perform actions on different activities at the same time.
+In order to improve usability the weekplanner should support functionality to perform actions on multiple activities at the same time.
 The previous prototypes featured a retractable side menu that the new prototypes do not.
 As such, the main difference was in how \textit{mark mode} was activated. 
 On the new prototypes we implemented a symbol on the top bar to activate this functionality.
-The following figure shows a comparison of the two solutions:
-
 \begin{figure}[H]
     \begin{subfigure}{0.5\textwidth}
     \includegraphics[width=1\linewidth, height=5cm]{old_markmode.JPG} 
@@ -124,7 +114,7 @@ The following figure shows a comparison of the two solutions:
 
 \subsubsection{Details for an activity}
 Users should be able to look at the details of an activity.
-When they do this, they should be able to add timers or change the status of the activity.
+When they do this, they should be able to add a timer or change the status of the activity.
 We kept the structure of the previous prototype, but redid the design for this to include less text. 
 This was done since the customers expressed an interest in as little text as possible.
 \begin{figure}[H]
@@ -141,27 +131,3 @@ This was done since the customers expressed an interest in as little text as pos
     \caption{This figure shows the screens for activity details.}
     \label{fig:activity_detail_prototypes}
 \end{figure}
-
-\subsubsection{Greyscale functionality}
-GIRAF should support the different preferences of the citizens. 
-As such, a greyscale functionality was preferable.
-This was also documented by the previous year, but they had not made a prototype for this functionality.
-Instead, they proposed a yellow color scheme.
-We developed the greyscale prototype seen below with the intention to have it evaluated by company representatives.
-\begin{figure}[H]
-    \begin{subfigure}{0.5\textwidth}
-    \includegraphics[width=1\linewidth, height=5cm]{previous_color_change.JPG} 
-    \caption{The previous colour prototype}
-    \label{fig:previous_greyscale_prototype}
-    \end{subfigure}
-    \begin{subfigure}{0.5\textwidth}
-        \includegraphics[width=1\linewidth, height=5cm]{greyscale_functionality.png}
-    \caption{The proposed greyscale colouring}
-    \label{fig:new_greyscale_prototype}
-    \end{subfigure} 
-    \caption{This figure shows different colouring options.}
-    \label{fig:greyscale_prototype}
-\end{figure}
-
-
-

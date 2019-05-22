@@ -1,5 +1,8 @@
 \section{Managing the codebase}
-As mentioned in \autoref{sec:introduction-product-vision}, one of our goals was to migrate documentation from Phrabricator to GitHub and also have the codebase be hosted on GitHub instead of GitLab. We had different parts of the codebase in different repositories to keep all the code separated and organized. The most frequently used repositories can be seen here:
+As mentioned in \autoref{sec:introduction-product-vision}, one of our goals was to make GIRAF easily accessible for future developers.
+One of the ways this was accomplished was by migrating documentation from Phabricator to GitHub and also having the codebase be hosted on GitHub instead of GitLab.
+We had different parts of the codebase in different repositories to keep all the code separated and organized.
+The most frequently used repositories can be seen here:
 
 \begin{itemize}
     \item \textbf{web-api:} The repository containing the backend RESTful API written in C\# using the dotnet-core framework.
@@ -7,12 +10,13 @@ As mentioned in \autoref{sec:introduction-product-vision}, one of our goals was 
     \item \textbf{api\_client:} The repository containing the API, written in Dart, which communicates with the web-api. It is used in the weekplanner to request data from the database through the backend endpoints.
     \item \textbf{wiki:} The repository containing all the documentation for the GIRAF project. 
 \end{itemize}
+A complete list of the repositories and their descriptions can be found on the \href{https://github.com/aau-giraf/wiki/blob/master/Repositories/repository_discription.md}{GIRAF wiki}.
 
-\subsection{GitFlow}
+\subsubsection{GitFlow}
 We used Git for version control of the code and the branching model we used was GitFlow. 
 GitFlow makes it easier for many developers to work on the same codebase. 
 Any new development should be done on a feature branch, branching out from a develop branch. 
-When the feature is done it can be merged back into the develop branch which contains all new features that has not been released yet. 
-The feature branches then work as a sort of sandbox where the developers are free to try things without worrying about breaking all of the codebase. 
-When a release is made, a new branch is made from develop which then already contains all the new features. 
+When the feature is done it can be merged back into the develop branch which contains all new features that have not been released yet. 
+The feature branches then work as a sort of sandbox where the developers are free to try things without worrying about breaking the codebase. 
+When a release is made, a new branch is made from develop which already contains all the new features. 
 When the release is finished it is merged into both the master and develop branches.
