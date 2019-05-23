@@ -5,9 +5,9 @@ We had different parts of the codebase in different repositories to keep all the
 The most frequently used repositories can be seen here:
 
 \begin{itemize}
-    \item \textbf{web-api:} The repository containing the backend RESTful API written in C\# using the dotnet-core framework.
+    \item \textbf{web-api:} The repository containing the back end RESTful API written in C\# using the dotnet-core framework.
     \item \textbf{weekplanner:} The repository containing the code for the frontend of the weekplanner application written in Dart using the Flutter framework. 
-    \item \textbf{api\_client:} The repository containing the API, written in Dart, which communicates with the web-api. It is used in the weekplanner to request data from the database through the backend endpoints.
+    \item \textbf{api\_client:} The repository containing the API, written in Dart, which communicates with the web-api. It is used in the weekplanner to request data from the database through the back end endpoints.
     \item \textbf{wiki:} The repository containing all the documentation for the GIRAF project. 
 \end{itemize}
 A complete list of the repositories and their descriptions can be found on the \href{https://github.com/aau-giraf/wiki/blob/master/Repositories/repository_discription.md}{GIRAF wiki}.
@@ -17,6 +17,6 @@ We used Git for version control of the code and the branching model we used was 
 GitFlow makes it easier for many developers to work on the same codebase. 
 Any new development should be done on a feature branch, branching out from a develop branch. 
 When the feature is done it can be merged back into the develop branch which contains all new features that have not been released yet. 
-The feature branches then work as a sort of sandbox where the developers are free to try things without worrying about breaking the codebase. 
-When a release is made, a new branch is made from develop which already contains all the new features. 
-When the release is finished it is merged into both the master and develop branches.
+The feature branches work as a sort of sandbox where the developers are free to try things locally without worrying about breaking the main codebase. 
+When a release is made, a new branch is created from develop which already contains all the new features. 
+When the release is finished the release branch is merged into both the master and develop branches.
