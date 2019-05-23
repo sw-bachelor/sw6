@@ -82,7 +82,7 @@ The prototypes in \autoref{fig:story_weekplan_views} show the planned designs.
 \subsubsection{The BLoC for the week plan view}
 To implement the view the first thing needed is to implement the \texttt{BLoC} required, as this is the lowest level of the architecture that needs to be added for this functionality.
 
-\begin{lstlisting}[caption={The week plan BLoC},label={lst:weekplanbloc},language={[Sharp]C}]
+\begin{lstlisting}[caption={The week plan BLoC},label={lst:weekplanbloc}]
   class WeekplanBloc extends BlocBase {
     final Api _api;
     final BehaviorSubject<WeekModel> _week = BehaviorSubject<WeekModel>();
@@ -116,7 +116,7 @@ The \texttt{setWeek} method creates the sink.
 
 \subsubsection{The screen for the week plan view}
 The \texttt{Screen} has to be implemented to give something for the user to view.
-\begin{lstlisting}[caption={Setting up the screen},label={lst:screensetup},language={[Sharp]C}]
+\begin{lstlisting}[caption={Setting up the screen},label={lst:screensetup}]
 class WeekplanScreen extends StatelessWidget {
   final WeekplanBloc weekplanBloc = di.getDependency<WeekplanBloc>();
 
@@ -132,7 +132,7 @@ This key is received from the superclass.
 The constructor also takes a \texttt{WeekModel} parameter, which is the definition of the week in the model component of the architecture. 
 Finally it calls the \texttt{setWeek} method from the \texttt{BLoC} with the model for the week.
 
-\begin{lstlisting}[caption={Building the structure},label={lst:screenstructure},language={[Sharp]C}]
+\begin{lstlisting}[caption={Building the structure},label={lst:screenstructure}]
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -161,7 +161,7 @@ The \texttt{StreamBuilder} is a widget that builds itself based on the latest in
 The stream it builds is based on the \texttt{weekplanBloc.week} stream.
 If the snapshot is not ready it just returns a \texttt{Text} message.
 
-\begin{lstlisting}[caption={Building the week},label={lst:screenbuildweek},language={[Sharp]C}]
+\begin{lstlisting}[caption={Building the week},label={lst:screenbuildweek}]
   Row _buildWeeks(WeekModel weekModel) {
   const List<int> weekColors = <int>[
     0xFF08A045,
@@ -188,7 +188,7 @@ A list of widgets is instantiated, and a child is added for each day.
 This child is of the widget type \texttt{Card}, which is the design used for a day.
 These children are then returned as a \texttt{Row} widget, meaning that they are aligned horizontally.
 
-\begin{lstlisting}[caption={Building days and activities},label={lst:screendaysandactivities},language={[Sharp]C}]
+\begin{lstlisting}[caption={Building days and activities},label={lst:screendaysandactivities}]
   Column _day(Weekday day, List<ActivityModel> activities) {
   return Column(
     children: <Widget>[
