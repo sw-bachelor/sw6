@@ -1,5 +1,5 @@
-\section{Usability test 14/05 and 21/05}\label{usability-test-14-05}
-We had planned this usability test so that there were two customers from Egebakken and one customer from Birken who could participate.
+\section{Usability tests 14/05 and 21/05}\label{usability-test-14-05}
+We had planned a usability test so that two customers from Egebakken and one customer from Birken could participate.
 Unfortunately, one of Susannes colleagues called in sick, meaning Susanne had to cancel the usability test on the 14th.
 Because of this, we scheduled an extra usability test for Susanne on the 21st of May. 
 Because of the new date, Kristine from Birken was also able to participate. 
@@ -25,69 +25,61 @@ Mette did not have many problems using the application.
 The tasks for Mette, Susanne and Kristine can be found in \autoref{usability-test-14-05-mette}.
 When trying to login she was prompted that she either had a wrong username or password. 
 We realized that this was due to the tablet disconnecting from the internet.
-This indicated we lacked an appropriate error message for this issue.
+This indicated we lacked an appropriate error message for this issue, which should be added.
 \\\\
 She had an assignment to move the newly added activity between two other activities, which proved rather difficult. 
-This was also one of the problems that Emil had at the last usability test.
 She also had some issues with creating a new week plan.
 She filled out the form, but forgot to add a pictogram. 
 When she pressed the button to create the new week plan, there was no feedback that she was missing a pictogram.
-This issue was also present at the last usability test, described in \autoref{usability-test-sprint-3}.
-\\\\
-Mette had issues copying activities to other days.
-She tried multiple times by dragging and dropping, but found that this was not the solution.
-She looked for an icon to copy but was unable to find it. 
-We guided her to the mark mode button, and after clicking it she figured out how to copy to other days.
+These were also the problems Emil had at the last usability tests.
 
 \subsection{Emil}
 Emil generally did not have many issues using the application. 
 His tasks can be found in \autoref{usability-test-14-05-emil}.
-He was accustomed to the application since he also participated in the usability test conducted on May 2nd. 
-Because of this we prepared tasks for Emil that were mainly focused on new additions to the application in sprint 4 specifically.
+We prepared tasks for Emil that were mainly focused on new additions to the application in sprint 4 specifically.
+\\\\
 Initially Emil struggled a bit with copying activities.
-He tried to longpress rather than use the mark mode functionality, but eventually used the proper functionality.
+He tried to long press rather than use the mark mode functionality, but eventually used the proper functionality.
 He tried to copy without marking any activities, and reacted positively to the error message that ensued, telling him to actually mark activities.
+This should be solved by a clearer error message, or by not allowing the button to be pressed prior to marking activities.
 Instead of marking an activity as cancelled, he ended up mistakenly deleting it.
 This was due to him thinking the cancel button was used to stop mark mode rather than its actual purpose, cancelling activities.
+Because of this, we changed the wording used for the button from \textit{Annuller} to \textit{Aflys}.
 
 \subsection{Kristine}
-Kristine did not face any abnormal problems.
-Most assignments were completed without issues, and the ones she struggled with were the same as most of the other representatives.
+Kristine completed most assignments without issues, and the ones she struggled with were the same as most of the other representatives.
 The first issue was related to the drag and drop functionality, she also struggled to figure out where the pictogram would land.
 Kristine located mark mode without issues, but did not expect to have to mark the activities before copying them to other days. 
-Kristine was the only representative to face issues when adding a timer. 
-She initially thought that it would be added when the pictogram would be added.
 
 \subsection{Susanne}
 Susanne faced the same issue as all the other representatives with dragging and dropping an activity.
 When creating a week plan, she attempted to save the plan without providing all the necessary information.
-This did not prompt an error message, meaning she was confused.
+This did not prompt an error message, leading to confusion.
 Susanne did not enter mark mode when asked to copy multiple activities.
 She needed assistance to accomplish the task, but commented that it was fairly intuitive after the first attempt.
 
 \subsection{Overall feedback}
 All the representatives who participated in the usability tests were satisfied and impressed with what we showed them.
-All of them said they felt the program was very intuitive to use, even when compared to previous applications they had used or previous versions of GIRAF.
+All of them said they felt the program was very intuitive to use, especially when compared to previous applications they had used or previous versions of GIRAF.
 The main issues relating to usability are small and can easily be changed.
-They wanted better feedback when creating a new week plan, a way to visualize where an activity would land after being dragged and a title on the topbar showing which citizen the plan belong to. 
+They wanted better feedback when creating a new week plan, a way to visualize where an activity would land after being dragged and a title on the top bar showing which citizen the plan belonged to. 
 A reoccurring issue was the initial use of mark mode.
 All participants struggled, but later commented that they felt it was only an issue because it was their first time using the application.
 
-
-
 \subsection{Discussion of new prototypes}
 We showed them our initial thoughts related to the implementation of a choice board.
-This functionality would let the citizen choose one activity from a selection of activities.
-We had built a design based around four activities being the maximum amount, and both Emil and Mette confirmed that this was the proper amount, and that they would generally not exceed it. 
+We had created a design based around four activities being the maximum amount, and both Emil and Mette confirmed that this was the proper amount, and that they would generally not exceed it. 
 However, they made us aware of a complication we had not considered - what if the citizen chose the wrong activity?
 This would require some sort of reset button, either on the week plan itself or for the specific choice board.
 \\\\
 During the last usability test, described in \autoref{usability-test-sprint-3}, Emil had expressed a need for the ability to lock a timer.
 The way this was prototyped was accepted, but we were unsure what should happen once the timer had finished.
 They explained that adding a “ding” sound would most likely be beneficial, as a lot of the citizens liked that sort of feedback.
+\\\\
 When showing the prototypes for showing different amounts of days of a week plan at a time, they remarked that the prototype we showed for showing a single day would likely be confusing for the citizens.
 On both edges of the screen we had a small part of the previous and next days shown, to indicate that they would actually occur.
 They wanted this removed, so that only one color would be visible.
+\\\\
 When discussing the functionality to add a new pictogram through the gallery of the device, we discussed whether or not they would like the functionality to make a pictogram private for a specific citizen.
 This was something they had not thought about in relation to the application, but they decided that this was actually important, and requested that it would be added.
 
