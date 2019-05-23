@@ -8,7 +8,7 @@ During this release preparation group sw612f19 got it working again, which meant
 The user story assigned to group sw612f19 required removing the back button from the \texttt{GirafAppBar} when the week plan screen was in citizen mode, and had not been completed in time for the release preparation.
 Therefore, we took over the implementation of this user story, since we had created the current implementation of the \texttt{GirafAppBar}.
 The implementation details are described below.
-\begin{lstlisting}[caption={Removing back button from the citizens screen},label={lst:removeBackButton},language={[Sharp]C}]
+\begin{lstlisting}[caption={Removing back button from the citizens screen},label={lst:removeBackButton}]
     GirafAppBar({Key key, this.title, this.appBarIcons, this.isGuardian = true})
 \end{lstlisting}
 The constructor of the \texttt{GirafAppBar} can be seen on \autoref{lst:removeBackButton}. 
